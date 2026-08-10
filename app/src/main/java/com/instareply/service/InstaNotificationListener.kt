@@ -47,7 +47,7 @@ class InstaNotificationListener : NotificationListenerService() {
         val bigText = extras.getCharSequence(Notification.EXTRA_BIG_TEXT)?.toString()
 
         // Skip group summary notifications
-        if (extras.getBoolean(Notification.EXTRA_IS_GROUP_SUMMARY, false)) return
+        if (extras.getBoolean("android.isGroupSummary", false)) return
 
         // Get the actual message (prefer bigText if available)
         val message = bigText ?: text

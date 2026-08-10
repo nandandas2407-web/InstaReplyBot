@@ -3,6 +3,7 @@ package com.instareply.ai
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.instareply.data.model.AiConfig
+import com.instareply.data.model.AiProvider as AiProviderEnum
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
@@ -34,10 +35,10 @@ class OpenAiCompatibleProvider : AiProvider {
 
             val model = config.model.ifEmpty {
                 when (config.provider) {
-                    AiProvider.OPENROUTER -> "openai/gpt-3.5-turbo"
-                    AiProvider.NVIDIA_NIM -> "meta/llama-3.1-8b-instruct"
-                    AiProvider.OPENAI -> "gpt-3.5-turbo"
-                    AiProvider.OPENCODE -> "gpt-3.5-turbo"
+                    AiProviderEnum.OPENROUTER -> "openai/gpt-3.5-turbo"
+                    AiProviderEnum.NVIDIA_NIM -> "meta/llama-3.1-8b-instruct"
+                    AiProviderEnum.OPENAI -> "gpt-3.5-turbo"
+                    AiProviderEnum.OPENCODE -> "gpt-3.5-turbo"
                     else -> "gpt-3.5-turbo"
                 }
             }
@@ -61,7 +62,7 @@ class OpenAiCompatibleProvider : AiProvider {
                 .addHeader("Authorization", "Bearer ${config.apiKey}")
                 .addHeader("Content-Type", "application/json")
                 .apply {
-                    if (config.provider == AiProvider.OPENROUTER) {
+                    if (config.provider == AiProviderEnum.OPENROUTER) {
                         addHeader("HTTP-Referer", "https://instareply.app")
                         addHeader("X-Title", "InstaReply Bot")
                     }

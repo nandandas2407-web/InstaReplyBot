@@ -44,14 +44,14 @@ class SettingsActivity : AppCompatActivity() {
         val modelAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.gemini_models,
-            android.R.layout.simple_dropdown_item_1
+            android.R.layout.simple_spinner_dropdown_item
         )
         binding.spinnerGeminiModel.adapter = modelAdapter
 
         val openrouterAdapter = ArrayAdapter.createFromResource(
             this,
             R.array.openrouter_models,
-            android.R.layout.simple_dropdown_item_1
+            android.R.layout.simple_spinner_dropdown_item
         )
         binding.spinnerOpenrouterModel.adapter = openrouterAdapter
     }

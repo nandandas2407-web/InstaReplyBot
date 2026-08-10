@@ -40,13 +40,13 @@ class RuleEditorActivity : AppCompatActivity() {
         // Match type spinner
         val matchTypes = MatchType.values().map { it.name }
         binding.spinnerMatchType.adapter = ArrayAdapter(
-            this, android.R.layout.simple_dropdown_item_1, matchTypes
+            this, android.R.layout.simple_spinner_dropdown_item, matchTypes
         )
 
         // AI provider spinner
         val providers = listOf("gemini", "openrouter", "nvidia", "openai", "opencode")
         binding.spinnerAiProvider.adapter = ArrayAdapter(
-            this, android.R.layout.simple_dropdown_item_1, providers
+            this, android.R.layout.simple_spinner_dropdown_item, providers
         )
     }
 

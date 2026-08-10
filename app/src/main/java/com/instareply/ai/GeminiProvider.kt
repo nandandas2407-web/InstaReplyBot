@@ -3,7 +3,6 @@ package com.instareply.ai
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.instareply.data.model.AiConfig
-import com.instareply.data.model.AiProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
@@ -12,10 +11,10 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.util.concurrent.TimeUnit
 
-class GeminiProvider(private val client: OkHttpClient = defaultClient()) : AiProvider {
+class GeminiProvider(private val client: OkHttpClient = DEFAULT_CLIENT) : AiProvider {
 
     companion object {
-        private val defaultClient = OkHttpClient.Builder()
+        private val DEFAULT_CLIENT = OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .build()

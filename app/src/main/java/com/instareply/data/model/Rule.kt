@@ -12,7 +12,7 @@ data class Rule(
     val matchType: MatchType = MatchType.CONTAINS,
     val replyTemplate: String = "",       // Static reply or AI prompt
     val useAI: Boolean = true,            // Use AI provider or static reply
-    val aiProvider: String = "gemini",    // gemini, openrouter, nvidia, opencode, openai
+    val aiProvider: String = "gemini",    // gemini, openrouter, nvidia, opencode, openai, groq
     val delayMs: Long = 0,               // Delay before reply
     val maxRepliesPerDay: Int = 10,      // Rate limit
     val applyToGroups: Boolean = false,

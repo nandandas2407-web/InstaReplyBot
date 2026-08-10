@@ -10,6 +10,7 @@ import com.instareply.R
 import com.instareply.data.model.MatchType
 import com.instareply.data.model.Rule
 import com.instareply.databinding.ActivityRuleEditorBinding
+import com.instareply.util.AiProviders
 import kotlinx.coroutines.launch
 
 class RuleEditorActivity : AppCompatActivity() {
@@ -44,7 +45,7 @@ class RuleEditorActivity : AppCompatActivity() {
         )
 
         // AI provider spinner
-        val providers = listOf("gemini", "openrouter", "nvidia", "openai", "opencode")
+        val providers = AiProviders.ALL
         binding.spinnerAiProvider.adapter = ArrayAdapter(
             this, android.R.layout.simple_spinner_dropdown_item, providers
         )
@@ -75,7 +76,7 @@ class RuleEditorActivity : AppCompatActivity() {
         binding.etReplyTemplate.setText(rule.replyTemplate)
         binding.switchUseAI.isChecked = rule.useAI
 
-        val providers = listOf("gemini", "openrouter", "nvidia", "openai", "opencode")
+        val providers = AiProviders.ALL
         binding.spinnerAiProvider.setSelection(providers.indexOf(rule.aiProvider))
 
         binding.etDelay.setText(rule.delayMs.toString())
@@ -93,7 +94,7 @@ class RuleEditorActivity : AppCompatActivity() {
             return
         }
 
-        val providers = listOf("gemini", "openrouter", "nvidia", "openai", "opencode")
+        val providers = AiProviders.ALL
 
         val rule = Rule(
             id = editingRuleId,

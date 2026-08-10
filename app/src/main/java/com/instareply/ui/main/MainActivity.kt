@@ -152,6 +152,13 @@ class MainActivity : AppCompatActivity() {
                 if (index in 0..6) counts[index]++
             }
             binding.chartWeekly.setData(counts)
+
+            val last = db.replyLogDao().getLastLog()
+            binding.tvLastAttempt.text = when {
+                last == null -> ""
+                last.success -> "Last reply sent to ${last.contactName}"
+                else -> "Last attempt failed: ${last.errorMessage ?: "unknown error"}"
+            }
         } catch (t: Throwable) {
             // ignore stats refresh errors - they should never crash the dashboard
         }

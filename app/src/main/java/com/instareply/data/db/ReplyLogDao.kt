@@ -26,4 +26,7 @@ interface ReplyLogDao {
 
     @Query("SELECT timestamp FROM reply_log WHERE timestamp > :since AND success = 1")
     suspend fun getSuccessTimestampsSince(since: Long): List<Long>
+
+    @Query("SELECT * FROM reply_log ORDER BY timestamp DESC LIMIT 1")
+    suspend fun getLastLog(): ReplyLog?
 }

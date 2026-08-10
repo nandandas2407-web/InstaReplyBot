@@ -1,7 +1,11 @@
 package com.instareply.service
 
+import android.app.Notification
 import android.app.PendingIntent
+import android.app.RemoteInput
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import com.instareply.ai.AiProviderFactory
 import com.instareply.data.db.AppDatabase
@@ -22,6 +26,7 @@ class ReplyEngine(private val context: Context) {
         message: String,
         rule: Rule,
         db: AppDatabase,
+        notification: Notification? = null,
         contentIntent: PendingIntent? = null
     ) {
         try {
@@ -51,8 +56,15 @@ class ReplyEngine(private val context: Context) {
                 val replyText = result.getOrNull() ?: return
                 Log.d(TAG, "Generated reply for $senderName: $replyText")
 
-                // Send reply via accessibility service (opens the exact chat thread first)
-                val sent = sendReplyViaAccessibility(senderName, replyText, contentIntent, rule.delayMs)
+                // 1. Primary: inject reply through Instagram's own notification Reply action
+                //    (same mechanism the reference app uses - no accessibility needed)
+                var sent = sendReplyViaRemoteInput(notification, replyText)
+
+                // 2. Fallback: accessibility service types into the chat
+                if (!sent) {
+                    Log.d(TAG, "No reply action available, falling back to accessibility")
+                    sent = sendReplyViaAccessibility(senderName, replyText, contentIntent, rule.delayMs)
+                }
 
                 db.replyLogDao().insertLog(
                     ReplyLog(
@@ -62,7 +74,7 @@ class ReplyEngine(private val context: Context) {
                         ruleId = rule.id,
                         aiProvider = rule.aiProvider,
                         success = sent,
-                        errorMessage = if (sent) null else "Send failed: accessibility service unavailable or chat could not be opened"
+                        errorMessage = if (sent) null else "Send failed: notification has no Reply action and accessibility service unavailable or chat could not be opened"
                     )
                 )
 
@@ -91,6 +103,42 @@ class ReplyEngine(private val context: Context) {
         }
     }
 
+    /**
+     * Fires the notification's "Reply" action PendingIntent with our text injected
+     * as the RemoteInput result. Instagram's own receiver then sends the DM -
+     * exactly like a quick reply from the notification shade. No accessibility,
+     * no screen-on, works in background.
+     */
+    private fun sendReplyViaRemoteInput(notification: Notification?, replyText: String): Boolean {
+        if (notification == null) return false
+        try {
+            val actions = notification.actions ?: return false
+            for (action in actions) {
+                val remoteInputs = action.remoteInputs
+                if (remoteInputs == null || remoteInputs.isEmpty()) continue
+                if (action.actionIntent == null) continue
+
+                // Build the results bundle: each RemoteInput key -> our reply text
+                val results = Bundle()
+                for (ri in remoteInputs) {
+                    results.putCharSequence(ri.resultKey, replyText)
+                }
+
+                // Fill an intent with the results and fire the action intent.
+                // Instagram's reply receiver reads RemoteInput.getResultsFromIntent(intent).
+                val fillInIntent = Intent()
+                RemoteInput.addResultsToIntent(remoteInputs, fillInIntent, results)
+                action.actionIntent.send(context, 0, fillInIntent)
+
+                Log.d(TAG, "Injected reply via notification action '${action.title}' (${remoteInputs.size} remote input(s))")
+                return true
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "RemoteInput reply failed", e)
+        }
+        return false
+    }
+
     private suspend fun sendReplyViaAccessibility(
         recipient: String,
         message: String,
@@ -113,11 +161,17 @@ class ReplyEngine(private val context: Context) {
                 if (openedChat) delay(2000)
             }
             if (openedChat && ruleDelayMs > 0) delay(ruleDelayMs)
-            // 4. Type and send the message on the main thread
+            // 4. Type and send the message (with retries while Instagram settles)
             if (openedChat) {
-                withContext(Dispatchers.Main) {
-                    accessibilityService.typeAndSendMessage(message)
+                var sent = false
+                repeat(4) {
+                    sent = withContext(Dispatchers.Main) {
+                        accessibilityService.typeAndSendMessage(message)
+                    }
+                    if (sent) return@repeat
+                    delay(1500)
                 }
+                sent
             } else {
                 Log.e(TAG, "Could not open Instagram chat for $recipient")
                 false

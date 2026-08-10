@@ -71,7 +71,7 @@ class InstaAccessibilityService : AccessibilityService() {
         try {
             val rootNode = rootInActiveWindow ?: return false
 
-            // Find the message input field
+            // Find the message input field (Instagram uses a custom EditText subclass)
             val inputField = findEditText(rootNode)
             if (inputField != null) {
                 // Set text
@@ -86,6 +86,10 @@ class InstaAccessibilityService : AccessibilityService() {
                     sendButton.performAction(AccessibilityNodeInfo.ACTION_CLICK)
                     return true
                 }
+                // Fallback: press the keyboard enter key to send
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                    return inputField.performAction(AccessibilityNodeInfo.ACTION_IME_ENTER)
+                }
             }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to type and send", e)
@@ -94,8 +98,12 @@ class InstaAccessibilityService : AccessibilityService() {
     }
 
     private fun findEditText(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
-        if (node.className == "android.widget.EditText") {
-            return node
+        val className = node.className?.toString() ?: ""
+        if (className.contains("EditText", ignoreCase = true)) {
+            // Prefer the deepest real input field: check it supports text entry
+            if (node.isEditable || node.className?.toString()?.contains("EditText") == true) {
+                return node
+            }
         }
         for (i in 0 until node.childCount) {
             val child = node.getChild(i) ?: continue
@@ -106,11 +114,19 @@ class InstaAccessibilityService : AccessibilityService() {
     }
 
     private fun findSendButton(node: AccessibilityNodeInfo): AccessibilityNodeInfo? {
-        // Instagram send button usually has content description "Send" or similar
+        // Instagram send button usually has content description "Send" or a send-related id
         if (node.contentDescription?.toString()?.contains("Send", ignoreCase = true) == true) {
             return node
         }
         if (node.text?.toString()?.contains("Send", ignoreCase = true) == true) {
+            return node
+        }
+        if (node.viewIdResourceName?.contains("send", ignoreCase = true) == true) {
+            return node
+        }
+        if (node.isClickable && node.viewIdResourceName?.contains("button", ignoreCase = true) == true &&
+            node.contentDescription?.isNullOrEmpty() == false && node.contentDescription!!.length <= 20
+        ) {
             return node
         }
         for (i in 0 until node.childCount) {

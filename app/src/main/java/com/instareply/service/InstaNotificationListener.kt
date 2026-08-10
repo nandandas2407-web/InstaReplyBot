@@ -28,6 +28,7 @@ class InstaNotificationListener : NotificationListenerService() {
 
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var replyEngine: ReplyEngine? = null
+    private val recentKeys = java.util.concurrent.ConcurrentHashMap<String, Long>()
 
     override fun onCreate() {
         super.onCreate()
@@ -62,15 +63,37 @@ class InstaNotificationListener : NotificationListenerService() {
 
         // Skip if message is from group chat summary or contains "liked" etc
         if (message.contains("liked your") || message.contains("commented on") ||
-            message.contains("started following") || message.contains("mentioned you")) {
+            message.contains("started following") || message.contains("mentioned you") ||
+            message.contains("sent you a post") || message.contains("shared a post") ||
+            message.contains("sent you a reel") || message.contains("sent you a video") ||
+            message.contains("sent you a voice") || message.contains("reacted") ||
+            message.contains("watched your") || message.contains("is now following") ||
+            message.contains("missed a call") || message.contains("started a live") ||
+            message.contains("suggested for you")) {
             return
         }
 
         Log.d(TAG, "Instagram notification from: $title, message: $message")
 
-        scope.launch {
-            processNotification(title, message, notification.contentIntent)
+        val dedupeKey = "$title|$message"
+        if (isDuplicate(dedupeKey)) {
+            Log.d(TAG, "Skipping duplicate notification for $title")
+            return
         }
+
+        scope.launch {
+            processNotification(title, message, notification, notification.contentIntent)
+        }
+    }
+
+    private fun isDuplicate(key: String): Boolean {
+        val now = System.currentTimeMillis()
+        val last = recentKeys.put(key, now)
+        if (last != null && now - last < 5000) return true
+        if (recentKeys.size > 64) {
+            recentKeys.entries.removeAll { now - it.value > 30_000 }
+        }
+        return false
     }
 
     override fun onNotificationRemoved(sbn: StatusBarNotification?) {
@@ -80,6 +103,7 @@ class InstaNotificationListener : NotificationListenerService() {
     private suspend fun processNotification(
         senderName: String,
         message: String,
+        notification: Notification?,
         contentIntent: android.app.PendingIntent?
     ) {
         val db = AppDatabase.getDatabase(this)
@@ -118,9 +142,9 @@ class InstaNotificationListener : NotificationListenerService() {
         }
 
         if (matchingRule != null) {
-            // Check rate limit
+            // Check rate limit (only successful replies consume the daily quota)
             val todayStart = getTodayStart()
-            val replyCountToday = db.replyLogDao().getReplyCountSince(todayStart)
+            val replyCountToday = db.replyLogDao().getSuccessCountSince(todayStart)
             if (replyCountToday >= matchingRule.maxRepliesPerDay) {
                 Log.d(TAG, "Rate limit reached for rule: ${matchingRule.label}")
                 return
@@ -132,6 +156,7 @@ class InstaNotificationListener : NotificationListenerService() {
                 message = message,
                 rule = matchingRule,
                 db = db,
+                notification = notification,
                 contentIntent = contentIntent
             )
         }

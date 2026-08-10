@@ -39,6 +39,7 @@ class OpenAiCompatibleProvider : AiProvider {
                     AiProviderEnum.NVIDIA_NIM -> "nvidia/llama-3.3-nemotron-super-49b-v1.5"
                     AiProviderEnum.OPENAI -> "gpt-5.4-mini"
                     AiProviderEnum.OPENCODE -> "gpt-5.6-luna"
+                    AiProviderEnum.GROQ -> "llama-3.3-70b-versatile"
                     else -> "gpt-5.4-mini"
                 }
             }
@@ -53,7 +54,7 @@ class OpenAiCompatibleProvider : AiProvider {
                     mapOf("role" to "system", "content" to systemPrompt),
                     mapOf("role" to "user", "content" to "Message from $senderName: $message")
                 ),
-                "max_tokens" to 200,
+                "max_tokens" to config.maxTokens,
                 "temperature" to 0.7
             )
 

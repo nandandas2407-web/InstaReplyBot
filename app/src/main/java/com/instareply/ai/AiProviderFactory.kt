@@ -11,7 +11,8 @@ class AiProviderFactory {
                 AiProviderEnum.OPENROUTER,
                 AiProviderEnum.NVIDIA_NIM,
                 AiProviderEnum.OPENAI,
-                AiProviderEnum.OPENCODE -> OpenAiCompatibleProvider()
+                AiProviderEnum.OPENCODE,
+                AiProviderEnum.GROQ -> OpenAiCompatibleProvider()
                 AiProviderEnum.CUSTOM -> OpenAiCompatibleProvider()
             }
         }
@@ -23,6 +24,7 @@ class AiProviderFactory {
                 "nvidia", "nvidia_nim" -> AiProviderEnum.NVIDIA_NIM
                 "openai" -> AiProviderEnum.OPENAI
                 "opencode" -> AiProviderEnum.OPENCODE
+                "groq" -> AiProviderEnum.GROQ
                 "custom" -> AiProviderEnum.CUSTOM
                 else -> runCatching { AiProviderEnum.valueOf(name.uppercase()) }
                     .getOrDefault(AiProviderEnum.GEMINI)

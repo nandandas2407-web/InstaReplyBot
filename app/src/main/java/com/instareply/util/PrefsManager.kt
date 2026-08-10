@@ -13,6 +13,7 @@ class PrefsManager(context: Context) {
         private const val KEY_USER_LOCATION = "user_location"
         private const val KEY_USER_BIO = "user_bio"
         private const val KEY_SYSTEM_PROMPT = "system_prompt"
+        private const val KEY_MAX_TOKENS = "max_tokens"
         private const val KEY_API_KEY_PREFIX = "api_key_"
         private const val KEY_MODEL_PREFIX = "model_"
     }
@@ -47,6 +48,12 @@ class PrefsManager(context: Context) {
         prefs.edit().putString(KEY_SYSTEM_PROMPT, prompt).apply()
     }
 
+    fun getMaxTokens(): Int = prefs.getInt(KEY_MAX_TOKENS, 200)
+
+    fun setMaxTokens(tokens: Int) {
+        prefs.edit().putInt(KEY_MAX_TOKENS, tokens).apply()
+    }
+
     fun getApiKey(provider: String): String? {
         return prefs.getString("$KEY_API_KEY_PREFIX$provider", null)
     }
@@ -68,7 +75,7 @@ class PrefsManager(context: Context) {
     }
 
     fun getAllApiKeys(): Map<String, String> {
-        val providers = listOf("gemini", "openrouter", "nvidia", "openai", "opencode")
+        val providers = listOf("gemini", "openrouter", "nvidia", "openai", "opencode", "groq")
         return providers.associateWith { provider ->
             getApiKey(provider) ?: ""
         }

@@ -97,6 +97,14 @@
         <item>gpt-4.1</item>
     </string-array>
 
+    <string-array name="groq_models">
+        <item>openai/gpt-oss-20b</item>
+        <item>openai/gpt-oss-120b</item>
+        <item>qwen/qwen3.6-27b</item>
+        <item>llama-3.3-70b-versatile</item>
+        <item>llama-3.1-8b-instant</item>
+    </string-array>
+
     <string-array name="match_types">
         <item>CONTAINS</item>
         <item>EXACT</item>
@@ -112,5 +120,6 @@
         <item>nvidia</item>
         <item>openai</item>
         <item>opencode</item>
+        <item>groq</item>
     </string-array>
 </resources>

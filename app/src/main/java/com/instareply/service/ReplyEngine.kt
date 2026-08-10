@@ -40,7 +40,8 @@ class ReplyEngine(private val context: Context) {
                 userName = prefs.getUserName(),
                 userLocation = prefs.getUserLocation(),
                 userBio = prefs.getUserBio(),
-                systemPrompt = prefs.getSystemPrompt()
+                systemPrompt = prefs.getSystemPrompt(),
+                maxTokens = prefs.getMaxTokens()
             )
 
             if (config.apiKey.isEmpty()) {

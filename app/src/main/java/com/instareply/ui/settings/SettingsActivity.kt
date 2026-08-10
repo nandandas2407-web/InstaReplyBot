@@ -39,6 +39,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.etUserLocation.setText(prefs.getUserLocation())
         binding.etUserBio.setText(prefs.getUserBio())
         binding.etSystemPrompt.setText(prefs.getSystemPrompt())
+        binding.etMaxTokens.setText(prefs.getMaxTokens().toString())
 
         // Load API keys (masked)
         binding.etGeminiKey.setText(prefs.getApiKey("gemini") ?: "")
@@ -46,6 +47,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.etNvidiaKey.setText(prefs.getApiKey("nvidia") ?: "")
         binding.etOpenaiKey.setText(prefs.getApiKey("openai") ?: "")
         binding.etOpencodeKey.setText(prefs.getApiKey("opencode") ?: "")
+        binding.etGroqKey.setText(prefs.getApiKey("groq") ?: "")
 
         // Load model spinners with saved selection
         setupSpinner(
@@ -77,6 +79,12 @@ class SettingsActivity : AppCompatActivity() {
             R.array.opencode_models,
             prefs.getModel("opencode"),
             arrayOf("gpt-5.6-luna")
+        )
+        setupSpinner(
+            binding.spinnerGroqModel,
+            R.array.groq_models,
+            prefs.getModel("groq"),
+            arrayOf("llama-3.3-70b-versatile")
         )
     }
 
@@ -118,6 +126,10 @@ class SettingsActivity : AppCompatActivity() {
         binding.btnTestOpencodeKey.setOnClickListener {
             testApiKey("opencode")
         }
+
+        binding.btnTestGroqKey.setOnClickListener {
+            testApiKey("groq")
+        }
     }
 
     private fun saveSettings() {
@@ -132,6 +144,7 @@ class SettingsActivity : AppCompatActivity() {
         binding.etNvidiaKey.text.toString().trim().let { if (it.isNotEmpty()) prefs.setApiKey("nvidia", it) }
         binding.etOpenaiKey.text.toString().trim().let { if (it.isNotEmpty()) prefs.setApiKey("openai", it) }
         binding.etOpencodeKey.text.toString().trim().let { if (it.isNotEmpty()) prefs.setApiKey("opencode", it) }
+        binding.etGroqKey.text.toString().trim().let { if (it.isNotEmpty()) prefs.setApiKey("groq", it) }
 
         // Save models
         prefs.setModel("gemini", binding.spinnerGeminiModel.selectedItem.toString())
@@ -139,6 +152,12 @@ class SettingsActivity : AppCompatActivity() {
         prefs.setModel("nvidia", binding.spinnerNvidiaModel.selectedItem.toString())
         prefs.setModel("openai", binding.spinnerOpenaiModel.selectedItem.toString())
         prefs.setModel("opencode", binding.spinnerOpencodeModel.selectedItem.toString())
+        prefs.setModel("groq", binding.spinnerGroqModel.selectedItem.toString())
+
+        val maxTokens = binding.etMaxTokens.text.toString().trim().toIntOrNull()
+        if (maxTokens != null && maxTokens in 1..8192) {
+            prefs.setMaxTokens(maxTokens)
+        }
 
         Toast.makeText(this, "Settings saved", Toast.LENGTH_SHORT).show()
         finish()
@@ -151,6 +170,7 @@ class SettingsActivity : AppCompatActivity() {
             "nvidia" -> binding.etNvidiaKey.text.toString().trim()
             "openai" -> binding.etOpenaiKey.text.toString().trim()
             "opencode" -> binding.etOpencodeKey.text.toString().trim()
+            "groq" -> binding.etGroqKey.text.toString().trim()
             else -> ""
         }
 
@@ -175,6 +195,7 @@ class SettingsActivity : AppCompatActivity() {
                 "nvidia" -> "https://integrate.api.nvidia.com/v1/models"
                 "openai" -> "https://api.openai.com/v1/models"
                 "opencode" -> "https://opencode.ai/zen/v1/models"
+                "groq" -> "https://api.groq.com/openai/v1/models"
                 else -> return false
             }
             val builder = Request.Builder().url(url)

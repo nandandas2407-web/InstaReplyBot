@@ -164,15 +164,25 @@ class ReplyEngine(private val context: Context) {
             if (openedChat && ruleDelayMs > 0) delay(ruleDelayMs)
             // 4. Type and send the message (with retries while Instagram settles)
             if (openedChat) {
-                var sent = false
-                repeat(4) {
-                    sent = withContext(Dispatchers.Main) {
-                        accessibilityService.typeAndSendMessage(message)
+                // Type once, click send at most once: guarantees one reply per message.
+                // Retries only happen while the text field was never found (nothing sent yet).
+                var textTyped = false
+                repeat(3) {
+                    if (!textTyped) {
+                        textTyped = withContext(Dispatchers.Main) {
+                            accessibilityService.typeReplyText(message)
+                        }
+                        if (!textTyped) {
+                            delay(1500)
+                            return@repeat
+                        }
+                        delay(250)
                     }
-                    if (sent) return@repeat
-                    delay(1500)
+                    return@runCatching withContext(Dispatchers.Main) {
+                        accessibilityService.clickSendButton()
+                    }
                 }
-                sent
+                false
             } else {
                 Log.e(TAG, "Could not open Instagram chat for $recipient")
                 false

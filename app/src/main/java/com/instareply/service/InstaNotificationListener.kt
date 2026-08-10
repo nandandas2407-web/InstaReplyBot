@@ -89,9 +89,9 @@ class InstaNotificationListener : NotificationListenerService() {
     private fun isDuplicate(key: String): Boolean {
         val now = System.currentTimeMillis()
         val last = recentKeys.put(key, now)
-        if (last != null && now - last < 5000) return true
+        if (last != null && now - last < 60_000) return true
         if (recentKeys.size > 64) {
-            recentKeys.entries.removeAll { now - it.value > 30_000 }
+            recentKeys.entries.removeAll { now - it.value > 5 * 60_000 }
         }
         return false
     }
@@ -142,6 +142,16 @@ class InstaNotificationListener : NotificationListenerService() {
         }
 
         if (matchingRule != null) {
+            // NEVER reply twice to the same message (persisted across restarts:
+            // covers IG re-posting the same notification while AI was generating)
+            val alreadyReplied = db.replyLogDao().countSentForMessage(
+                senderName, message, System.currentTimeMillis() - 10 * 60_000L
+            )
+            if (alreadyReplied > 0) {
+                Log.d(TAG, "Already replied to this message from $senderName, skipping")
+                return
+            }
+
             // Check rate limit (only successful replies consume the daily quota)
             val todayStart = getTodayStart()
             val replyCountToday = db.replyLogDao().getSuccessCountSince(todayStart)

@@ -29,4 +29,7 @@ interface ReplyLogDao {
 
     @Query("SELECT * FROM reply_log ORDER BY timestamp DESC LIMIT 1")
     suspend fun getLastLog(): ReplyLog?
+
+    @Query("SELECT COUNT(*) FROM reply_log WHERE contactName = :contact AND receivedMessage = :message AND success = 1 AND timestamp > :since")
+    suspend fun countSentForMessage(contact: String, message: String, since: Long): Int
 }

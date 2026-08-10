@@ -67,33 +67,39 @@ class InstaAccessibilityService : AccessibilityService() {
         return false
     }
 
-    fun typeAndSendMessage(message: String): Boolean {
+    fun typeReplyText(message: String): Boolean {
         try {
             val rootNode = rootInActiveWindow ?: return false
 
             // Find the message input field (Instagram uses a custom EditText subclass)
-            val inputField = findEditText(rootNode)
-            if (inputField != null) {
-                // Set text
-                val arguments = Bundle().apply {
-                    putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, message)
-                }
-                inputField.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments)
+            val inputField = findEditText(rootNode) ?: return false
+            val arguments = Bundle().apply {
+                putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE, message)
+            }
+            return inputField.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, arguments)
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to type message", e)
+        }
+        return false
+    }
 
-                // Find and click send button
-                val sendButton = findSendButton(rootNode)
-                if (sendButton != null) {
-                    sendButton.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                    return true
-                }
-                // Fallback: press the keyboard enter key to send
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+    fun clickSendButton(): Boolean {
+        try {
+            val rootNode = rootInActiveWindow ?: return false
+            val sendButton = findSendButton(rootNode)
+            if (sendButton != null) {
+                return sendButton.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+            }
+            // Fallback: press the keyboard enter key to send
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                val inputField = findEditText(rootNode)
+                if (inputField != null) {
                     val imeEnter = AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER
                     return inputField.performAction(imeEnter.id)
                 }
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to type and send", e)
+            Log.e(TAG, "Failed to click send", e)
         }
         return false
     }

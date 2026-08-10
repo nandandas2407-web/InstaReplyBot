@@ -50,7 +50,10 @@ class ReplyService : Service() {
             accessibilityService.openInstagramChat(recipient)
             // Delay to allow Instagram to open
             android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-                accessibilityService.typeAndSendMessage(message)
+                accessibilityService.typeReplyText(message)
+                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+                    accessibilityService.clickSendButton()
+                }, 500)
             }, 2000)
         }
     }

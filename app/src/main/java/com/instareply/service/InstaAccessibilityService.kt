@@ -17,6 +17,15 @@ class InstaAccessibilityService : AccessibilityService() {
         private const val INSTAGRAM_PACKAGE = "com.instagram.android"
         var instance: InstaAccessibilityService? = null
             private set
+
+        fun isAccessibilityServiceEnabled(context: android.content.Context): Boolean {
+            val enabled = android.provider.Settings.Secure.getString(
+                context.contentResolver,
+                android.provider.Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES
+            ) ?: return false
+            val expected = "${context.packageName}/${InstaAccessibilityService::class.java.name}"
+            return enabled.split(":").any { it.equals(expected, ignoreCase = true) }
+        }
     }
 
     override fun onServiceConnected() {

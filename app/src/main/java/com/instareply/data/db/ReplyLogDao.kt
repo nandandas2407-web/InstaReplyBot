@@ -20,4 +20,10 @@ interface ReplyLogDao {
 
     @Query("SELECT COUNT(*) FROM reply_log WHERE timestamp > :since")
     suspend fun getReplyCountSince(since: Long): Int
+
+    @Query("SELECT COUNT(*) FROM reply_log WHERE timestamp > :since AND success = 1")
+    suspend fun getSuccessCountSince(since: Long): Int
+
+    @Query("SELECT timestamp FROM reply_log WHERE timestamp > :since AND success = 1")
+    suspend fun getSuccessTimestampsSince(since: Long): List<Long>
 }

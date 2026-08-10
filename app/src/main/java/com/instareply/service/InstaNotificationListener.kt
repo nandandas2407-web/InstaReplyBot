@@ -16,6 +16,14 @@ class InstaNotificationListener : NotificationListenerService() {
     companion object {
         private const val TAG = "InstaNotificationListener"
         private const val INSTAGRAM_PACKAGE = "com.instagram.android"
+
+        fun isNotificationListenerEnabled(context: android.content.Context): Boolean {
+            val flat = android.provider.Settings.Secure.getString(
+                context.contentResolver,
+                "enabled_notification_listeners"
+            ) ?: return false
+            return flat.split(":").contains(context.packageName)
+        }
     }
 
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -144,11 +152,5 @@ class InstaNotificationListener : NotificationListenerService() {
         calendar.set(java.util.Calendar.SECOND, 0)
         calendar.set(java.util.Calendar.MILLISECOND, 0)
         return calendar.timeInMillis
-    }
-
-    fun isNotificationListenerEnabled(): Boolean {
-        val pkgName = packageName
-        val flat = android.provider.Settings.Secure.getString(contentResolver, "enabled_notification_listeners")
-        return flat?.contains(pkgName) == true
     }
 }

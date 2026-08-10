@@ -24,6 +24,12 @@ interface RuleDao {
     @Delete
     suspend fun deleteRule(rule: Rule)
 
+    @Query("SELECT COUNT(*) FROM rules")
+    suspend fun getTotalRules(): Int
+
+    @Query("SELECT COUNT(*) FROM rules WHERE isEnabled = 1")
+    suspend fun getEnabledRuleCount(): Int
+
     @Query("DELETE FROM rules WHERE id = :id")
     suspend fun deleteRuleById(id: Long)
 }

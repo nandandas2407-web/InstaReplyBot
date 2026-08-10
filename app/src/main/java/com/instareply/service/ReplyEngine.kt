@@ -167,20 +167,22 @@ class ReplyEngine(private val context: Context) {
                 // Type once, click send at most once: guarantees one reply per message.
                 // Retries only happen while the text field was never found (nothing sent yet).
                 var textTyped = false
-                repeat(3) {
+                for (attempt in 1..3) {
                     if (!textTyped) {
                         textTyped = withContext(Dispatchers.Main) {
                             accessibilityService.typeReplyText(message)
                         }
                         if (!textTyped) {
                             delay(1500)
-                            return@repeat
+                            continue
                         }
                         delay(250)
                     }
-                    return@runCatching withContext(Dispatchers.Main) {
+                    val sent = withContext(Dispatchers.Main) {
                         accessibilityService.clickSendButton()
                     }
+                    // After one click attempt, stop: never risk a second send
+                    return sent
                 }
                 false
             } else {

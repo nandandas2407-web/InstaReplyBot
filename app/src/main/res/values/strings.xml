@@ -63,28 +63,12 @@
     </string-array>
 
     <string-array name="opencode_models">
-        <item>gpt-5.6-luna</item>
-        <item>gpt-5.6-sol</item>
-        <item>gpt-5.6-terra</item>
-        <item>gpt-5.5</item>
-        <item>gpt-5.5-pro</item>
-        <item>gpt-5.4</item>
-        <item>gpt-5.4-pro</item>
-        <item>gpt-5.4-mini</item>
-        <item>gpt-5.4-nano</item>
-        <item>gpt-5.3-codex</item>
-        <item>gpt-5.3-codex-spark</item>
-        <item>gpt-5.2</item>
-        <item>gpt-5.2-codex</item>
-        <item>gpt-5.1-codex</item>
-        <item>gpt-5.1-codex-mini</item>
-        <item>gpt-5-codex</item>
-        <item>gpt-5-nano</item>
-        <item>grok-4.5</item>
-        <item>grok-build-0.1</item>
-        <item>qwen3.6-plus</item>
-        <item>qwen3.5-plus</item>
-        <item>deepseek-v4-flash</item>
+        <item>opencode/deepseek-v4-flash-free</item>
+        <item>opencode/big-pickle</item>
+        <item>opencode/mimo-v2.5-free</item>
+        <item>opencode/north-mini-code-free</item>
+        <item>opencode/nemotron-3-ultra-free</item>
+        <item>opencode/minimax-m2.5-free</item>
     </string-array>
 
     <string-array name="openai_models">

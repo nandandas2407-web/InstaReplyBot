@@ -38,7 +38,7 @@ class OpenAiCompatibleProvider : AiProvider {
                     AiProviderEnum.OPENROUTER -> "nvidia/nemotron-3-super-120b-a12b:free"
                     AiProviderEnum.NVIDIA_NIM -> "nvidia/llama-3.3-nemotron-super-49b-v1.5"
                     AiProviderEnum.OPENAI -> "gpt-5.4-mini"
-                    AiProviderEnum.OPENCODE -> "gpt-5.6-luna"
+                    AiProviderEnum.OPENCODE -> "opencode/deepseek-v4-flash-free"
                     AiProviderEnum.GROQ -> "llama-3.3-70b-versatile"
                     else -> "gpt-5.4-mini"
                 }

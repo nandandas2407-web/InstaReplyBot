@@ -78,7 +78,7 @@ class SettingsActivity : AppCompatActivity() {
             binding.spinnerOpencodeModel,
             R.array.opencode_models,
             prefs.getModel("opencode"),
-            arrayOf("gpt-5.6-luna")
+            arrayOf("opencode/deepseek-v4-flash-free")
         )
         setupSpinner(
             binding.spinnerGroqModel,

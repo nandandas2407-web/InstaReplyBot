@@ -88,7 +88,8 @@ class InstaAccessibilityService : AccessibilityService() {
                 }
                 // Fallback: press the keyboard enter key to send
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-                    return inputField.performAction(AccessibilityNodeInfo.ACTION_IME_ENTER)
+                    val imeEnter = AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER
+                    return inputField.performAction(imeEnter.id)
                 }
             }
         } catch (e: Exception) {

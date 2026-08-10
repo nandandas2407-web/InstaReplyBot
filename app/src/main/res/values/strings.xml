@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">InstaReply Bot</string>
+    <string name="accessibility_service_description">InstaReply uses accessibility service to read Instagram notifications and send auto-replies on your behalf.</string>
+
+    <string-array name="gemini_models">
+        <item>gemini-2.0-flash</item>
+        <item>gemini-2.0-flash-lite</item>
+        <item>gemini-2.5-flash</item>
+        <item>gemini-2.5-flash-lite</item>
+        <item>gemini-2.5-pro</item>
+    </string-array>
+
+    <string-array name="openrouter_models">
+        <item>openai/gpt-3.5-turbo</item>
+        <item>openai/gpt-4</item>
+        <item>anthropic/claude-3-haiku</item>
+        <item>anthropic/claude-3-sonnet</item>
+        <item>meta-llama/llama-3-8b-instruct</item>
+        <item>google/gemini-2.0-flash-001</item>
+    </string-array>
+
+    <string-array name="match_types">
+        <item>CONTAINS</item>
+        <item>EXACT</item>
+        <item>STARTS_WITH</item>
+        <item>ENDS_WITH</item>
+        <item>REGEX</item>
+        <item>ANY</item>
+    </string-array>
+
+    <string-array name="ai_providers">
+        <item>gemini</item>
+        <item>openrouter</item>
+        <item>nvidia</item>
+        <item>openai</item>
+        <item>opencode</item>
+    </string-array>
+</resources>

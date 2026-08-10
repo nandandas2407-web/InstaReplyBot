@@ -229,6 +229,12 @@
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <Spinner
+                        android:id="@+id/spinnerNvidiaModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnTestNvidiaKey"
                         android:layout_width="wrap_content"
@@ -271,6 +277,19 @@
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <Spinner
+                        android:id="@+id/spinnerOpenaiModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTestOpenaiKey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Test Key"
+                        style="@style/Widget.MaterialComponents.Button.TextButton" />
+
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
@@ -305,6 +324,19 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPassword" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <Spinner
+                        android:id="@+id/spinnerOpencodeModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTestOpencodeKey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Test Key"
+                        style="@style/Widget.MaterialComponents.Button.TextButton" />
 
                 </LinearLayout>
 

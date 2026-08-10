@@ -69,7 +69,7 @@ class InstaNotificationListener : NotificationListenerService() {
         Log.d(TAG, "Instagram notification from: $title, message: $message")
 
         scope.launch {
-            processNotification(title, message)
+            processNotification(title, message, notification.contentIntent)
         }
     }
 
@@ -77,7 +77,11 @@ class InstaNotificationListener : NotificationListenerService() {
         // Not needed
     }
 
-    private suspend fun processNotification(senderName: String, message: String) {
+    private suspend fun processNotification(
+        senderName: String,
+        message: String,
+        contentIntent: android.app.PendingIntent?
+    ) {
         val db = AppDatabase.getDatabase(this)
         val prefs = PrefsManager(this)
 
@@ -100,6 +104,16 @@ class InstaNotificationListener : NotificationListenerService() {
         val ruleDao = db.ruleDao()
         val rules = ruleDao.getEnabledRules()
         val matchingRule = rules.firstOrNull { rule ->
+            val specific = rule.specificContacts.split(",")
+                .map { it.trim() }.filter { it.isNotEmpty() }
+            if (specific.isNotEmpty() && specific.none { it.equals(senderName, ignoreCase = true) }) {
+                return@firstOrNull false
+            }
+            val ignored = rule.ignoredContacts.split(",")
+                .map { it.trim() }.filter { it.isNotEmpty() }
+            if (ignored.any { it.equals(senderName, ignoreCase = true) }) {
+                return@firstOrNull false
+            }
             matchesRule(message, senderName, rule.triggerPattern, rule.matchType.name)
         }
 
@@ -112,17 +126,13 @@ class InstaNotificationListener : NotificationListenerService() {
                 return
             }
 
-            // Delay if configured
-            if (matchingRule.delayMs > 0) {
-                delay(matchingRule.delayMs)
-            }
-
             // Generate and send reply
             replyEngine?.processReply(
                 senderName = senderName,
                 message = message,
                 rule = matchingRule,
-                db = db
+                db = db,
+                contentIntent = contentIntent
             )
         }
     }

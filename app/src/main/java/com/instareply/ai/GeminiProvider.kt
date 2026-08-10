@@ -28,7 +28,7 @@ class GeminiProvider(private val client: OkHttpClient = DEFAULT_CLIENT) : AiProv
         config: AiConfig
     ): Result<String> = withContext(Dispatchers.IO) {
         try {
-            val model = config.model.ifEmpty { "gemini-2.0-flash" }
+            val model = config.model.ifEmpty { "gemini-3.6-flash" }
             val url = "${config.provider.baseUrl}/models/${model}:generateContent?key=${config.apiKey}"
 
             val systemPrompt = buildSystemPrompt(senderName, config)

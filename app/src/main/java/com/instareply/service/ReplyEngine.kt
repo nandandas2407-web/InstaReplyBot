@@ -1,35 +1,35 @@
 package com.instareply.service
 
+import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import com.instareply.ai.AiProviderFactory
 import com.instareply.data.db.AppDatabase
 import com.instareply.data.model.*
 import com.instareply.util.PrefsManager
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 class ReplyEngine(private val context: Context) {
 
     companion object {
         private const val TAG = "ReplyEngine"
-        private const val ACTION_REPLY = "com.instareply.ACTION_REPLY"
-        private const val EXTRA_MESSAGE = "com.instareply.EXTRA_MESSAGE"
-        private const val EXTRA_RECIPIENT = "com.instareply.EXTRA_RECIPIENT"
     }
 
     suspend fun processReply(
         senderName: String,
         message: String,
         rule: Rule,
-        db: AppDatabase
+        db: AppDatabase,
+        contentIntent: PendingIntent? = null
     ) {
         try {
             val prefs = PrefsManager(context)
 
             // Get AI config from preferences
             val config = AiConfig(
-                provider = AiProvider.valueOf(rule.aiProvider.uppercase()),
+                provider = AiProviderFactory.fromStorageName(rule.aiProvider),
                 apiKey = prefs.getApiKey(rule.aiProvider) ?: "",
                 model = prefs.getModel(rule.aiProvider),
                 userName = prefs.getUserName(),
@@ -51,10 +51,9 @@ class ReplyEngine(private val context: Context) {
                 val replyText = result.getOrNull() ?: return
                 Log.d(TAG, "Generated reply for $senderName: $replyText")
 
-                // Send reply via accessibility service
-                sendReplyViaAccessibility(senderName, replyText)
+                // Send reply via accessibility service (opens the exact chat thread first)
+                val sent = sendReplyViaAccessibility(senderName, replyText, contentIntent, rule.delayMs)
 
-                // Log the reply
                 db.replyLogDao().insertLog(
                     ReplyLog(
                         contactName = senderName,
@@ -62,12 +61,15 @@ class ReplyEngine(private val context: Context) {
                         replyMessage = replyText,
                         ruleId = rule.id,
                         aiProvider = rule.aiProvider,
-                        success = true
+                        success = sent,
+                        errorMessage = if (sent) null else "Send failed: accessibility service unavailable or chat could not be opened"
                     )
                 )
 
-                // Update contact reply count
-                db.contactDao().incrementReply(senderName, System.currentTimeMillis())
+                if (sent) {
+                    // Update contact reply count
+                    db.contactDao().incrementReply(senderName, System.currentTimeMillis())
+                }
             } else {
                 val error = result.exceptionOrNull()?.message ?: "Unknown error"
                 Log.e(TAG, "AI generation failed: $error")
@@ -89,24 +91,51 @@ class ReplyEngine(private val context: Context) {
         }
     }
 
-    private fun sendReplyViaAccessibility(recipient: String, message: String) {
-        try {
-            // Use accessibility service to type and send
-            // This requires the accessibility service to be enabled
-            val intent = Intent(ACTION_REPLY).apply {
-                putExtra(EXTRA_RECIPIENT, recipient)
-                putExtra(EXTRA_MESSAGE, message)
-                setPackage(context.packageName)
+    private suspend fun sendReplyViaAccessibility(
+        recipient: String,
+        message: String,
+        contentIntent: PendingIntent?,
+        ruleDelayMs: Long
+    ): Boolean {
+        val accessibilityService = InstaAccessibilityService.instance
+        if (accessibilityService == null) {
+            Log.e(TAG, "Accessibility service not connected, cannot send reply")
+            return false
+        }
+        return try {
+            // 1. Fire the notification's content intent: opens the exact DM conversation
+            var openedChat = fireContentIntent(contentIntent)
+            // 2. Wait for Instagram UI to settle
+            delay(2600)
+            // 3. Fallback: launch Instagram directly if the intent failed
+            if (!openedChat) {
+                openedChat = accessibilityService.openInstagramChat(recipient)
+                if (openedChat) delay(2000)
             }
-            context.sendBroadcast(intent)
-
-            // Alternative: Use clipboard + accessibility action
-            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-            val clip = android.content.ClipData.newPlainText("reply", message)
-            clipboard.setPrimaryClip(clip)
-
+            if (openedChat && ruleDelayMs > 0) delay(ruleDelayMs)
+            // 4. Type and send the message on the main thread
+            if (openedChat) {
+                withContext(Dispatchers.Main) {
+                    accessibilityService.typeAndSendMessage(message)
+                }
+            } else {
+                Log.e(TAG, "Could not open Instagram chat for $recipient")
+                false
+            }
         } catch (e: Exception) {
             Log.e(TAG, "Failed to send reply", e)
+            false
+        }
+    }
+
+    private fun fireContentIntent(intent: PendingIntent?): Boolean {
+        if (intent == null) return false
+        return try {
+            intent.send()
+            true
+        } catch (e: Exception) {
+            Log.e(TAG, "Content intent failed, falling back to app launch", e)
+            false
         }
     }
 }

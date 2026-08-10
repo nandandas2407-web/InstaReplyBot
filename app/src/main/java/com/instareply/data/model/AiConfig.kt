@@ -5,7 +5,7 @@ enum class AiProvider(val displayName: String, val baseUrl: String) {
     OPENROUTER("OpenRouter", "https://openrouter.ai/api/v1"),
     NVIDIA_NIM("NVIDIA NIM", "https://integrate.api.nvidia.com/v1"),
     OPENAI("OpenAI", "https://api.openai.com/v1"),
-    OPENCODE("OpenCode", "https://api.opencode.ai/v1"),
+    OPENCODE("OpenCode", "https://opencode.ai/zen/v1"),
     CUSTOM("Custom API", "")
 }
 

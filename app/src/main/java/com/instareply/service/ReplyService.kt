@@ -29,6 +29,7 @@ class ReplyService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        startForeground()
         when (intent?.action) {
             ACTION_REPLY -> {
                 val recipient = intent.getStringExtra(EXTRA_RECIPIENT)

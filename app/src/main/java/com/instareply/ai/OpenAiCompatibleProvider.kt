@@ -35,12 +35,15 @@ class OpenAiCompatibleProvider : AiProvider {
 
             val model = config.model.ifEmpty {
                 when (config.provider) {
-                    AiProviderEnum.OPENROUTER -> "openai/gpt-3.5-turbo"
-                    AiProviderEnum.NVIDIA_NIM -> "meta/llama-3.1-8b-instruct"
-                    AiProviderEnum.OPENAI -> "gpt-3.5-turbo"
-                    AiProviderEnum.OPENCODE -> "gpt-3.5-turbo"
-                    else -> "gpt-3.5-turbo"
+                    AiProviderEnum.OPENROUTER -> "nvidia/nemotron-3-super-120b-a12b:free"
+                    AiProviderEnum.NVIDIA_NIM -> "nvidia/llama-3.3-nemotron-super-49b-v1.5"
+                    AiProviderEnum.OPENAI -> "gpt-5.4-mini"
+                    AiProviderEnum.OPENCODE -> "gpt-5.6-luna"
+                    else -> "gpt-5.4-mini"
                 }
+            }
+            if (model == "openrouter/free") {
+                throw Exception("openrouter/free requires a paid OpenRouter plan; pick a specific :free model")
             }
 
             val systemPrompt = buildSystemPrompt(senderName, config)
@@ -57,7 +60,7 @@ class OpenAiCompatibleProvider : AiProvider {
             val json = gson.toJson(requestBody)
             val body = json.toRequestBody("application/json".toMediaType())
 
-            val request = Request.Builder()
+            val requestBuilder = Request.Builder()
                 .url("$baseUrl/chat/completions")
                 .addHeader("Authorization", "Bearer ${config.apiKey}")
                 .addHeader("Content-Type", "application/json")
@@ -68,25 +71,66 @@ class OpenAiCompatibleProvider : AiProvider {
                     }
                 }
                 .post(body)
-                .build()
 
-            val response = client.newCall(request).execute()
+            var response = client.newCall(requestBuilder.build()).execute()
+            var usingResponsesApi = false
+            if (!response.isSuccessful && (response.code == 400 || response.code == 404)) {
+                // Newer models (GPT-5.x, Grok 4.5,...) reject /chat/completions.
+                // Fall back to the OpenAI-compatible Responses API.
+                response.close()
+                val responsesBody = gson.toJson(
+                    mapOf(
+                        "model" to model,
+                        "instructions" to systemPrompt,
+                        "input" to "Message from $senderName: $message"
+                    )
+                ).toRequestBody("application/json".toMediaType())
+                val responsesRequest = Request.Builder()
+                    .url("${baseUrl.trimEnd('/')}/responses")
+                    .addHeader("Authorization", "Bearer ${config.apiKey}")
+                    .addHeader("Content-Type", "application/json")
+                    .post(responsesBody)
+                    .build()
+                response = client.newCall(responsesRequest).execute()
+                usingResponsesApi = true
+            }
+
             val responseBody = response.body?.string() ?: throw Exception("Empty response")
 
             if (!response.isSuccessful) {
                 throw Exception("API error ${response.code}: $responseBody")
             }
 
-            val jsonResponse = JsonParser.parseString(responseBody).asJsonObject
-            val choices = jsonResponse.getAsJsonArray("choices")
-            val text = choices[0].asJsonObject
-                .getAsJsonObject("message")
-                .get("content").asString
+            val text = if (usingResponsesApi) {
+                parseResponsesText(responseBody)
+            } else {
+                val jsonResponse = JsonParser.parseString(responseBody).asJsonObject
+                val choices = jsonResponse.getAsJsonArray("choices")
+                choices[0].asJsonObject
+                    .getAsJsonObject("message")
+                    .get("content").asString
+            }
 
             Result.success(text.trim())
         } catch (e: Exception) {
             Result.failure(e)
         }
+    }
+
+    private fun parseResponsesText(body: String): String {
+        val obj = JsonParser.parseString(body).asJsonObject
+        obj.get("output_text")?.let {
+            if (!it.isJsonNull && it.isJsonPrimitive && it.asString.isNotEmpty()) return it.asString
+        }
+        val output = obj.getAsJsonArray("output")
+        for (entry in output) {
+            val content = entry.asJsonObject.getAsJsonArray("content") ?: continue
+            for (part in content) {
+                val text = part.asJsonObject.get("text") ?: continue
+                if (!text.isJsonNull && text.isJsonPrimitive && text.asString.isNotEmpty()) return text.asString
+            }
+        }
+        throw Exception("No text found in response: $body")
     }
 
     private fun buildSystemPrompt(senderName: String, config: AiConfig): String {

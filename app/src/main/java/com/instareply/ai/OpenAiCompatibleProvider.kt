@@ -106,10 +106,30 @@ class OpenAiCompatibleProvider : AiProvider {
                 parseResponsesText(responseBody)
             } else {
                 val jsonResponse = JsonParser.parseString(responseBody).asJsonObject
+
+                // Surface provider error objects (invalid model, quota, etc) clearly
+                jsonResponse.get("error")?.let { err ->
+                    if (!err.isJsonNull) {
+                        val msg = runCatching { err.asJsonObject?.get("message")?.asString }
+                            .getOrNull() ?: err.toString()
+                        throw Exception("API error: $msg")
+                    }
+                }
+
                 val choices = jsonResponse.getAsJsonArray("choices")
-                choices[0].asJsonObject
+                    ?: throw Exception("No choices in response: ${responseBody.take(300)}")
+                if (choices.isEmpty()) {
+                    throw Exception("Empty choices in response: ${responseBody.take(300)}")
+                }
+                // content can legitimately be JsonNull (reasoning models) - never send "null"
+                val content = choices[0].asJsonObject
                     .getAsJsonObject("message")
-                    .get("content").asString
+                    ?.get("content")
+                val contentValue = if (content != null && !content.isJsonNull) content.asString else null
+                if (contentValue.isNullOrBlank()) {
+                    throw Exception("Model returned empty content: ${responseBody.take(300)}")
+                }
+                contentValue
             }
 
             Result.success(text.trim())
@@ -120,6 +140,13 @@ class OpenAiCompatibleProvider : AiProvider {
 
     private fun parseResponsesText(body: String): String {
         val obj = JsonParser.parseString(body).asJsonObject
+        obj.get("error")?.let { err ->
+            if (!err.isJsonNull) {
+                val msg = runCatching { err.asJsonObject?.get("message")?.asString }
+                    .getOrNull() ?: err.toString()
+                throw Exception("API error: $msg")
+            }
+        }
         obj.get("output_text")?.let {
             if (!it.isJsonNull && it.isJsonPrimitive && it.asString.isNotEmpty()) return it.asString
         }

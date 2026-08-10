@@ -58,18 +58,34 @@ class GeminiProvider(private val client: OkHttpClient = DEFAULT_CLIENT) : AiProv
             val responseBody = response.body?.string() ?: throw Exception("Empty response")
 
             if (!response.isSuccessful) {
-                throw Exception("API error ${response.code}: $responseBody")
+                throw Exception("API error ${response.code}: ${responseBody.take(400)}")
             }
 
             val jsonResponse = JsonParser.parseString(responseBody).asJsonObject
-            val candidates = jsonResponse.getAsJsonArray("candidates")
-            val text = candidates[0].asJsonObject
-                .getAsJsonObject("content")
-                .getAsJsonArray("parts")[0]
-                .asJsonObject
-                .get("text").asString
 
-            Result.success(text.trim())
+            // Surface API error objects (e.g. safety blocks, quota) instead of NPEing
+            jsonResponse.get("error")?.let { err ->
+                if (!err.isJsonNull) {
+                    val msg = runCatching { err.asJsonObject?.get("message")?.asString }
+                        .getOrNull() ?: err.toString()
+                    throw Exception("Gemini API error: $msg")
+                }
+            }
+
+            val candidates = jsonResponse.getAsJsonArray("candidates")
+                ?: throw Exception("Gemini returned no candidates: ${responseBody.take(300)}")
+            if (candidates.isEmpty()) {
+                throw Exception("Gemini returned no candidates (blocked/empty): ${responseBody.take(300)}")
+            }
+            val content = candidates[0].asJsonObject.getAsJsonObject("content")
+            val parts = content?.getAsJsonArray("parts")
+            val text = parts?.firstOrNull()?.asJsonObject?.get("text")
+            val textValue = if (text != null && !text.isJsonNull) text.asString else null
+            if (textValue.isNullOrBlank()) {
+                throw Exception("Gemini returned no text (blocked or empty): ${responseBody.take(300)}")
+            }
+
+            Result.success(textValue.trim())
         } catch (e: Exception) {
             Result.failure(e)
         }

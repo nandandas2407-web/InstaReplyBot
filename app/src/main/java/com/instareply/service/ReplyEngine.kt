@@ -55,6 +55,22 @@ class ReplyEngine(private val context: Context) {
 
             if (result.isSuccess) {
                 val replyText = result.getOrNull() ?: return
+                // Never send blank or literal "null" as a reply
+                if (replyText.isBlank() || replyText.equals("null", ignoreCase = true)) {
+                    Log.e(TAG, "AI returned unusable reply text '$replyText'")
+                    db.replyLogDao().insertLog(
+                        ReplyLog(
+                            contactName = senderName,
+                            receivedMessage = message,
+                            replyMessage = "",
+                            ruleId = rule.id,
+                            aiProvider = rule.aiProvider,
+                            success = false,
+                            errorMessage = "AI returned empty reply (model ${config.model})"
+                        )
+                    )
+                    return
+                }
                 Log.d(TAG, "Generated reply for $senderName: $replyText")
 
                 // 1. Primary: inject reply through Instagram's own notification Reply action
@@ -85,7 +101,7 @@ class ReplyEngine(private val context: Context) {
                 }
             } else {
                 val error = result.exceptionOrNull()?.message ?: "Unknown error"
-                Log.e(TAG, "AI generation failed: $error")
+                Log.e(TAG, "AI generation failed (model ${config.model}): $error")
 
                 db.replyLogDao().insertLog(
                     ReplyLog(

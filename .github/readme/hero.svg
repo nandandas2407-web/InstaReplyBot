@@ -1,196 +1,304 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 360" width="900" height="360" role="img" aria-label="InstaReply Bot - AI auto-replies to your Instagram DMs, free models included">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 560" width="940" height="560" role="img" aria-label="InstaReply — free AI auto-reply for Instagram DMs. No login, no root, one reply per message. Live demo phone showing an AI reply being typed.">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#120e24">
-        <animate attributeName="stop-color" values="#120e24;#1c1440;#120e24" dur="10s" repeatCount="indefinite"/>
-      </stop>
-      <stop offset="55%" stop-color="#0d1226">
-        <animate attributeName="stop-color" values="#0d1226;#152848;#0d1226" dur="10s" repeatCount="indefinite"/>
-      </stop>
-      <stop offset="100%" stop-color="#0a0816">
-        <animate attributeName="stop-color" values="#0a0816;#140f2e;#0a0816" dur="10s" repeatCount="indefinite"/>
-      </stop>
-    </linearGradient>
-
-    <linearGradient id="igGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="ig1" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#f77737"/>
-      <stop offset="35%" stop-color="#e1306c"/>
-      <stop offset="70%" stop-color="#833ab4"/>
+      <stop offset="100%" stop-color="#e1306c"/>
+    </linearGradient>
+    <linearGradient id="ig2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e1306c"/>
+      <stop offset="100%" stop-color="#833ab4"/>
+    </linearGradient>
+    <linearGradient id="ig3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#833ab4"/>
       <stop offset="100%" stop-color="#405de6"/>
-      <animate attributeName="x2" values="0%;100%;0%" dur="6s" repeatCount="indefinite"/>
-      <animate attributeName="x1" values="100%;0%;100%" dur="6s" repeatCount="indefinite"/>
     </linearGradient>
-
-    <linearGradient id="chipGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#e1306c" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#833ab4" stop-opacity="0.95"/>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffb347"/>
+      <stop offset="35%" stop-color="#f77737"/>
+      <stop offset="60%" stop-color="#e1306c"/>
+      <stop offset="85%" stop-color="#833ab4"/>
+      <stop offset="100%" stop-color="#405de6"/>
+      <animate attributeName="x1" values="0;0.75" dur="4.5s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="1;1.75" dur="4.5s" repeatCount="indefinite"/>
     </linearGradient>
-
-    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#231c4d"/>
-      <stop offset="100%" stop-color="#171231"/>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1d1738"/>
+      <stop offset="100%" stop-color="#0e0b1d"/>
     </linearGradient>
-
-    <radialGradient id="orb1" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#833ab4" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#833ab4" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="orb2" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#405de6" stop-opacity="0.4"/>
+    <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f77737"/>
+      <stop offset="100%" stop-color="#e1306c"/>
+    </linearGradient>
+    <linearGradient id="inGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2c2650"/>
+      <stop offset="100%" stop-color="#221d40"/>
+    </linearGradient>
+    <linearGradient id="orbA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e1306c" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#e1306c" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="orbB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#405de6" stop-opacity="0.45"/>
       <stop offset="100%" stop-color="#405de6" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="orb3" cx="50%" cy="50%" r="50%">
+    </linearGradient>
+    <linearGradient id="orbC" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#833ab4" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#833ab4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ctaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f77737"/>
+      <stop offset="50%" stop-color="#ff9d5c"/>
+      <stop offset="100%" stop-color="#e1306c"/>
+      <animate attributeName="x1" values="0;1.3" dur="3.2s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="1;2.3" dur="3.2s" repeatCount="indefinite"/>
+    </linearGradient>
+    <linearGradient id="tickerMask" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="6%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="94%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="phoneGlow" cx="50%" cy="45%" r="60%">
       <stop offset="0%" stop-color="#e1306c" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="#e1306c" stop-opacity="0"/>
     </radialGradient>
-
-    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
-      <circle cx="1.5" cy="1.5" r="1.2" fill="#ffffff" opacity="0.05"/>
-    </pattern>
-
     <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.5"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.6"/>
     </filter>
-    <filter id="blur20" x="-60%" y="-60%" width="220%" height="220%">
-      <feGaussianBlur stdDeviation="22"/>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="28"/>
     </filter>
-
-    <clipPath id="tickerClip">
-      <rect x="30" y="318" width="840" height="26" rx="6"/>
-    </clipPath>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.1" fill="#ffffff" opacity="0.05"/>
+    </pattern>
   </defs>
 
   <style>
-    .title-grad { animation: shimmer 6s ease-in-out infinite; }
-    @keyframes shimmer { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.25); } }
-    .float-slow { animation: floatS 7s ease-in-out infinite; }
-    .float-med { animation: floatS 5.5s ease-in-out infinite; animation-delay: .8s; }
-    @keyframes floatS { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-    .pulse { animation: pulseK 2.6s ease-in-out infinite; }
-    @keyframes pulseK { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
-    .ring { transform-box: fill-box; transform-origin: center; animation: ringK 2.2s ease-out infinite; }
-    @keyframes ringK { 0% { transform: scale(.7); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
-    .bounce { transform-box: fill-box; transform-origin: center; animation: bounceK 1.2s ease-in-out infinite; }
-    .bounce2 { animation-delay: .15s; }
-    .bounce3 { animation-delay: .3s; }
-    @keyframes bounceK { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-5px); } }
-    .fade-in { animation: fadeK 4s ease-out infinite; }
-    @keyframes fadeK { 0% { opacity: 0; transform: translateX(-8px); } 25%, 75% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(8px); } }
-    .fade-in-2 { animation: fadeK 4s ease-out 1.6s infinite; }
-    .twinkle { animation: twinkleK 2.4s ease-in-out infinite; }
-    .twinkle2 { animation: twinkleK 2.4s ease-in-out .7s infinite; }
-    .twinkle3 { animation: twinkleK 2.4s ease-in-out 1.4s infinite; }
-    @keyframes twinkleK { 0%,100% { opacity: .15; } 50% { opacity: 1; } }
+    .blob { transform-box: fill-box; transform-origin: center; animation: blobK 16s ease-in-out infinite alternate; }
+    .blob.b2 { animation-duration: 22s; animation-delay: -6s; }
+    .blob.b3 { animation-duration: 18s; animation-delay: -11s; }
+    @keyframes blobK { 0% { transform: translate(-26px,-18px) scale(1); } 50% { transform: translate(30px,24px) scale(1.15); } 100% { transform: translate(-18px,30px) scale(.95); } }
+    .star { animation: starK 2.6s ease-in-out infinite; }
+    .star.s2 { animation-delay: .9s; animation-duration: 3.1s; }
+    .star.s3 { animation-delay: 1.7s; animation-duration: 2.2s; }
+    @keyframes starK { 0%,100% { opacity: .12; } 50% { opacity: .9; } }
+    .tick { transform-box: fill-box; transform-origin: center; animation: tickK 1.15s ease-in-out infinite; }
+    .tick.t2 { animation-delay: .18s; }
+    .tick.t3 { animation-delay: .36s; }
+    @keyframes tickK { 0%,100% { transform: translateY(0); } 45% { transform: translateY(-7px); } }
+    .orbit { transform-box: fill-box; transform-origin: center; animation: orbitK 8s linear infinite; }
+    .orbit.o2 { animation-direction: reverse; animation-duration: 11s; }
+    .orbit.o3 { animation-duration: 14s; }
+    @keyframes orbitK { to { transform: rotate(360deg); } }
+    .pulse-ring { transform-box: fill-box; transform-origin: center; animation: pring 2.2s ease-out infinite; }
+    @keyframes pring { 0% { transform: scale(.8); opacity: .9; } 100% { transform: scale(1.7); opacity: 0; } }
+    .glowPulse { animation: gp 2.6s ease-in-out infinite; }
+    @keyframes gp { 0%,100% { opacity: .45; } 50% { opacity: .95; } }
+    .blink { animation: blinkK 1.9s ease-in-out infinite; }
+    @keyframes blinkK { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+    .ticker { animation: tK 24s linear infinite; }
+    @keyframes tK { to { transform: translateX(-862px); } }
+    .grid-pulse { animation: gridP 5s ease-in-out infinite; }
+    @keyframes gridP { 0%,100% { opacity: .25; } 50% { opacity: .6; } }
   </style>
 
-  <!-- background -->
-  <rect width="900" height="360" fill="url(#bg)" rx="24"/>
-  <rect width="900" height="360" fill="url(#dots)" rx="24"/>
+  <!-- ================= BACKGROUND ================= -->
+  <rect width="940" height="560" fill="#0d0b17"/>
+  <rect width="940" height="560" fill="url(#dots)"/>
 
-  <!-- ambient orbs -->
-  <circle class="float-slow" cx="150" cy="40" r="130" fill="url(#orb2)" filter="url(#blur20)"/>
-  <circle class="float-med" cx="820" cy="330" r="150" fill="url(#orb1)" filter="url(#blur20)"/>
-  <circle class="float-slow" cx="760" cy="40" r="90" fill="url(#orb3)" filter="url(#blur20)"/>
+  <circle class="blob" cx="120" cy="90" r="200" fill="url(#orbA)" filter="url(#glow)"/>
+  <circle class="blob b2" cx="820" cy="150" r="230" fill="url(#orbB)" filter="url(#glow)"/>
+  <circle class="blob b3" cx="470" cy="520" r="260" fill="url(#orbC)" filter="url(#glow)"/>
 
-  <!-- sparkles -->
-  <g font-family="sans-serif">
-    <text class="twinkle" x="44" y="52" font-size="12" fill="#f77737">✦</text>
-    <text class="twinkle2" x="868" y="96" font-size="15" fill="#e1306c">✧</text>
-    <text class="twinkle3" x="40" y="318" font-size="10" fill="#405de6">✦</text>
-    <text class="twinkle" x="852" y="208" font-size="11" fill="#7fe3a0">✦</text>
+  <g fill="#c9c4e8">
+    <circle class="star" cx="70" cy="60" r="1.6"/>
+    <circle class="star s2" cx="220" cy="34" r="1.3"/>
+    <circle class="star s3" cx="330" cy="78" r="1.7"/>
+    <circle class="star s2" cx="520" cy="40" r="1.4"/>
+    <circle class="star s3" cx="640" cy="66" r="1.6"/>
+    <circle class="star" cx="880" cy="48" r="1.5"/>
+    <circle class="star s2" cx="760" cy="92" r="1.2"/>
+    <circle class="star" cx="430" cy="24" r="1.3"/>
   </g>
 
-  <!-- ============ LEFT: copy ============ -->
-  <g>
-    <!-- badge -->
-    <rect x="40" y="34" width="196" height="26" rx="13" fill="none" stroke="url(#igGrad)" stroke-width="1.6"/>
-    <text x="138" y="51" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#f3b0cc">★ FREE AI MODELS INCLUDED</text>
-
-    <!-- title -->
-    <text x="38" y="118" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="900" fill="url(#igGrad)" class="title-grad">
-      InstaReply Bot
-    </text>
-    <text x="40" y="140" font-family="Arial, Helvetica, sans-serif" font-size="13" letter-spacing="6" fill="#6f6a96" font-weight="700">
-      AI-POWERED INSTAGRAM DM AUTO-REPLY
-    </text>
-
-    <!-- subtitle -->
-    <text x="40" y="172" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c9c4e8">
-      Never miss a message again. Every DM gets an answer written
-    </text>
-    <text x="40" y="192" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#c9c4e8">
-      in your voice — <tspan fill="#7fe3a0" font-weight="700">24/7</tspan>, in the background, <tspan fill="#ffd7a8" font-weight="700">no login</tspan>.
-    </text>
-
-    <!-- chips -->
-    <g font-family="Arial, Helvetica, sans-serif" font-size="11.5" font-weight="700">
-      <rect x="40" y="214" width="112" height="26" rx="13" fill="url(#chipGrad)"/>
-      <text x="96" y="231" text-anchor="middle" fill="#ffffff">AI-POWERED</text>
-
-      <rect x="162" y="214" width="150" height="26" rx="13" fill="#1d1738" stroke="#3a3366" stroke-width="1.4"/>
-      <text x="237" y="231" text-anchor="middle" fill="#c9c4e8">NO INSTAGRAM LOGIN</text>
-
-      <rect x="322" y="214" width="128" height="26" rx="13" fill="#1d1738" stroke="#3ba55d" stroke-width="1.4"/>
-      <text x="386" y="231" text-anchor="middle" fill="#7fe3a0">ONE REPLY / MSG</text>
-
-      <rect x="460" y="214" width="132" height="26" rx="13" fill="#1d1738" stroke="#f09b3c" stroke-width="1.4"/>
-      <text x="526" y="231" text-anchor="middle" fill="#ffd7a8">SCREEN-OFF SEND</text>
-    </g>
-
-    <!-- CTA -->
-    <g filter="url(#soft)">
-      <circle cx="92" cy="272" r="26" fill="none" stroke="#e1306c" stroke-width="2" class="ring"/>
-      <rect x="40" y="252" width="210" height="40" rx="20" fill="url(#igGrad)"/>
-      <text x="145" y="277" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14.5" font-weight="800" fill="#ffffff">⬇ GET THE FREE APK</text>
-    </g>
-    <text x="40" y="310" font-family="Arial, Helvetica, sans-serif" font-size="11.5" fill="#8f89b8">
-      Works with Gemini · Groq · OpenRouter · OpenCode Zen · NVIDIA · OpenAI · Custom
-    </text>
+  <!-- horizon grid -->
+  <g class="grid-pulse" stroke="#405de6" stroke-width="1" opacity="0.25">
+    <path d="M 470 560 L 60 420" fill="none"/>
+    <path d="M 470 560 L 190 420" fill="none"/>
+    <path d="M 470 560 L 330 420" fill="none"/>
+    <path d="M 470 560 L 610 420" fill="none"/>
+    <path d="M 470 560 L 750 420" fill="none"/>
+    <path d="M 470 560 L 880 420" fill="none"/>
+    <path d="M 0 452 L 940 452" fill="none"/>
+    <path d="M 0 494 L 940 494" fill="none"/>
+    <path d="M 0 530 L 940 530" fill="none"/>
   </g>
 
-  <!-- ============ RIGHT: chat card ============ -->
-  <g transform="translate(560, 34)" filter="url(#soft)">
-    <!-- device frame -->
-    <rect width="308" height="292" rx="26" fill="url(#cardGrad)" stroke="url(#igGrad)" stroke-width="2"/>
-    <rect x="110" y="8" width="88" height="12" rx="6" fill="#ffffff" opacity="0.12"/>
+  <!-- ================= LEFT COLUMN ================= -->
+  <g font-family="Arial, sans-serif">
+    <rect x="40" y="86" width="176" height="30" rx="15" fill="none" stroke="url(#ig1)" stroke-width="1.6"/>
+    <text x="128" y="106" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ffb347">FREE AI AUTO-REPLY</text>
+
+    <text x="40" y="178" font-size="64" font-weight="900" fill="url(#titleGrad)" letter-spacing="2">INSTAREPLY</text>
+
+    <text x="40" y="216" font-size="15.5" fill="#c9c4e8">Auto-reply to Instagram DMs with AI — in your voice,</text>
+    <text x="40" y="238" font-size="15.5" fill="#c9c4e8">with <tspan fill="#ffb347" font-weight="700">exactly one reply per message.</tspan> No login. No root.</text>
+
+    <g font-size="11.5" font-weight="700">
+      <rect x="40" y="262" width="118" height="28" rx="14" fill="#14102a" stroke="#3a3366" stroke-width="1.3"/>
+      <text x="99" y="281" text-anchor="middle" fill="#9db4ff">INSTANT SETUP</text>
+      <rect x="168" y="262" width="140" height="28" rx="14" fill="#14102a" stroke="#3a3366" stroke-width="1.3"/>
+      <text x="238" y="281" text-anchor="middle" fill="#9db4ff">NO LOGIN · NO ROOT</text>
+      <rect x="318" y="262" width="112" height="28" rx="14" fill="#14102a" stroke="#3a3366" stroke-width="1.3"/>
+      <text x="374" y="281" text-anchor="middle" fill="#9db4ff">7 MB APK</text>
+    </g>
+
+    <circle cx="76" cy="346" r="34" fill="#e1306c" opacity="0.35" filter="url(#glow)" class="glowPulse"/>
+    <g>
+      <circle class="pulse-ring" cx="76" cy="346" r="34" fill="none" stroke="#f77737" stroke-width="2"/>
+    </g>
+    <rect x="40" y="320" width="254" height="52" rx="26" fill="url(#ctaGrad)" filter="url(#soft)"/>
+    <circle cx="212" cy="346" r="26" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-dasharray="4 8" class="orbit"/>
+    <text x="167" y="353" text-anchor="middle" font-size="18" font-weight="900" fill="#ffffff" letter-spacing="1">GET THE FREE APK</text>
+
+    <text x="40" y="404" font-size="12" fill="#8f89b8">v0.4 &#183; GitHub Releases &#183; MIT Licensed</text>
+    <text x="40" y="424" font-size="12" fill="#8f89b8">Android 8+ &#183; works with the screen off</text>
+  </g>
+
+  <!-- ================= RIGHT COLUMN: PHONE ================= -->
+  <circle cx="690" cy="320" r="330" fill="url(#phoneGlow)"/>
+
+  <g filter="url(#soft)">
+    <circle cx="690" cy="320" r="196" fill="none" stroke="#3a3366" stroke-width="1.2" stroke-dasharray="3 14" class="orbit"/>
+    <circle cx="690" cy="320" r="226" fill="none" stroke="#2c2650" stroke-width="1" stroke-dasharray="2 18" class="orbit o2"/>
+    <circle cx="690" cy="320" r="256" fill="none" stroke="#221d40" stroke-width="1" stroke-dasharray="1 22" class="orbit o3"/>
+
+    <!-- phone frame -->
+    <rect x="568" y="112" width="244" height="424" rx="40" fill="#241d4d" stroke="url(#ig2)" stroke-width="3.5"/>
+    <rect x="578" y="122" width="224" height="404" rx="32" fill="url(#screenGrad)"/>
+
+    <!-- status bar -->
+    <text x="598" y="148" font-size="12" font-weight="700" font-family="Arial, sans-serif" fill="#c9c4e8">9:41</text>
+    <rect x="770" y="140" width="18" height="8" rx="2" fill="none" stroke="#c9c4e8" stroke-width="1.3"/>
+    <rect x="772" y="142" width="10" height="4" rx="1" fill="#7fe3a0"/>
+    <rect x="748" y="141" width="10" height="6" rx="1.6" fill="none" stroke="#c9c4e8" stroke-width="1.3"/>
 
     <!-- header -->
-    <circle cx="34" cy="44" r="15" fill="url(#chipGrad)"/>
-    <text x="34" y="49" text-anchor="middle" font-size="13" font-family="sans-serif" fill="#fff">IG</text>
-    <text x="60" y="41" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#ffffff">Instagram DM</text>
-    <text x="60" y="56" font-family="Arial, sans-serif" font-size="10.5" fill="#7fe3a0">● online · auto-replying</text>
+    <circle cx="598" cy="182" r="13" fill="url(#ig1)"/>
+    <circle cx="598" cy="182" r="13" fill="none" stroke="#ffffff" stroke-width="1"/>
+    <text x="620" y="179" font-size="13.5" font-weight="800" font-family="Arial, sans-serif" fill="#ffffff">Instagram DM</text>
+    <text x="620" y="193" font-size="10.5" font-family="Arial, sans-serif" fill="#8f89b8">online now</text>
+    <circle cx="786" cy="182" r="4" fill="#3ba55d"/>
+    <line x1="578" y1="206" x2="802" y2="206" stroke="#2c2650" stroke-width="1.4"/>
 
-    <!-- incoming message -->
-    <rect class="fade-in" x="18" y="78" width="150" height="36" rx="18" fill="#241d4a" stroke="#3a3366" stroke-width="1"/>
-    <text class="fade-in" x="93" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#d9d4f5">&quot;Hey, how are you?&quot;</text>
+    <!-- incoming bubble -->
+    <rect x="588" y="224" width="206" height="52" rx="14" fill="url(#inGrad)"/>
+    <path d="M 588 262 L 588 276 L 604 262 Z" fill="url(#inGrad)"/>
+    <text x="602" y="244" font-size="11.5" font-family="Arial, sans-serif" fill="#e8e4ff">Hi! Can you help me with</text>
+    <text x="602" y="261" font-size="11.5" font-family="Arial, sans-serif" fill="#e8e4ff">pricing? &#128075;</text>
 
     <!-- typing indicator -->
-    <rect x="18" y="126" width="62" height="34" rx="17" fill="#241d4a"/>
-    <circle class="bounce" cx="38" cy="143" r="4" fill="#8f89b8"/>
-    <circle class="bounce bounce2" cx="52" cy="143" r="4" fill="#8f89b8"/>
-    <circle class="bounce bounce3" cx="66" cy="143" r="4" fill="#8f89b8"/>
+    <rect x="588" y="292" width="62" height="30" rx="15" fill="#2c2650"/>
+    <circle class="tick" cx="604" cy="307" r="3.4" fill="#b9b2dd"/>
+    <circle class="tick t2" cx="619" cy="307" r="3.4" fill="#b9b2dd"/>
+    <circle class="tick t3" cx="634" cy="307" r="3.4" fill="#b9b2dd"/>
 
-    <!-- AI reply -->
-    <rect class="fade-in-2" x="108" y="176" width="182" height="52" rx="18" fill="url(#chipGrad)"/>
-    <text class="fade-in-2" x="199" y="199" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#ffffff">Hey! All good — thanks 🎉</text>
-    <text class="fade-in-2" x="199" y="216" text-anchor="middle" font-family="Arial, sans-serif" font-size="9.5" fill="#ffe3f0">replied by AI · 2s</text>
+    <!-- AI reply bubble -->
+    <rect x="588" y="340" width="206" height="98" rx="14" fill="url(#bubbleGrad)"/>
+    <path d="M 794 424 L 794 438 L 778 424 Z" fill="url(#bubbleGrad)"/>
+    <text x="602" y="362" font-size="11.5" font-weight="700" font-family="Arial, sans-serif" fill="#ffffff">Here's our pricing:</text>
+    <text x="602" y="382" font-size="11.5" font-family="Arial, sans-serif" fill="#ffe3d6">&#8226; Free — $0/mo</text>
+    <text x="602" y="400" font-size="11.5" font-family="Arial, sans-serif" fill="#ffe3d6">&#8226; Pro — $9/mo</text>
+    <text x="602" y="418" font-size="11.5" font-family="Arial, sans-serif" fill="#ffe3d6">Want a 30-day trial?</text>
+    <text x="762" y="428" font-size="9.5" font-family="Arial, sans-serif" fill="#ffd7a8">&#10003; delivered</text>
 
-    <!-- footer chip -->
-    <rect class="pulse" x="18" y="252" width="272" height="26" rx="13" fill="#0f2b18" stroke="#3ba55d" stroke-width="1.2"/>
-    <text x="154" y="269" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#7fe3a0">✓ EXACTLY ONE REPLY — NEVER SPAM</text>
+    <!-- floating action chips -->
+    <g>
+      <circle cx="700" cy="510" r="15" fill="#14102a" stroke="#3a3366" stroke-width="1.3"/>
+      <text x="700" y="515" text-anchor="middle" font-size="12" fill="#7fe3a0">&#10003;</text>
+    </g>
+    <text x="726" y="515" font-size="11" font-family="Arial, sans-serif" fill="#8f89b8">1 reply per message</text>
   </g>
 
-  <!-- ============ BOTTOM: provider ticker ============ -->
-  <g clip-path="url(#tickerClip)">
-    <g>
-      <animateTransform attributeName="transform" type="translate" from="0 0" to="-860 0" dur="22s" repeatCount="indefinite"/>
-      <text x="30" y="336" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#6f6a96" font-weight="600">
-        GEMINI&nbsp;&nbsp;◆&nbsp;&nbsp;GROQ&nbsp;&nbsp;◆&nbsp;&nbsp;OPENROUTER&nbsp;&nbsp;◆&nbsp;&nbsp;OPENCODE ZEN&nbsp;&nbsp;◆&nbsp;&nbsp;NVIDIA NIM&nbsp;&nbsp;◆&nbsp;&nbsp;OPENAI&nbsp;&nbsp;◆&nbsp;&nbsp;CUSTOM API&nbsp;&nbsp;◆&nbsp;&nbsp;
-      </text>
-      <text x="480" y="336" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#6f6a96" font-weight="600">
-        GEMINI&nbsp;&nbsp;◆&nbsp;&nbsp;GROQ&nbsp;&nbsp;◆&nbsp;&nbsp;OPENROUTER&nbsp;&nbsp;◆&nbsp;&nbsp;OPENCODE ZEN&nbsp;&nbsp;◆&nbsp;&nbsp;NVIDIA NIM&nbsp;&nbsp;◆&nbsp;&nbsp;OPENAI&nbsp;&nbsp;◆&nbsp;&nbsp;CUSTOM API&nbsp;&nbsp;◆&nbsp;&nbsp;
-      </text>
+  <!-- orbiting icons -->
+  <g font-family="Arial, sans-serif">
+    <g filter="url(#soft)">
+      <circle cx="470" cy="205" r="21" fill="#14102a" stroke="#f09b3c" stroke-width="1.4"/>
+      <text x="470" y="212" text-anchor="middle" font-size="15" fill="#f09b3c">&#9889;</text>
+      <animate attributeName="y" values="205;197;205" dur="2.8s" repeatCount="indefinite"/>
+    </g>
+    <g filter="url(#soft)">
+      <circle cx="906" cy="240" r="21" fill="#14102a" stroke="#e1306c" stroke-width="1.4"/>
+      <text x="906" y="247" text-anchor="middle" font-size="15" fill="#ff7aa8">&#10084;</text>
+      <animate attributeName="y" values="240;232;240" dur="3.4s" begin=".4s" repeatCount="indefinite"/>
+    </g>
+    <g filter="url(#soft)">
+      <circle cx="500" cy="440" r="21" fill="#14102a" stroke="#3ba55d" stroke-width="1.4"/>
+      <text x="500" y="447" text-anchor="middle" font-size="15" fill="#7fe3a0">&#10024;</text>
+      <animate attributeName="y" values="440;432;440" dur="2.4s" begin=".9s" repeatCount="indefinite"/>
+    </g>
+    <g filter="url(#soft)">
+      <circle cx="890" cy="452" r="21" fill="#14102a" stroke="#405de6" stroke-width="1.4"/>
+      <text x="890" y="459" text-anchor="middle" font-size="15" fill="#9db4ff">&#128172;</text>
+      <animate attributeName="y" values="452;444;452" dur="3s" begin=".2s" repeatCount="indefinite"/>
     </g>
   </g>
-  <line x1="30" y1="314" x2="870" y2="314" stroke="#ffffff" opacity="0.07" stroke-width="1"/>
+
+  <!-- ================= BOTTOM: guarantee chip + ticker ================= -->
+  <rect x="330" y="470" width="280" height="26" rx="13" fill="#14102a" stroke="#3ba55d" stroke-width="1.3"/>
+  <text x="470" y="487" text-anchor="middle" font-size="11.5" font-weight="700" font-family="Arial, sans-serif" fill="#7fe3a0" class="blink">&#9679; EXACTLY ONE REPLY PER MESSAGE</text>
+
+  <mask id="tkMask">
+    <rect x="0" y="508" width="940" height="36" fill="url(#tickerMask)"/>
+  </mask>
+  <g mask="url(#tkMask)" font-family="Arial, sans-serif" font-size="11" font-weight="700">
+    <g class="ticker">
+      <g>
+        <rect x="0" y="510" width="116" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="22" cy="523" r="4" fill="#f77737"/>
+        <text x="34" y="527" fill="#e8e4ff">GEMINI</text>
+        <rect x="126" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="148" cy="523" r="4" fill="#e1306c"/>
+        <text x="160" y="527" fill="#e8e4ff">GROQ</text>
+        <rect x="240" y="510" width="138" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="262" cy="523" r="4" fill="#833ab4"/>
+        <text x="274" y="527" fill="#e8e4ff">OPENROUTER</text>
+        <rect x="388" y="510" width="132" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="410" cy="523" r="4" fill="#405de6"/>
+        <text x="422" y="527" fill="#e8e4ff">OPENCODE ZEN</text>
+        <rect x="530" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="552" cy="523" r="4" fill="#f09b3c"/>
+        <text x="564" y="527" fill="#e8e4ff">NVIDIA</text>
+        <rect x="644" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="666" cy="523" r="4" fill="#2fbf71"/>
+        <text x="678" y="527" fill="#e8e4ff">OPENAI</text>
+        <rect x="758" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="780" cy="523" r="4" fill="#ffb347"/>
+        <text x="792" y="527" fill="#e8e4ff">+6 MORE</text>
+      </g>
+      <g transform="translate(862,0)">
+        <rect x="0" y="510" width="116" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="22" cy="523" r="4" fill="#f77737"/>
+        <text x="34" y="527" fill="#e8e4ff">GEMINI</text>
+        <rect x="126" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="148" cy="523" r="4" fill="#e1306c"/>
+        <text x="160" y="527" fill="#e8e4ff">GROQ</text>
+        <rect x="240" y="510" width="138" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="262" cy="523" r="4" fill="#833ab4"/>
+        <text x="274" y="527" fill="#e8e4ff">OPENROUTER</text>
+        <rect x="388" y="510" width="132" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="410" cy="523" r="4" fill="#405de6"/>
+        <text x="422" y="527" fill="#e8e4ff">OPENCODE ZEN</text>
+        <rect x="530" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="552" cy="523" r="4" fill="#f09b3c"/>
+        <text x="564" y="527" fill="#e8e4ff">NVIDIA</text>
+        <rect x="644" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="666" cy="523" r="4" fill="#2fbf71"/>
+        <text x="678" y="527" fill="#e8e4ff">OPENAI</text>
+        <rect x="758" y="510" width="104" height="26" rx="13" fill="#14102a" stroke="#3a3366" stroke-width="1.2"/>
+        <circle cx="780" cy="523" r="4" fill="#ffb347"/>
+        <text x="792" y="527" fill="#e8e4ff">+6 MORE</text>
+      </g>
+    </g>
+  </g>
 </svg>

@@ -42,7 +42,7 @@ class GeminiProvider(private val client: OkHttpClient = DEFAULT_CLIENT) : AiProv
                 ),
                 "generationConfig" to mapOf(
                     "temperature" to 0.7,
-                    "maxOutputTokens" to 200
+                    "maxOutputTokens" to config.maxTokens
                 )
             )
 

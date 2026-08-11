@@ -1,5 +1,6 @@
 package com.instareply.ai
 
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.JsonParser
 import com.instareply.data.model.AiConfig
@@ -14,6 +15,10 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 class OpenAiCompatibleProvider : AiProvider {
+
+    companion object {
+        private const val TAG = "OpenAiProvider"
+    }
 
     private val client = OkHttpClient.Builder()
         .connectTimeout(30, TimeUnit.SECONDS)

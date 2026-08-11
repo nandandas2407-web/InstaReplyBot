@@ -1,94 +1,205 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="920" height="430" role="img" aria-label="How InstaReply Bot replies: DM arrives, notification is read, AI generates, reply is sent via the notification reply action">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 480" width="940" height="480" role="img" aria-label="How InstaReply Bot works: DM arrives, notification read, AI writes the reply, sent via Instagram's reply action or accessibility fallback">
   <defs>
-    <linearGradient id="f1" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="ig1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f77737"/>
+      <stop offset="100%" stop-color="#e1306c"/>
+    </linearGradient>
+    <linearGradient id="ig2" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#e1306c"/>
       <stop offset="100%" stop-color="#833ab4"/>
     </linearGradient>
-    <linearGradient id="f2" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="ig3" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#833ab4"/>
       <stop offset="100%" stop-color="#405de6"/>
     </linearGradient>
-    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.45"/>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#241d4d" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#171231" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="laneGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2fbf71"/>
+      <stop offset="100%" stop-color="#1f8f52"/>
+    </linearGradient>
+    <linearGradient id="laneOrange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f09b3c"/>
+      <stop offset="100%" stop-color="#d97a1f"/>
+    </linearGradient>
+    <linearGradient id="dashGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#b9b2dd"/>
+      <stop offset="100%" stop-color="#6f6a96"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#000" flood-opacity="0.55"/>
     </filter>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b9b2dd"/>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.1" fill="#ffffff" opacity="0.045"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8f89b8"/>
+    </marker>
+    <marker id="arrGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3ba55d"/>
+    </marker>
+    <marker id="arrOrange" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f09b3c"/>
     </marker>
   </defs>
 
   <style>
-    .node rect { transition: all .25s ease; }
-    .node:hover rect { filter: brightness(1.35); }
-    .node:hover .nlabel { font-weight: 700; }
-    .node .nlabel { transition: all .25s ease; }
-    text { font-family: Arial, Helvetica, sans-serif; }
+    .node-card { transition: all .28s ease; }
+    .node-card:hover { transform: translateY(-4px); filter: brightness(1.4); }
+    .step-ring { transform-box: fill-box; transform-origin: center; animation: ringK 2.4s ease-out infinite; }
+    .step-ring.r2 { animation-delay: .8s; }
+    .step-ring.r3 { animation-delay: 1.6s; }
+    @keyframes ringK { 0% { transform: scale(.75); opacity: .8; } 100% { transform: scale(1.65); opacity: 0; } }
+    .flow-dash { stroke-dasharray: 8 10; animation: dashK 1.1s linear infinite; }
+    .flow-dash.d2 { animation-duration: 1.4s; }
+    .flow-dash.d3 { animation-duration: 1.7s; }
+    .flow-dash.d4 { animation-duration: 1.3s; }
+    @keyframes dashK { to { stroke-dashoffset: -36; } }
+    .glow-pulse { animation: gp 2.2s ease-in-out infinite; }
+    @keyframes gp { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
+    .chip-blink { animation: blink 1.8s ease-in-out infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
   </style>
 
-  <rect width="920" height="430" fill="#0d0b17" rx="20"/>
+  <rect width="940" height="480" fill="#0d0b17" rx="24"/>
+  <rect width="940" height="480" fill="url(#dots)" rx="24"/>
 
-  <!-- STEP 1: Instagram DM -->
-  <g class="node">
-    <rect x="30" y="70" width="180" height="110" rx="14" fill="#1c1733" stroke="url(#f1)" stroke-width="2" filter="url(#soft)"/>
-    <text x="120" y="100" class="nlabel" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">1 · DM ARRIVES</text>
-    <text x="120" y="122" text-anchor="middle" font-size="12" fill="#c9c4e8">Someone messages you</text>
-    <text x="120" y="138" text-anchor="middle" font-size="12" fill="#c9c4e8">on Instagram</text>
-    <text x="120" y="162" text-anchor="middle" font-size="11" fill="#8f89b8">(no login needed)</text>
+  <!-- ================= ROW 1: three steps ================= -->
+  <!-- STEP 1 -->
+  <g class="node-card" filter="url(#soft)">
+    <rect x="30" y="56" width="200" height="128" rx="18" fill="url(#glass)" stroke="url(#ig1)" stroke-width="2"/>
+    <circle cx="82" cy="108" r="21" fill="url(#ig1)"/>
+    <circle cx="82" cy="108" r="21" fill="none" stroke="#f77737" stroke-width="1.5" class="step-ring"/>
+    <text x="82" y="114" text-anchor="middle" font-size="17" font-weight="800" font-family="Arial, sans-serif" fill="#fff">1</text>
+    <text x="130" y="96" font-size="15.5" font-weight="800" font-family="Arial, sans-serif" fill="#ffffff">DM ARRIVES</text>
+    <text x="130" y="114" font-size="12" font-family="Arial, sans-serif" fill="#c9c4e8">Someone messages you</text>
+    <text x="130" y="130" font-size="12" font-family="Arial, sans-serif" fill="#c9c4e8">on Instagram</text>
+    <text x="130" y="156" font-size="10.5" font-family="Arial, sans-serif" fill="#8f89b8">no login · no password</text>
   </g>
 
-  <!-- animated connector 1 -->
-  <path d="M 210 125 L 330 125" stroke="#b9b2dd" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
-  <circle r="5" fill="#e1306c">
-    <animateMotion dur="1.6s" repeatCount="indefinite" path="M 214 125 L 320 125"/>
-  </circle>
-
-  <!-- STEP 2: Notification listener -->
-  <g class="node">
-    <rect x="340" y="70" width="180" height="110" rx="14" fill="#1c1733" stroke="url(#f1)" stroke-width="2" filter="url(#soft)"/>
-    <text x="430" y="100" class="nlabel" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2 · NOTIFICATION</text>
-    <text x="430" y="122" text-anchor="middle" font-size="12" fill="#c9c4e8">The listener catches the</text>
-    <text x="430" y="138" text-anchor="middle" font-size="12" fill="#c9c4e8">Instagram notification</text>
-    <text x="430" y="162" text-anchor="middle" font-size="11" fill="#8f89b8">NotificationListenerService</text>
-  </g>
-
-  <!-- animated connector 2 -->
-  <path d="M 520 125 L 640 125" stroke="#b9b2dd" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <!-- connector 1 -->
+  <path d="M 230 120 L 356 120" stroke="url(#dashGrad)" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M 230 120 L 356 120" stroke="#833ab4" stroke-width="4" fill="none" opacity="0.35" filter="url(#glow)"/>
+  <path class="flow-dash" d="M 230 120 L 356 120" stroke="#c9a8ff" stroke-width="2.2" fill="none"/>
   <circle r="5" fill="#f77737">
-    <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.5s" path="M 524 125 L 630 125"/>
+    <animateMotion dur="1.5s" repeatCount="indefinite" path="M 234 120 L 348 120"/>
   </circle>
 
-  <!-- STEP 3: AI engine -->
-  <g class="node">
-    <rect x="650" y="60" width="240" height="130" rx="14" fill="#1c1733" stroke="url(#f2)" stroke-width="2" filter="url(#soft)"/>
-    <text x="770" y="90" class="nlabel" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3 · AI WRITES THE REPLY</text>
-    <text x="770" y="112" text-anchor="middle" font-size="11.5" fill="#c9c4e8">Your rule finds the best match,</text>
-    <text x="770" y="128" text-anchor="middle" font-size="11.5" fill="#c9c4e8">then your provider replies in</text>
-    <text x="770" y="144" text-anchor="middle" font-size="11.5" fill="#c9c4e8">your voice (name, location, bio)</text>
-    <text x="770" y="168" text-anchor="middle" font-size="10.5" fill="#8f89b8">Gemini · Groq · OpenRouter · OpenCode Zen · more</text>
+  <!-- STEP 2 -->
+  <g class="node-card" filter="url(#soft)">
+    <rect x="370" y="56" width="200" height="128" rx="18" fill="url(#glass)" stroke="url(#ig2)" stroke-width="2"/>
+    <circle cx="422" cy="108" r="21" fill="url(#ig2)"/>
+    <circle cx="422" cy="108" r="21" fill="none" stroke="#e1306c" stroke-width="1.5" class="step-ring r2"/>
+    <text x="422" y="114" text-anchor="middle" font-size="17" font-weight="800" font-family="Arial, sans-serif" fill="#fff">2</text>
+    <text x="470" y="96" font-size="15.5" font-weight="800" font-family="Arial, sans-serif" fill="#ffffff">NOTIFICATION</text>
+    <text x="470" y="114" font-size="12" font-family="Arial, sans-serif" fill="#c9c4e8">The listener catches the</text>
+    <text x="470" y="130" font-size="12" font-family="Arial, sans-serif" fill="#c9c4e8">incoming message</text>
+    <text x="470" y="156" font-size="10.5" font-family="Arial, sans-serif" fill="#8f89b8">NotificationListenerService</text>
   </g>
 
-  <!-- animated connector 3 (down) -->
-  <path d="M 770 190 L 770 300" stroke="#b9b2dd" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <!-- connector 2 -->
+  <path d="M 570 120 L 696 120" stroke="url(#dashGrad)" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M 570 120 L 696 120" stroke="#405de6" stroke-width="4" fill="none" opacity="0.35" filter="url(#glow)"/>
+  <path class="flow-dash d2" d="M 570 120 L 696 120" stroke="#9db4ff" stroke-width="2.2" fill="none"/>
+  <circle r="5" fill="#e1306c">
+    <animateMotion dur="1.8s" begin=".5s" repeatCount="indefinite" path="M 574 120 L 688 120"/>
+  </circle>
+
+  <!-- STEP 3 -->
+  <g class="node-card" filter="url(#soft)">
+    <rect x="710" y="56" width="200" height="128" rx="18" fill="url(#glass)" stroke="url(#ig3)" stroke-width="2"/>
+    <circle cx="762" cy="108" r="21" fill="url(#ig3)"/>
+    <circle cx="762" cy="108" r="21" fill="none" stroke="#833ab4" stroke-width="1.5" class="step-ring r3"/>
+    <text x="762" y="114" text-anchor="middle" font-size="17" font-weight="800" font-family="Arial, sans-serif" fill="#fff">3</text>
+    <text x="810" y="96" font-size="15.5" font-weight="800" font-family="Arial, sans-serif" fill="#ffffff">AI WRITES IT</text>
+    <text x="810" y="114" font-size="12" font-family="Arial, sans-serif" fill="#c9c4e8">Your rule matches, your</text>
+    <text x="810" y="130" font-size="12" font-family="Arial, sans-serif" fill="#c9c4e8">provider replies in</text>
+    <text x="810" y="146" font-size="12" font-family="Arial, sans-serif" fill="#c9c4e8">your voice</text>
+    <text x="810" y="168" font-size="10.5" font-family="Arial, sans-serif" fill="#8f89b8">Gemini · Groq · OpenRouter · Zen · more</text>
+  </g>
+
+  <!-- ================= DECISION: down from AI ================= -->
+  <path d="M 810 184 L 810 232" stroke="url(#dashGrad)" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path class="flow-dash d3" d="M 810 184 L 810 232" stroke="#c9a8ff" stroke-width="2.2" fill="none"/>
   <circle r="5" fill="#833ab4">
-    <animateMotion dur="1.8s" repeatCount="indefinite" begin="1s" path="M 770 194 L 770 292"/>
+    <animateMotion dur="1.9s" begin="1s" repeatCount="indefinite" path="M 810 188 L 810 224"/>
   </circle>
 
-  <!-- STEP 4: Send methods -->
-  <g class="node">
-    <rect x="30" y="300" width="860" height="105" rx="14" fill="#141024" stroke="#3a3366" stroke-width="1.6" filter="url(#soft)"/>
-    <text x="460" y="325" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">4 · REPLY IS SENT</text>
-
-    <rect x="60" y="342" width="370" height="46" rx="10" fill="#1f1a33" stroke="#3ba55d" stroke-width="1.6"/>
-    <text x="245" y="362" text-anchor="middle" font-size="12.5" font-weight="600" fill="#7fe3a0">PRIMARY — RemoteInput action</text>
-    <text x="245" y="379" text-anchor="middle" font-size="10.5" fill="#c9c4e8">Fires Instagram's own “Reply” action with the text injected · works in background, screen off</text>
-
-    <rect x="470" y="342" width="390" height="46" rx="10" fill="#1f1a33" stroke="#f09b3c" stroke-width="1.6"/>
-    <text x="665" y="362" text-anchor="middle" font-size="12.5" font-weight="600" fill="#ffd7a8">FALLBACK — Accessibility</text>
-    <text x="665" y="379" text-anchor="middle" font-size="10.5" fill="#c9c4e8">Opens the chat, types and hits Send once · never double-sends</text>
+  <g filter="url(#soft)">
+    <path d="M 810 238 L 862 276 L 810 314 L 758 276 Z" fill="#1d1738" stroke="#b9b2dd" stroke-width="2"/>
+    <text x="810" y="271" text-anchor="middle" font-size="12" font-weight="800" font-family="Arial, sans-serif" fill="#ffffff">REPLY</text>
+    <text x="810" y="285" text-anchor="middle" font-size="12" font-weight="800" font-family="Arial, sans-serif" fill="#ffffff">ACTION?</text>
+    <text x="810" y="299" text-anchor="middle" font-size="9.5" font-family="Arial, sans-serif" fill="#8f89b8">has RemoteInput</text>
   </g>
 
-  <!-- one-reply badge -->
-  <g>
-    <rect x="386" y="30" width="150" height="24" rx="12" fill="#0f2b18" stroke="#3ba55d" stroke-width="1.4"/>
-    <text x="461" y="46" text-anchor="middle" font-size="11" font-weight="700" fill="#7fe3a0">✓ EXACTLY ONE REPLY</text>
+  <!-- green lane: yes -->
+  <path d="M 758 276 L 470 276" stroke="#3ba55d" stroke-width="2.5" fill="none" marker-end="url(#arrGreen)"/>
+  <path class="flow-dash d4" d="M 758 276 L 480 276" stroke="#7fe3a0" stroke-width="2" fill="none"/>
+  <circle r="5" fill="#3ba55d">
+    <animateMotion dur="1.6s" begin=".3s" repeatCount="indefinite" path="M 752 276 L 484 276"/>
+  </circle>
+  <text x="614" y="262" text-anchor="middle" font-size="11.5" font-weight="800" font-family="Arial, sans-serif" fill="#7fe3a0">YES →</text>
+
+  <!-- orange lane: no -->
+  <path d="M 862 276 L 900 276" stroke="#f09b3c" stroke-width="2.5" fill="none" marker-end="url(#arrOrange)"/>
+  <text x="881" y="262" text-anchor="middle" font-size="11.5" font-weight="800" font-family="Arial, sans-serif" fill="#ffd7a8">NO →</text>
+
+  <!-- ================= ROW 2: send lanes ================= -->
+  <!-- PRIMARY -->
+  <g class="node-card" filter="url(#soft)">
+    <rect x="30" y="242" width="430" height="110" rx="18" fill="url(#glass)" stroke="#3ba55d" stroke-width="1.8"/>
+    <circle cx="76" cy="297" r="24" fill="url(#laneGreen)"/>
+    <circle cx="76" cy="297" r="24" fill="none" stroke="#3ba55d" stroke-width="1.5" class="step-ring"/>
+    <text x="76" y="304" text-anchor="middle" font-size="20" font-family="sans-serif" fill="#fff">✓</text>
+    <text x="118" y="282" font-size="15" font-weight="800" font-family="Arial, sans-serif" fill="#7fe3a0">PRIMARY · REMOTEINPUT SEND</text>
+    <text x="118" y="302" font-size="11.5" font-family="Arial, sans-serif" fill="#c9c4e8">Fires Instagram's own “Reply” action with the AI text injected —</text>
+    <text x="118" y="318" font-size="11.5" font-family="Arial, sans-serif" fill="#c9c4e8">exactly like tapping Reply in the shade, but automated.</text>
+    <text x="118" y="338" font-size="10.5" font-family="Arial, sans-serif" fill="#7fe3a0" class="chip-blink">● works in background · screen off · no typing</text>
+  </g>
+
+  <!-- FALLBACK -->
+  <g class="node-card" filter="url(#soft)">
+    <rect x="30" y="362" width="430" height="98" rx="18" fill="url(#glass)" stroke="#f09b3c" stroke-width="1.8"/>
+    <circle cx="76" cy="411" r="21" fill="url(#laneOrange)"/>
+    <text x="76" y="417" text-anchor="middle" font-size="17" font-weight="800" font-family="Arial, sans-serif" fill="#fff">B</text>
+    <text x="112" y="398" font-size="14.5" font-weight="800" font-family="Arial, sans-serif" fill="#ffd7a8">FALLBACK · ACCESSIBILITY</text>
+    <text x="112" y="417" font-size="11.5" font-family="Arial, sans-serif" fill="#c9c4e8">Opens the chat, types once, taps Send once —</text>
+    <text x="112" y="433" font-size="11.5" font-family="Arial, sans-serif" fill="#c9c4e8">never double-sends, never re-types after a send.</text>
+    <text x="112" y="450" font-size="10.5" font-family="Arial, sans-serif" fill="#ffd7a8">used only when Instagram omits the Reply action</text>
+  </g>
+
+  <!-- ================= RIGHT panel: guarantees ================= -->
+  <rect x="500" y="242" width="410" height="218" rx="18" fill="#120e24" stroke="#3a3366" stroke-width="1.6" filter="url(#soft)"/>
+  <text x="524" y="272" font-size="15" font-weight="800" font-family="Arial, sans-serif" fill="#ffffff">THE ONE-REPLY GUARANTEE</text>
+
+  <g font-family="Arial, sans-serif">
+    <circle cx="528" cy="296" r="6" fill="#3ba55d"/>
+    <text x="544" y="301" font-size="12" font-weight="700" fill="#e8e4ff">60s dedupe</text>
+    <text x="544" y="316" font-size="10.5" fill="#8f89b8">same sender + message ignored within a minute</text>
+
+    <circle cx="528" cy="338" r="6" fill="#3ba55d"/>
+    <text x="544" y="343" font-size="12" font-weight="700" fill="#e8e4ff">Persisted log check</text>
+    <text x="544" y="358" font-size="10.5" fill="#8f89b8">a sent reply is remembered for 10 min, across restarts</text>
+
+    <circle cx="528" cy="380" r="6" fill="#3ba55d"/>
+    <text x="544" y="385" font-size="12" font-weight="700" fill="#e8e4ff">Type once · click once</text>
+    <text x="544" y="400" font-size="10.5" fill="#8f89b8">the accessibility fallback can never fire a 2nd send</text>
+  </g>
+
+  <!-- bottom badges -->
+  <g font-family="Arial, sans-serif" font-size="11" font-weight="700">
+    <rect x="500" y="418" width="120" height="24" rx="12" fill="#0f2b18" stroke="#3ba55d" stroke-width="1.2"/>
+    <text x="560" y="434" text-anchor="middle" fill="#7fe3a0">NO DOUBLE SEND</text>
+
+    <rect x="630" y="418" width="120" height="24" rx="12" fill="#1d1738" stroke="#f09b3c" stroke-width="1.2"/>
+    <text x="690" y="434" text-anchor="middle" fill="#ffd7a8">SCREEN OFF OK</text>
+
+    <rect x="760" y="418" width="126" height="24" rx="12" fill="#1d1738" stroke="#405de6" stroke-width="1.2"/>
+    <text x="823" y="434" text-anchor="middle" fill="#9db4ff">FREE MODELS</text>
   </g>
 </svg>

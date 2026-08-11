@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 300" width="900" height="300" role="img" aria-label="InstaReply Bot - AI auto-replies to your Instagram DMs">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#13101f">
+        <animate attributeName="stop-color" values="#13101f;#1b1433;#13101f" dur="8s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#0f2030">
+        <animate attributeName="stop-color" values="#0f2030;#152a3d;#0f2030" dur="8s" repeatCount="indefinite"/>
+      </stop>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e1306c"/>
+      <stop offset="50%" stop-color="#833ab4"/>
+      <stop offset="100%" stop-color="#405de6"/>
+    </linearGradient>
+    <linearGradient id="accent2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f77737"/>
+      <stop offset="100%" stop-color="#e1306c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#833ab4" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#833ab4" stop-opacity="0"/>
+      <animate attributeName="r" values="40%;60%;40%" dur="4s" repeatCount="indefinite"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="300" fill="url(#bg)" rx="22"/>
+
+  <!-- ambient glow -->
+  <circle cx="820" cy="60" r="80" fill="url(#glow)"/>
+  <circle cx="60" cy="260" r="100" fill="url(#glow)" opacity="0.6"/>
+
+  <!-- title -->
+  <text x="40" y="105" font-family="Arial, Helvetica, sans-serif" font-size="44" font-weight="800" fill="#ffffff">
+    InstaReply Bot
+    <animate attributeName="opacity" values="1;1" dur="1s"/>
+  </text>
+  <text x="42" y="130" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#c9c4e8">
+    AI auto-replies to your Instagram DMs — 24/7, no login, free models included
+  </text>
+
+  <!-- badge chips -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600">
+    <rect x="40" y="155" width="118" height="28" rx="14" fill="url(#accent)" opacity="0.92"/>
+    <text x="99" y="173" fill="#ffffff" text-anchor="middle">AI-POWERED</text>
+
+    <rect x="170" y="155" width="128" height="28" rx="14" fill="#1f1a33" stroke="url(#accent2)" stroke-width="1.5"/>
+    <text x="234" y="173" fill="#ffd9a0" text-anchor="middle">NO INSTAGRAM LOGIN</text>
+
+    <rect x="310" y="155" width="124" height="28" rx="14" fill="#1f1a33" stroke="#3ba55d" stroke-width="1.5"/>
+    <text x="372" y="173" fill="#7fe3a0" text-anchor="middle">FREE MODELS ONBOARD</text>
+
+    <rect x="446" y="155" width="112" height="28" rx="14" fill="#1f1a33" stroke="#f09b3c" stroke-width="1.5"/>
+    <text x="502" y="173" fill="#ffd7a8" text-anchor="middle">ONE REPLY / MESSAGE</text>
+  </g>
+
+  <!-- chat bubbles: incoming -->
+  <g>
+    <rect x="580" y="120" width="150" height="34" rx="17" fill="#2a2446" stroke="#833ab4" stroke-width="1.2">
+      <animate attributeName="opacity" values="0.25;1;0.25" dur="3.5s" repeatCount="indefinite"/>
+    </rect>
+    <text x="655" y="141" font-family="Arial, sans-serif" font-size="13" fill="#c9c4e8" text-anchor="middle">
+      &quot;Hey, how are you?&quot;
+      <animate attributeName="opacity" values="0.25;1;0.25" dur="3.5s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- chat bubbles: AI reply -->
+  <g>
+    <rect x="590" y="170" width="190" height="34" rx="17" fill="url(#accent)" opacity="0.95">
+      <animate attributeName="opacity" values="1;0.55;1" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+    </rect>
+    <text x="685" y="191" font-family="Arial, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">
+      &quot;Hey! All good, thanks 🎉&quot;
+      <animate attributeName="opacity" values="1;0.55;1" dur="3.5s" begin="1.2s" repeatCount="indefinite"/>
+    </text>
+  </g>
+
+  <!-- sparkles -->
+  <text x="840" y="240" font-size="22" fill="#e1306c" font-family="sans-serif">
+    ✦
+    <animate attributeName="opacity" values="0;1;0" dur="2.4s" repeatCount="indefinite"/>
+  </text>
+  <text x="820" y="215" font-size="14" fill="#f77737" font-family="sans-serif">
+    ✧
+    <animate attributeName="opacity" values="0;1;0" dur="2.4s" begin="0.8s" repeatCount="indefinite"/>
+  </text>
+
+  <text x="40" y="245" font-family="Arial, sans-serif" font-size="12.5" fill="#8f89b8">
+    Works in the background • Sends via Instagram's own reply action • Optional accessibility fallback
+  </text>
+  <text x="40" y="270" font-family="Arial, sans-serif" font-size="12.5" fill="#8f89b8">
+    Gemini • OpenRouter • Groq (free) • OpenCode Zen (free) • NVIDIA NIM • OpenAI • Custom
+  </text>
+</svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 430" width="920" height="430" role="img" aria-label="How InstaReply Bot replies: DM arrives, notification is read, AI generates, reply is sent via the notification reply action">
+  <defs>
+    <linearGradient id="f1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e1306c"/>
+      <stop offset="100%" stop-color="#833ab4"/>
+    </linearGradient>
+    <linearGradient id="f2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#833ab4"/>
+      <stop offset="100%" stop-color="#405de6"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b9b2dd"/>
+    </marker>
+  </defs>
+
+  <style>
+    .node rect { transition: all .25s ease; }
+    .node:hover rect { filter: brightness(1.35); }
+    .node:hover .nlabel { font-weight: 700; }
+    .node .nlabel { transition: all .25s ease; }
+    text { font-family: Arial, Helvetica, sans-serif; }
+  </style>
+
+  <rect width="920" height="430" fill="#0d0b17" rx="20"/>
+
+  <!-- STEP 1: Instagram DM -->
+  <g class="node">
+    <rect x="30" y="70" width="180" height="110" rx="14" fill="#1c1733" stroke="url(#f1)" stroke-width="2" filter="url(#soft)"/>
+    <text x="120" y="100" class="nlabel" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">1 · DM ARRIVES</text>
+    <text x="120" y="122" text-anchor="middle" font-size="12" fill="#c9c4e8">Someone messages you</text>
+    <text x="120" y="138" text-anchor="middle" font-size="12" fill="#c9c4e8">on Instagram</text>
+    <text x="120" y="162" text-anchor="middle" font-size="11" fill="#8f89b8">(no login needed)</text>
+  </g>
+
+  <!-- animated connector 1 -->
+  <path d="M 210 125 L 330 125" stroke="#b9b2dd" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <circle r="5" fill="#e1306c">
+    <animateMotion dur="1.6s" repeatCount="indefinite" path="M 214 125 L 320 125"/>
+  </circle>
+
+  <!-- STEP 2: Notification listener -->
+  <g class="node">
+    <rect x="340" y="70" width="180" height="110" rx="14" fill="#1c1733" stroke="url(#f1)" stroke-width="2" filter="url(#soft)"/>
+    <text x="430" y="100" class="nlabel" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">2 · NOTIFICATION</text>
+    <text x="430" y="122" text-anchor="middle" font-size="12" fill="#c9c4e8">The listener catches the</text>
+    <text x="430" y="138" text-anchor="middle" font-size="12" fill="#c9c4e8">Instagram notification</text>
+    <text x="430" y="162" text-anchor="middle" font-size="11" fill="#8f89b8">NotificationListenerService</text>
+  </g>
+
+  <!-- animated connector 2 -->
+  <path d="M 520 125 L 640 125" stroke="#b9b2dd" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <circle r="5" fill="#f77737">
+    <animateMotion dur="1.6s" repeatCount="indefinite" begin="0.5s" path="M 524 125 L 630 125"/>
+  </circle>
+
+  <!-- STEP 3: AI engine -->
+  <g class="node">
+    <rect x="650" y="60" width="240" height="130" rx="14" fill="#1c1733" stroke="url(#f2)" stroke-width="2" filter="url(#soft)"/>
+    <text x="770" y="90" class="nlabel" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">3 · AI WRITES THE REPLY</text>
+    <text x="770" y="112" text-anchor="middle" font-size="11.5" fill="#c9c4e8">Your rule finds the best match,</text>
+    <text x="770" y="128" text-anchor="middle" font-size="11.5" fill="#c9c4e8">then your provider replies in</text>
+    <text x="770" y="144" text-anchor="middle" font-size="11.5" fill="#c9c4e8">your voice (name, location, bio)</text>
+    <text x="770" y="168" text-anchor="middle" font-size="10.5" fill="#8f89b8">Gemini · Groq · OpenRouter · OpenCode Zen · more</text>
+  </g>
+
+  <!-- animated connector 3 (down) -->
+  <path d="M 770 190 L 770 300" stroke="#b9b2dd" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <circle r="5" fill="#833ab4">
+    <animateMotion dur="1.8s" repeatCount="indefinite" begin="1s" path="M 770 194 L 770 292"/>
+  </circle>
+
+  <!-- STEP 4: Send methods -->
+  <g class="node">
+    <rect x="30" y="300" width="860" height="105" rx="14" fill="#141024" stroke="#3a3366" stroke-width="1.6" filter="url(#soft)"/>
+    <text x="460" y="325" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">4 · REPLY IS SENT</text>
+
+    <rect x="60" y="342" width="370" height="46" rx="10" fill="#1f1a33" stroke="#3ba55d" stroke-width="1.6"/>
+    <text x="245" y="362" text-anchor="middle" font-size="12.5" font-weight="600" fill="#7fe3a0">PRIMARY — RemoteInput action</text>
+    <text x="245" y="379" text-anchor="middle" font-size="10.5" fill="#c9c4e8">Fires Instagram's own “Reply” action with the text injected · works in background, screen off</text>
+
+    <rect x="470" y="342" width="390" height="46" rx="10" fill="#1f1a33" stroke="#f09b3c" stroke-width="1.6"/>
+    <text x="665" y="362" text-anchor="middle" font-size="12.5" font-weight="600" fill="#ffd7a8">FALLBACK — Accessibility</text>
+    <text x="665" y="379" text-anchor="middle" font-size="10.5" fill="#c9c4e8">Opens the chat, types and hits Send once · never double-sends</text>
+  </g>
+
+  <!-- one-reply badge -->
+  <g>
+    <rect x="386" y="30" width="150" height="24" rx="12" fill="#0f2b18" stroke="#3ba55d" stroke-width="1.4"/>
+    <text x="461" y="46" text-anchor="middle" font-size="11" font-weight="700" fill="#7fe3a0">✓ EXACTLY ONE REPLY</text>
+  </g>
+</svg>

@@ -165,25 +165,33 @@ section{scroll-margin-top:82px}
   opacity:0;
 }
 .kicker-rule{width:24px;height:2px;background:var(--blue)}
-.hero h1{
-  margin:0 0 20px;
-  font-size:clamp(48px,6vw,82px);
-  line-height:.98;
-  letter-spacing:-4px;
-  font-weight:900;
-  max-width:680px;
-  overflow:hidden;
-}
-.hero h1 .line{
-  display:block;
-  transform:translateY(112%);
-}
-.hero h1 .blue{color:var(--blue)}
-.hero-copy{
-  font-size:18px;color:var(--muted);max-width:620px;margin:0 0 28px;
-  opacity:0;transform:translateY(16px);
-}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;opacity:0;transform:translateY(14px)}
+ .hero h1{
+   margin:0 0 20px;
+   font-size:clamp(48px,6vw,82px);
+   line-height:1.02;
+   letter-spacing:-3px;
+   font-weight:900;
+   max-width:680px;
+ }
+ .hero h1 .line{
+   display:block;
+   overflow:hidden;
+   padding-bottom:.06em;
+ }
+ .hero h1 .line-inner{
+   display:block;
+   transform:translateY(0);
+ }
+ html.anim .hero h1 .line-inner{
+   transform:translateY(112%);
+ }
+ .hero h1 .blue{color:var(--blue)}
+ .hero-copy{
+   font-size:18px;color:var(--muted);max-width:620px;margin:0 0 28px;
+ }
+ html.anim .hero-copy{opacity:0;transform:translateY(16px)}
+ .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+ html.anim .hero-actions{opacity:0;transform:translateY(14px)}
 .button{
   display:inline-flex;align-items:center;justify-content:center;
   min-height:50px;padding:0 20px;border-radius:var(--radius-sm);
@@ -354,14 +362,14 @@ footer{border-top:1px solid var(--line);padding:30px 0;background:#fff}
 .footer-note{font-size:12px;color:#565d68;margin:18px 0 0}
 
 /* Entrance choreography */
-html.anim .app-kicker{animation:quiet .62s var(--soft) .10s forwards}
-html.anim .hero h1 .line{animation:word 1.08s var(--ease) forwards}
-html.anim .hero h1 .line:nth-child(1){animation-delay:.25s}
-html.anim .hero h1 .line:nth-child(2){animation-delay:.34s}
-html.anim .hero-copy{animation:rise .72s var(--soft) .58s forwards}
-html.anim .hero-actions{animation:rise .72s var(--soft) .70s forwards}
-html.anim .hero-note{animation:quiet .62s var(--soft) .84s forwards}
-html.anim .hero-visual{animation:subject 1.08s var(--ease) .64s forwards}
+html.anim .app-kicker{animation:quiet .62s var(--soft) .10s both}
+html.anim .hero h1 .line-inner{animation:word 1s var(--ease) both}
+html.anim .hero h1 .line:nth-child(1) .line-inner{animation-delay:.25s}
+html.anim .hero h1 .line:nth-child(2) .line-inner{animation-delay:.34s}
+html.anim .hero-copy{animation:rise .72s var(--soft) .58s both}
+html.anim .hero-actions{animation:rise .72s var(--soft) .70s both}
+html.anim .hero-note{animation:quiet .62s var(--soft) .84s both}
+html.anim .hero-visual{animation:subject 1.08s var(--ease) .64s both}
 @keyframes word{from{transform:translateY(112%)}to{transform:translateY(0)}}
 @keyframes subject{from{opacity:0;transform:translateX(22px) translateY(16px)}to{opacity:1;transform:translateX(0) translateY(0)}}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
@@ -441,7 +449,7 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
   .footer-row{align-items:flex-start;flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){
-  html.anim .app-kicker,html.anim .hero h1 .line,html.anim .hero-copy,html.anim .hero-actions,html.anim .hero-note,html.anim .hero-visual{
+  html.anim .app-kicker,html.anim .hero h1 .line,html.anim .hero h1 .line-inner,html.anim .hero-copy,html.anim .hero-actions,html.anim .hero-note,html.anim .hero-visual{
     animation:none!important;opacity:1!important;transform:none!important;
   }
   html{scroll-behavior:auto}
@@ -532,8 +540,8 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
       <div class="hero-copy-wrap">
         <div class="app-kicker"><span class="kicker-rule"></span>Android app · Open source</div>
         <h1>
-          <span class="line">AI replies for</span>
-          <span class="line">Instagram <span class="blue">DMs.</span></span>
+          <span class="line"><span class="line-inner">AI replies for</span></span>
+          <span class="line"><span class="line-inner">Instagram <span class="blue">DMs.</span></span></span>
         </h1>
         <p class="hero-copy">InstaReply Bot reads supported Instagram DM notifications, checks your rules, asks your selected AI provider for a response, and sends the reply through the available Android reply action.</p>
         <div class="hero-actions">

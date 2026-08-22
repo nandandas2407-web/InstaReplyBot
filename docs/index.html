@@ -118,6 +118,8 @@ body{
 }
 body.no-scroll{overflow:hidden}
 a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+::selection{background:color-mix(in srgb,var(--blue) 22%,transparent);color:var(--ink)}
 img{max-width:100%;height:auto;display:block}
 button,a,summary{-webkit-tap-highlight-color:transparent}
 button{font:inherit;cursor:pointer}
@@ -195,7 +197,7 @@ section{scroll-margin-top:84px}
 .button-ghost:hover{background:var(--surface-2)}
 
 /* Hero */
-.hero{position:relative;overflow:hidden;padding:70px 0 70px}
+.hero{position:relative;overflow:hidden;padding:70px 0 70px;min-height:calc(100svh - 74px);display:flex;align-items:center}
 .hero:before{
   content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
   background-image:
@@ -249,7 +251,7 @@ html.anim .hero-device{opacity:0}
 }
 [data-theme="dark"] .device{background:#05070a;box-shadow:var(--shadow)}
 .device-notch{position:absolute;top:13px;left:50%;transform:translateX(-50%);width:120px;height:24px;background:#0c0f14;border-bottom-left-radius:14px;border-bottom-right-radius:14px;z-index:3}
-.device-screen{width:100%;border-radius:30px;display:block;background:#0c0f14}
+.device-screen{width:100%;aspect-ratio:9/19;object-fit:cover;border-radius:30px;display:block;background:#0c0f14}
 .bubble{
   position:absolute;display:flex;align-items:center;gap:9px;
   background:var(--card);border:1px solid var(--line);
@@ -347,6 +349,9 @@ h2{font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-2px;margin:
 .shot.portrait .media-frame{height:580px}
 .shot.portrait .media-frame img{height:100%;object-fit:contain}
 .shot figcaption{font-size:13px;color:var(--muted);margin-top:10px;font-weight:600}
+
+/* Scroll progress */
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--blue);z-index:60}
 
 /* Config */
 .config-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:50px;align-items:start}
@@ -579,6 +584,7 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
 </script>
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 <!-- SVG sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="i-reply" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 13h5"/></symbol>
@@ -658,7 +664,7 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
       <div class="hero-device">
         <div class="device">
           <div class="device-notch"></div>
-          <img class="device-screen" src="assets/showcase.jpg" alt="InstaReply Bot product showcase on an Android phone" width="660" height="1400" loading="eager">
+          <img class="device-screen" src="assets/dashboard.jpg" alt="InstaReply Bot dashboard running on an Android phone" width="429" height="900" fetchpriority="high">
         </div>
         <div class="bubble bubble--in"><svg class="icon"><use href="#i-bell"/></svg> New DM detected</div>
         <div class="bubble bubble--out"><span class="dot"><i></i><i></i><i></i></span> AI drafting reply</div>
@@ -668,9 +674,9 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
 
   <section class="stats" aria-label="Product summary">
     <div class="container stats-grid">
-      <div class="stat reveal"><div class="stat-value">0<span class="accent">.</span>cost</div><div class="stat-label">Free, open-source APK</div></div>
+      <div class="stat reveal"><div class="stat-value"><span class="accent">$</span>0</div><div class="stat-label">Free, open-source APK</div></div>
       <div class="stat reveal" style="--d:.08s"><div class="stat-value">4<span class="accent">+</span></div><div class="stat-label">AI providers supported</div></div>
-      <div class="stat reveal" style="--d:.16s"><div class="stat-value">100<span class="accent">%</span></div><div class="stat-label">No Instagram login</div></div>
+      <div class="stat reveal" style="--d:.16s"><div class="stat-value">0</div><div class="stat-label">Passwords required</div></div>
       <div class="stat reveal" style="--d:.24s"><div class="stat-value">24<span class="accent">/</span>7</div><div class="stat-label">Background automation</div></div>
     </div>
   </section>
@@ -759,7 +765,7 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
           <li class="step"><div class="step-node">05</div><div class="step-body"><strong>Reply sent</strong><span>The available Android reply mechanism sends the text.</span></div></li>
           <li class="step"><div class="step-node">06</div><div class="step-body"><strong>Logged</strong><span>The activity becomes available in the app's history.</span></div></li>
         </ol>
-        <div class="workflow-image reveal" style="--d:.1s"><img src="assets/workflow.jpg" alt="InstaReply Bot seven-stage workflow infographic" width="1200" height="800" loading="lazy"></div>
+        <div class="workflow-image reveal" style="--d:.1s"><img src="assets/workflow.jpg" alt="InstaReply Bot seven-stage workflow infographic" width="1200" height="800" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </section>
@@ -772,10 +778,10 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
         <p class="section-lead">A Play Store-style screenshot rail using the supplied product screens. Swipe horizontally on smaller devices.</p>
       </div>
       <div class="screenshot-rail reveal" style="--d:.06s">
-        <figure class="shot portrait"><div class="media-frame"><img src="assets/dashboard.jpg" alt="InstaReply Bot dashboard screen" width="429" height="900" loading="lazy"></div><figcaption>Dashboard and activity</figcaption></figure>
-        <figure class="shot portrait"><div class="media-frame"><img src="assets/rule-engine.jpg" alt="InstaReply Bot Smart Rule Engine screen" width="416" height="900" loading="lazy"></div><figcaption>Smart Rule Engine</figcaption></figure>
-        <figure class="shot portrait"><div class="media-frame"><img src="assets/ai-settings.jpg" alt="InstaReply Bot AI settings screen" width="416" height="900" loading="lazy"></div><figcaption>AI settings and providers</figcaption></figure>
-        <figure class="shot portrait"><div class="media-frame"><img src="assets/poster.jpg" alt="InstaReply Bot promotional poster" width="506" height="900" loading="lazy"></div><figcaption>Product overview</figcaption></figure>
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/dashboard.jpg" alt="InstaReply Bot dashboard screen" width="429" height="900" loading="lazy" decoding="async"></div><figcaption>Dashboard and activity</figcaption></figure>
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/rule-engine.jpg" alt="InstaReply Bot Smart Rule Engine screen" width="416" height="900" loading="lazy" decoding="async"></div><figcaption>Smart Rule Engine</figcaption></figure>
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/ai-settings.jpg" alt="InstaReply Bot AI settings screen" width="416" height="900" loading="lazy" decoding="async"></div><figcaption>AI settings and providers</figcaption></figure>
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/poster.jpg" alt="InstaReply Bot promotional poster" width="506" height="900" loading="lazy" decoding="async"></div><figcaption>Product overview</figcaption></figure>
       </div>
     </div>
   </section>
@@ -798,8 +804,8 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
           </ul>
         </div>
         <div class="config-shots reveal" style="--d:.1s">
-          <figure><div class="media-frame"><img src="assets/ai-settings.jpg" alt="Actual InstaReply Bot AI settings screen" width="416" height="900" loading="lazy"></div></figure>
-          <figure><div class="media-frame"><img src="assets/rule-engine.jpg" alt="Actual InstaReply Bot rule editor screen" width="416" height="900" loading="lazy"></div></figure>
+          <figure><div class="media-frame"><img src="assets/ai-settings.jpg" alt="Actual InstaReply Bot AI settings screen" width="416" height="900" loading="lazy" decoding="async"></div></figure>
+          <figure><div class="media-frame"><img src="assets/rule-engine.jpg" alt="Actual InstaReply Bot rule editor screen" width="416" height="900" loading="lazy" decoding="async"></div></figure>
         </div>
       </div>
     </div>
@@ -936,6 +942,23 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
 
   // Reveal on scroll
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll progress
+  const progress = document.getElementById('progress');
+  let ticking = false;
+  function updateProgress(){
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
+    progress.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+    ticking = false;
+  }
+  if(!reduce){
+    window.addEventListener('scroll', () => {
+      if(!ticking){ ticking = true; window.requestAnimationFrame(updateProgress); }
+    }, { passive:true });
+    updateProgress();
+  }
   const revealEls = document.querySelectorAll('.reveal');
   if(reduce || !('IntersectionObserver' in window)){
     revealEls.forEach(el => el.classList.add('in'));

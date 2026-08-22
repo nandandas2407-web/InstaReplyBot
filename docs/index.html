@@ -306,6 +306,19 @@ h2{font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-2px;margin:
 .feature-card h3{font-size:18px;margin:0 0 8px;letter-spacing:-.4px}
 .feature-card p{font-size:14.5px;color:var(--muted);margin:0}
 
+/* Quickstart */
+.quickstart-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.qs-card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius-md);padding:26px 24px;
+  transition:transform .25s var(--ease),border-color .25s ease,box-shadow .25s ease;
+}
+.qs-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--blue) 40%,var(--line));box-shadow:var(--shadow)}
+.qs-step{font-size:12px;font-weight:800;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.qs-card .feature-icon{margin-bottom:16px}
+.qs-card h3{font-size:18px;margin:0 0 8px;letter-spacing:-.4px}
+.qs-card p{font-size:14.5px;color:var(--muted);margin:0}
+
 /* Providers marquee */
 .providers{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:54px 0;overflow:hidden}
 .providers .section-header{margin-bottom:30px}
@@ -474,6 +487,7 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
   .stat:nth-child(2){border-right:0}
   .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .feature-grid{grid-template-columns:1fr}
+  .quickstart-grid{grid-template-columns:1fr}
   .how-grid{grid-template-columns:1fr;gap:34px}
   .config-layout,.download-layout{grid-template-columns:1fr;gap:34px}
   .config-copy{position:static}
@@ -806,6 +820,36 @@ html:not(.anim) .hero-device{opacity:1;transform:none}
         <div class="config-shots reveal" style="--d:.1s">
           <figure><div class="media-frame"><img src="assets/ai-settings.jpg" alt="Actual InstaReply Bot AI settings screen" width="416" height="900" loading="lazy" decoding="async"></div></figure>
           <figure><div class="media-frame"><img src="assets/rule-engine.jpg" alt="Actual InstaReply Bot rule editor screen" width="416" height="900" loading="lazy" decoding="async"></div></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Quickstart</div>
+        <h2>Live in three steps.</h2>
+        <p class="section-lead">From download to your first automated reply without touching an Instagram password.</p>
+      </div>
+      <div class="quickstart-grid">
+        <div class="qs-card reveal" style="--d:.04s">
+          <div class="qs-step">Step 01</div>
+          <div class="feature-icon"><svg class="icon"><use href="#i-arrow"/></svg></div>
+          <h3>Install the APK</h3>
+          <p>Download the latest release from GitHub Releases and install it on your Android device.</p>
+        </div>
+        <div class="qs-card reveal" style="--d:.12s">
+          <div class="qs-step">Step 02</div>
+          <div class="feature-icon"><svg class="icon"><use href="#i-bell"/></svg></div>
+          <h3>Grant notification access</h3>
+          <p>Allow the app to read supported Instagram DM notifications from Android settings.</p>
+        </div>
+        <div class="qs-card reveal" style="--d:.2s">
+          <div class="qs-step">Step 03</div>
+          <div class="feature-icon"><svg class="icon"><use href="#i-sliders"/></svg></div>
+          <h3>Add a rule and AI key</h3>
+          <p>Configure your AI provider, then create a reply rule. The automation starts in the background.</p>
         </div>
       </div>
     </div>

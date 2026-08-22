@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://github.com/nandandas2407-web/InstaReplyBot#readme
+    about: Check the README for setup guides and troubleshooting
+  - name: Discussions
+    url: https://github.com/nandandas2407-web/InstaReplyBot/discussions
+    about: Ask questions and share ideas with the community

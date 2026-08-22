@@ -1,230 +1,233 @@
+# InstaReply Bot — AI-Powered Instagram DM Auto-Responder for Android
+
 <p align="center">
-  <img src="https://raw.githubusercontent.com/nandandas2407-web/InstaReplyBot/main/.github/readme/hero.svg" width="100%" alt="InstaReply Bot — AI auto-replies to your Instagram DMs"/>
+  <img src="https://raw.githubusercontent.com/nandandas2407-web/InstaReplyBot/main/.github/readme/hero.svg" width="100%" alt="InstaReply Bot — AI auto-reply to Instagram DMs automatically on Android"/>
 </p>
 
 <p align="center">
   <a href="https://github.com/nandandas2407-web/InstaReplyBot/actions/workflows/build.yml">
-    <img src="https://github.com/nandandas2407-web/InstaReplyBot/actions/workflows/build.yml/badge.svg" alt="Build status"/>
+    <img src="https://github.com/nandandas2407-web/InstaReplyBot/actions/workflows/build.yml/badge.svg" alt="Build Status - Android CI"/>
   </a>
   <a href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest">
-    <img src="https://img.shields.io/badge/release-v0.4-orange?logo=android&logoColor=white" alt="Release"/>
+    <img src="https://img.shields.io/github/v/release/nandandas2407-web/InstaReplyBot?logo=android&logoColor=white&color=orange" alt="Latest Release - Instagram Auto Reply Bot"/>
   </a>
-  <img src="https://img.shields.io/badge/Android-8.0%2B-3ddc84?logo=android&logoColor=white" alt="Android 8.0+"/>
-  <img src="https://img.shields.io/badge/AI-Gemini%20%7C%20Groq%20%7C%20OpenRouter%20%7C%20Zen-833ab4" alt="AI providers"/>
-  <img src="https://img.shields.io/badge/license-MIT-blue" alt="License"/>
+  <img src="https://img.shields.io/badge/Android-8.0+-3ddc84?logo=android&logoColor=white" alt="Android 8.0+ Required"/>
+  <img src="https://img.shields.io/badge/AI-Gemini%20%7C%20Groq%20%7C%20OpenRouter%20%7C%20OpenCode%20Zen-833ab4" alt="AI Providers - Free and Paid"/>
+  <img src="https://img.shields.io/github/license/nandandas2407-web/InstaReplyBot" alt="MIT License - Open Source Instagram Bot"/>
+  <img src="https://img.shields.io/github/stars/nandandas2407-web/InstaReplyBot?style=social" alt="GitHub Stars"/>
 </p>
-
-> **Never miss a DM again.** InstaReply Bot watches your Instagram notifications and answers with an AI reply written in your voice — automatically, in the background, with **zero Instagram login** and **free AI models** included.
-
----
-
-## 🚀 What it does (in one picture)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/nandandas2407-web/InstaReplyBot/main/.github/readme/flow.svg" width="100%" alt="How InstaReply Bot works"/>
+  <b>Never miss an Instagram DM again.</b> InstaReply Bot is an open-source Android app that watches your Instagram notifications and replies with AI-generated messages — automatically, in the background, with <b>zero Instagram login</b> required.
 </p>
 
-| | |
-|---|---|
-| ✅ No Instagram login or password | ✅ No screen / no typing needed (primary path) |
-| ✅ One reply per message — never 2, never 0 when the model answers | ✅ Works with screen off |
-| ✅ Free providers: **Groq**, **OpenCode Zen** | ✅ Multi-provider: Gemini, OpenRouter, NVIDIA, OpenAI, Custom |
+---
+
+## Share InstaReply Bot
+
+Help us trend on GitHub! Share with your network:
+
+<p align="center">
+  <a href="https://twitter.com/intent/tweet?text=Check%20out%20InstaReply%20Bot%20-%20AI-powered%20Instagram%20DM%20auto-responder%20for%20Android%20%F0%9F%9A%80%20Free%20AI%20models%20included!&url=https://github.com/nandandas2407-web/InstaReplyBot">
+    <img src="https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Share on Twitter"/>
+  </a>
+  <a href="https://reddit.com/submit?url=https://github.com/nandandas2407-web/InstaReplyBot&title=AI-Powered%20Instagram%20DM%20Auto-Responder%20for%20Android%20(Free)">
+    <img src="https://img.shields.io/badge/Share_on_Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Share on Reddit"/>
+  </a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/nandandas2407-web/InstaReplyBot">
+    <img src="https://img.shields.io/badge/Share_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Share on LinkedIn"/>
+  </a>
+  <a href="https://news.ycombinator.com/submitlink?u=https://github.com/nandandas2407-web/InstaReplyBot&t=AI-Powered%20Instagram%20DM%20Auto-Responder%20for%20Android">
+    <img src="https://img.shields.io/badge/Share_on_Hacker_News-FF6600?style=for-the-badge&logo=ycombinator&logoColor=white" alt="Share on Hacker News"/>
+  </a>
+</p>
+
+> **Star this repo** to help others discover InstaReply Bot! Stars help us trend on GitHub.
 
 ---
 
-## 📥 1. Install
+## What is InstaReply Bot?
 
-Grab the latest APK from the **[Releases page](https://github.com/nandandas2407-web/InstaReplyBot/releases/latest)** and install it on your phone.
+**InstaReply Bot** is a free, open-source **Instagram DM auto-responder** for Android. It uses **AI models** (Gemini, Groq, OpenRouter, and more) to read your incoming Instagram direct messages and send personalized replies — all without requiring your Instagram password or screen access.
 
-<details>
-<summary><b>⚠️ “Play Protect blocked / unknown sources”?</b> (tap to expand)</summary>
-
-1. Tap **Install anyway** (or **More details → Install anyway**).
-2. If Play Protect complains again, open **Play Store → Profile → Play Protect → Settings** and temporarily turn off *Scan apps with Play Protect* — you can re-enable it after install.
-
-> The app is built from source in this repo. No Play Store needed.
-</details>
+**Perfect for:**
+- Small business owners who need instant Instagram DM responses
+- Content creators managing high-volume Instagram inboxes
+- Anyone who wants automated Instagram replies powered by AI
+- Personal use — never leave a friend on "seen" again
 
 ---
 
-## 🔑 2. Grant the two permissions
+## Key Features
 
-Both permissions are shown on the home screen with buttons — this is the only setup the app needs.
-
-| Permission | Why | How |
-|---|---|---|
-| 🔔 **Notification access** | Reads incoming Instagram DMs | Press **Grant Notification Access** → find *InstaReply Bot* → enable |
-| ♿ **Accessibility service** *(optional)* | Fallback send path (auto-typing) | Press **Enable Accessibility Service** → *InstaReply Bot* → enable |
-
-<details>
-<summary><b>🤔 Why is Accessibility optional?</b></summary>
-
-Most Android apps (including this one) used to need Accessibility to type into Instagram. InstaReply Bot's **primary path doesn't**: it fires Instagram's *own* notification **Reply action** with the AI text injected — exactly like tapping “Reply” in the notification shade, but automated. Accessibility is only used if Instagram doesn't attach a Reply action.
-
-Enable both if in doubt — the app always prefers the background path.
-</details>
+| Feature | Description |
+|---------|-------------|
+| **No Instagram Login Required** | Works entirely through Android notification access — your credentials stay safe |
+| **AI-Powered Replies** | Uses Gemini, Groq (free), OpenCode Zen (free), OpenRouter, NVIDIA, and OpenAI |
+| **Fully Automated** | Runs as a background service — screen-off, no manual input needed |
+| **One Reply Per Message Guarantee** | Deduplication engine ensures every message gets exactly one response |
+| **Custom Reply Rules** | Filter by sender, keyword patterns, regex, time-of-day, and daily limits |
+| **Free AI Models Included** | Groq and OpenCode Zen offer free API tiers — no credit card needed |
+| **Human-Like Delays** | Configurable response delay for natural conversation feel |
+| **Group Chat Support** | Optionally auto-reply in Instagram group conversations |
+| **Activity Dashboard** | Track reply stats and weekly activity in-app |
 
 ---
 
-## 🧠 3. Pick your AI provider (free options below)
+## How It Works
 
-Open **Settings** from the home screen. Fill in at least one provider's API key, pick its model, then set **Max Output Tokens** (default `200` is fine — the app auto-raises it for reasoning models).
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nandandas2407-web/InstaReplyBot/main/.github/readme/flow.svg" width="100%" alt="How InstaReply Bot works - Instagram DM auto-reply flow diagram"/>
+</p>
 
-### 💸 Free providers (no card, no charge)
-
-<details open>
-<summary><b>🟢 Groq — blazing fast & free</b></summary>
-
-1. Get a free key at [console.groq.com](https://console.groq.com) (sign in with Google/GitHub — no payment).
-2. Paste it into the **Groq (Free)** field in Settings.
-3. Pick a model:
-
-| Model | Notes |
-|---|---|
-| `openai/gpt-oss-20b` | Fast, smart — great default |
-| `openai/gpt-oss-120b` | Smarter, heavier reasoning |
-| `llama-3.3-70b-versatile` | Excellent conversational quality |
-| `llama-3.1-8b-instant` | Smallest, fastest |
-| `qwen/qwen3.6-27b` | Multilingual |
-
-4. Press **Test Key** — it should toast *“Groq API key is valid”*.
-</details>
-
-<details>
-<summary><b>🔵 OpenCode Zen — curated free gateway</b></summary>
-
-1. Get a key from [opencode.ai](https://opencode.ai) (free tier available).
-2. Paste it into the **OpenCode** field, pick a model:
-
-| Model | Notes |
-|---|---|
-| `opencode/deepseek-v4-flash-free` | Fast, lightweight — default |
-| `opencode/big-pickle` | Stealth coding model |
-| `opencode/mimo-v2.5-free` | Context processing |
-| `opencode/nemotron-3-ultra-free` | Heavy reasoning |
-| `opencode/north-mini-code-free` | Logic tasks |
-| `opencode/minimax-m2.5-free` | Multi-agent planning |
-
-3. **Test Key** → should succeed. Endpoint: `https://opencode.ai/zen/v1/chat/completions`.
-</details>
-
-<details>
-<summary><b>🟣 Paid (but powerful) providers</b></summary>
-
-| Provider | Key from | Models |
-|---|---|---|
-| **Gemini** | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) *(free tier exists!)* | `gemini-3.6-flash`, `gemini-3.5-flash`, … |
-| **OpenRouter** | [openrouter.ai/keys](https://openrouter.ai/keys) | hundreds, incl. `:free` models |
-| **NVIDIA NIM** | [build.nvidia.com](https://build.nvidia.com) | Llama, Nemotron, DeepSeek… |
-| **OpenAI** | [platform.openai.com](https://platform.openai.com/api-keys) | GPT-5.x |
-| **Custom** | your own | any OpenAI-compatible endpoint |
-
-> ⚠️ **Tip:** if your replies arrive **empty** or *“Model returned empty content”*, your model is a *reasoning* model (like `gpt-oss-*`) — the app now auto-retries with a bigger token budget, so it usually just works. If it still fails, raise **Max Output Tokens** in Settings.
-</details>
+1. **Detect** — InstaReply Bot's notification listener picks up incoming Instagram DMs
+2. **Analyze** — Your custom rules decide who gets replied to and when
+3. **Generate** — The selected AI provider generates a personalized response in your style
+4. **Send** — The reply is delivered via Instagram's notification Reply action (or Accessibility fallback)
 
 ---
 
-## 📜 4. Create your auto-reply rules
+## Getting Started
 
-Rules decide **who** gets answered, **when**, and **how**. Tap **Add Rule** on the home screen.
+### 1. Install the APK
 
-| Setting | What it does |
-|---|---|
-| **Rule name** | Just a label |
-| **Trigger pattern** + **Match type** | `CONTAINS`, `EXACT`, `STARTS_WITH`, `ENDS_WITH`, `REGEX`, or `ANY` (answer everything) |
-| **AI provider** | Which provider answers (must have a key set!) |
-| **Reply template** | *(optional)* a fixed text reply instead of AI |
-| **Delay (ms)** | Human-like pause before replying (default `3000`) |
-| **Max replies / day** | Per-rule daily cap — successful replies only |
-| **Specific / Ignored contacts** | Limit or block people (comma-separated) |
-| **Groups** | Optionally also handle group chats |
+Download the latest release from the **[Releases page](https://github.com/nandandas2407-web/InstaReplyBot/releases/latest)** and install on your Android device (Android 8.0+).
 
-<details>
-<summary><b>🎯 Example rules that actually work</b></summary>
+> **Play Protect warning?** Tap **Install anyway** or temporarily disable Play Protect scanning — the app is built from source and safe.
 
-- **Answer everyone:** pattern empty, match type `ANY`, delay `3000`, max `50/day`.
-- **Only besties:** match `ANY` + Specific contacts `Alice, Bob` → everyone else is ignored.
-- **Price questions:** match `CONTAINS` pattern `price|cost|how much`, template `“DM me, happy to help with pricing! 😊”`.
-- **Be quiet at night:** lower the per-day cap, or use a stricter pattern.
-</details>
+### 2. Grant Permissions
 
----
+| Permission | Purpose | Setup |
+|------------|---------|-------|
+| **Notification Access** | Reads incoming Instagram DM notifications | Grant via Settings → find InstaReply Bot → enable |
+| **Accessibility Service** *(optional)* | Fallback reply method if notification Reply unavailable | Enable via Settings → Accessibility → InstaReply Bot |
 
-## 🛡️ 5. The “one reply per message” guarantee
+### 3. Configure Your AI Provider
 
-InstaReply Bot can **never** answer the same message twice, even if Instagram re-posts the notification while the AI is still thinking:
+Choose a free or paid AI provider in the app's Settings:
 
-1. **60-second dedupe** on sender + message.
-2. **Persisted log check** — a successful reply to that exact message is remembered for 10 minutes (survives restarts).
-3. **Send discipline** — the AI text is typed once and Send is clicked at most once.
+#### Free AI Providers (No Credit Card Required)
 
----
+| Provider | Setup | Models |
+|----------|-------|--------|
+| **[Groq](https://console.groq.com)** | Get free API key → paste in Settings | `openai/gpt-oss-20b`, `llama-3.3-70b-versatile`, `qwen/qwen3.6-27b` |
+| **[OpenCode Zen](https://opencode.ai)** | Get free API key → paste in Settings | `opencode/deepseek-v4-flash-free`, `opencode/mimo-v2.5-free` |
+| **[Google Gemini](https://aistudio.google.com/apikey)** | Free tier available | `gemini-3.6-flash`, `gemini-3.5-flash` |
 
-## 🔧 Troubleshooting
+#### Paid AI Providers
 
-<details>
-<summary><b>“No reply at all — Last attempt failed: …empty content…”</b></summary>
+| Provider | Models |
+|----------|--------|
+| **[OpenRouter](https://openrouter.ai/keys)** | Hundreds of models including free tiers |
+| **[NVIDIA NIM](https://build.nvidia.com)** | Llama, Nemotron, DeepSeek |
+| **[OpenAI](https://platform.openai.com/api-keys)** | GPT-5.x series |
+| **Custom Endpoint** | Any OpenAI-compatible API |
 
-Your model returned reasoning but no answer (typical of `gpt-oss` / reasoning models). The app retries automatically with a 4096-token budget. If it still shows this, switch models in Settings (e.g. `llama-3.3-70b-versatile` on Groq) or raise **Max Output Tokens**.
-</details>
+### 4. Create Auto-Reply Rules
 
-<details>
-<summary><b>“AI doesn't answer on the 2nd / 3rd message”</b></summary>
+Define who gets answered and how:
 
-Check the **“Last attempt”** line on the home screen — it shows the exact failure reason. Most common causes: the rule's daily cap was hit, or the provider is rate-limited. Raise the cap, or test the key in Settings (it toasts a clear verdict).
-</details>
-
-<details>
-<summary><b>“Replies arrive very late”</b></summary>
-
-- AI generation takes a few seconds — that's normal.
-- Increase/decrease the rule **Delay** to taste.
-- A retry after an empty response adds one extra API call (rare).
-- On slow networks, generation can reach the 30s timeout — use a fast provider (Groq is the fastest).
-</details>
-
-<details>
-<summary><b>“I got 2 replies for one message”</b></summary>
-
-Should be impossible since v0.3 (see guarantee above). If you still see it, update to the latest release — older builds lacked the persisted check.
-</details>
-
-<details>
-<summary><b>“Key test fails”</b></summary>
-
-- Copy-paste the key without spaces.
-- Free tiers have rate limits — wait a minute and retry.
-- Some providers need the exact endpoint; the built-in ones are pre-configured.
-</details>
+| Setting | Options |
+|---------|---------|
+| **Trigger Pattern** | `CONTAINS`, `EXACT`, `STARTS_WITH`, `ENDS_WITH`, `REGEX`, or `ANY` |
+| **AI Provider** | Select which provider answers |
+| **Reply Template** | Fixed text fallback (optional) |
+| **Delay** | Human-like pause before replying (default: 3 seconds) |
+| **Daily Cap** | Maximum replies per rule per day |
+| **Specific Contacts** | Limit replies to certain senders |
+| **Ignored Contacts** | Block specific people |
 
 ---
 
-## 🏗️ Tech & architecture
-
-| | |
-|---|---|
-| Language | Kotlin + Coroutines |
-| Storage | Room (rules, contacts, reply log) |
-| Networking | OkHttp + Gson |
-| UI | Material Components + ViewBinding |
-| Min / Target SDK | 26 / 34 |
-| Build | Gradle 8.7 · GitHub Actions (every push builds an APK) |
+## Architecture
 
 ```
 com.instareply/
-├── ai/        GeminiProvider · OpenAiCompatibleProvider (Groq, OpenRouter, NVIDIA, OpenAI, Zen, Custom)
-├── service/   Notification listener · Accessibility fallback · ReplyEngine · Foreground service · Boot receiver
-├── data/      Room: RuleDao · ContactDao · ReplyLogDao
-├── ui/        Main (stats + toggles) · Settings (keys, models, max tokens) · Rules editor
-└── util/      PrefsManager · shared provider list
+├── ai/          AI providers (Gemini, Groq, OpenRouter, OpenAI, Zen, Custom)
+├── service/     Notification listener, Accessibility fallback, ReplyEngine, Foreground service
+├── data/        Room database (Rules, Contacts, Reply logs)
+├── ui/          Main dashboard, Settings, Rule editor
+└── util/        Preferences manager, Provider configuration
 ```
+
+**Tech Stack:** Kotlin · Coroutines · Room Database · OkHttp · Material Design · Gradle · GitHub Actions CI
 
 ---
 
-## ⚠️ Use responsibly
+## Troubleshooting
 
-Automated messaging may violate Instagram's Terms of Service. This project is for personal/educational use — respect platform rules, and consider disclosure when replying on a business account.
+<details>
+<summary><b>"No reply at all — empty content error"</b></summary>
 
-## 📄 License
+Your model returned reasoning text but no actionable reply. The app auto-retries with a larger token budget. If it persists, switch to a non-reasoning model (e.g., `llama-3.3-70b-versatile` on Groq) or increase **Max Output Tokens** in Settings.
+</details>
 
-MIT — build on it freely.
+<details>
+<summary><b>"AI doesn't reply to 2nd or 3rd message"</b></summary>
+
+Check the **"Last attempt"** status on the home screen. Common causes: daily cap reached, provider rate-limited, or API key invalid. Test your key in Settings.
+</details>
+
+<details>
+<summary><b>"Replies arrive late"</b></summary>
+
+AI generation takes 2-5 seconds (normal). Increase/decrease rule **Delay** to taste. Use Groq for fastest response times. Slow networks may hit the 30s timeout.
+</details>
+
+<details>
+<summary><b>"Duplicate replies for one message"</b></summary>
+
+This was fixed in v0.3 with the one-reply-per-message guarantee. Update to the latest release.
+</details>
+
+<details>
+<summary><b>"API key test fails"</b></summary>
+
+Copy-paste the key without extra spaces. Free tiers have rate limits — wait a minute and retry. Built-in providers have pre-configured endpoints.
+</details>
+
+---
+
+## Contributing
+
+Contributions are welcome! Whether it's bug reports, feature requests, or pull requests — check the [issues page](https://github.com/nandandas2407-web/InstaReplyBot/issues) to get started.
+
+---
+
+## Disclaimer
+
+Automated messaging may violate Instagram's Terms of Service. This project is for **personal and educational use**. Respect platform rules and consider disclosure when replying on business accounts.
+
+---
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=nandandas2407-web/InstaReplyBot&type=Date)](https://star-history.com/#nandandas2407-web/InstaReplyBot&Date)
+
+---
+
+## License
+
+[MIT License](LICENSE) — free to use, modify, and distribute.
+
+---
+
+<p align="center">
+  <b>InstaReply Bot</b> — The open-source Instagram DM auto-responder powered by AI.<br/>
+  Built with Kotlin for Android. Free AI models included.
+</p>
+
+<p align="center">
+  <a href="https://github.com/nandandas2407-web/InstaReplyBot/stargazers">
+    <img src="https://img.shields.io/github/stars/nandandas2407-web/InstaReplyBot?style=social" alt="Star InstaReply Bot on GitHub"/>
+  </a>
+  <a href="https://github.com/nandandas2407-web/InstaReplyBot/network/members">
+    <img src="https://img.shields.io/github/forks/nandandas2407-web/InstaReplyBot?style=social" alt="Fork InstaReply Bot on GitHub"/>
+  </a>
+  <a href="https://github.com/nandandas2407-web/InstaReplyBot/issues">
+    <img src="https://img.shields.io/github/issues/nandandas2407-web/InstaReplyBot" alt="GitHub Issues"/>
+  </a>
+  <a href="https://github.com/nandandas2407-web/InstaReplyBot/pulls">
+    <img src="https://img.shields.io/github/issues-pr/nandandas2407-web/InstaReplyBot" alt="GitHub Pull Requests"/>
+  </a>
+</p>

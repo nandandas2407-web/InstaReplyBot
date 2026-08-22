@@ -59,7 +59,9 @@
 <link rel="apple-touch-icon" href="assets/app-icon.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Sora:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Sora:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Sora:wght@400;500;600;700;800&display=swap"></noscript>
 <style>
 :root{
   --blue:#1769e0;
@@ -349,7 +351,7 @@ footer{border-top:1px solid var(--line);padding:30px 0;background:#fff}
 .footer-brand .blue{color:var(--blue)}
 .footer-links{display:flex;gap:18px;color:var(--muted);font-size:13px}
 .footer-links a:hover{color:var(--blue)}
-.footer-note{font-size:12px;color:#80868b;margin:18px 0 0}
+.footer-note{font-size:12px;color:#565d68;margin:18px 0 0}
 
 /* Entrance choreography */
 html.anim .app-kicker{animation:quiet .62s var(--soft) .10s forwards}
@@ -500,7 +502,7 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
 <header class="nav">
   <nav class="container nav-inner" aria-label="Primary navigation">
     <a class="brand" href="#top" aria-label="InstaReply Bot home">
-      <img src="assets/app-icon.jpg" alt="InstaReply Bot app icon">
+      <img src="assets/app-icon.jpg" alt="InstaReply Bot app icon" width="240" height="240">
       <span>Insta<span class="blue">Reply</span> Bot</span>
     </a>
     <div class="nav-links">
@@ -516,7 +518,7 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
 </header>
 
 <div class="mobile-scrim" id="mobile-scrim"></div>
-<div class="mobile-sheet" id="mobile-sheet" aria-hidden="true">
+<div class="mobile-sheet" id="mobile-sheet" aria-hidden="true" inert>
   <a href="#features">Overview</a>
   <a href="#how">How it works</a>
   <a href="#screens">Screenshots</a>
@@ -543,9 +545,9 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
 
       <div class="hero-visual">
         <div class="hero-frame">
-          <img src="assets/showcase.jpg" alt="InstaReply Bot product showcase with Android screens">
+          <img src="assets/showcase.jpg" alt="InstaReply Bot product showcase with Android screens" width="1200" height="800">
           <div class="app-sign">
-            <img src="assets/app-icon.jpg" alt="">
+            <img src="assets/app-icon.jpg" alt="" width="240" height="240">
             <div><strong>InstaReply Bot</strong><span>AI Auto-Reply for Instagram DMs</span></div>
           </div>
         </div>
@@ -588,7 +590,7 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
         <p class="section-lead">The supplied workflow visual shows the product's actual operating sequence.</p>
       </div>
       <div class="workflow-layout">
-        <div class="workflow-image"><img src="assets/workflow.jpg" alt="InstaReply Bot seven-stage workflow infographic"></div>
+        <div class="workflow-image"><img src="assets/workflow.jpg" alt="InstaReply Bot seven-stage workflow infographic" width="1200" height="800"></div>
         <div class="workflow-notes">
           <div class="workflow-step"><div class="step-number">01</div><div><strong>DM arrives</strong><span>Instagram posts a notification on the Android device.</span></div></div>
           <div class="workflow-step"><div class="step-number">02</div><div><strong>Notification captured</strong><span>InstaReply Bot reads the supported notification.</span></div></div>
@@ -611,19 +613,19 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
 
       <div class="screenshot-rail">
         <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/dashboard.jpg" alt="InstaReply Bot dashboard screen"></div>
+          <div class="media-frame"><img src="assets/dashboard.jpg" alt="InstaReply Bot dashboard screen" width="429" height="900"></div>
           <figcaption>Dashboard and activity</figcaption>
         </figure>
         <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/rule-engine.jpg" alt="InstaReply Bot Smart Rule Engine screen"></div>
+          <div class="media-frame"><img src="assets/rule-engine.jpg" alt="InstaReply Bot Smart Rule Engine screen" width="416" height="900"></div>
           <figcaption>Smart Rule Engine</figcaption>
         </figure>
         <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/ai-settings.jpg" alt="InstaReply Bot AI settings screen"></div>
+          <div class="media-frame"><img src="assets/ai-settings.jpg" alt="InstaReply Bot AI settings screen" width="416" height="900"></div>
           <figcaption>AI settings and providers</figcaption>
         </figure>
         <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/poster.jpg" alt="InstaReply Bot promotional poster"></div>
+          <div class="media-frame"><img src="assets/poster.jpg" alt="InstaReply Bot promotional poster" width="506" height="900"></div>
           <figcaption>Product overview</figcaption>
         </figure>
       </div>
@@ -648,8 +650,8 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
           </ul>
         </div>
         <div class="config-shots">
-          <figure><div class="media-frame"><img src="assets/ai-settings.jpg" alt="Actual InstaReply Bot AI settings screen"></div></figure>
-          <figure><div class="media-frame"><img src="assets/rule-engine.jpg" alt="Actual InstaReply Bot rule editor screen"></div></figure>
+        <figure><div class="media-frame"><img src="assets/ai-settings.jpg" alt="Actual InstaReply Bot AI settings screen" width="416" height="900"></div></figure>
+        <figure><div class="media-frame"><img src="assets/rule-engine.jpg" alt="Actual InstaReply Bot rule editor screen" width="416" height="900"></div></figure>
         </div>
       </div>
     </div>
@@ -672,7 +674,7 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
         </div>
       </div>
       <div class="download-card">
-        <img src="assets/app-icon.jpg" alt="InstaReply Bot app icon">
+        <img src="assets/app-icon.jpg" alt="InstaReply Bot app icon" width="240" height="240">
         <div><strong>InstaReply Bot</strong><span>AI Auto-Reply for Instagram DMs</span></div>
         <a class="button button-primary" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">Get the APK</a>
       </div>
@@ -721,13 +723,15 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
     button.setAttribute('aria-expanded','false');
     sheet.classList.remove('open');
     sheet.setAttribute('aria-hidden','true');
+    sheet.setAttribute('inert','');
     document.body.classList.remove('no-scroll');
   }
   function openMenu(){
     button.classList.add('open');
     button.setAttribute('aria-expanded','true');
     sheet.classList.add('open');
-    sheet.setAttribute('aria-hidden','false');
+    sheet.removeAttribute('aria-hidden');
+    sheet.removeAttribute('inert');
     document.body.classList.add('no-scroll');
   }
   button.addEventListener('click', () => {

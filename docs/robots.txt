@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nandandas2407-web.github.io/InstaReplyBot/sitemap.xml

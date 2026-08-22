@@ -23,29 +23,6 @@
 
 ---
 
-## Share InstaReply Bot
-
-Help us trend on GitHub! Share with your network:
-
-<p align="center">
-  <a href="https://twitter.com/intent/tweet?text=Check%20out%20InstaReply%20Bot%20-%20AI-powered%20Instagram%20DM%20auto-responder%20for%20Android%20%F0%9F%9A%80%20Free%20AI%20models%20included!&url=https://github.com/nandandas2407-web/InstaReplyBot">
-    <img src="https://img.shields.io/badge/Share_on_Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" alt="Share on Twitter"/>
-  </a>
-  <a href="https://reddit.com/submit?url=https://github.com/nandandas2407-web/InstaReplyBot&title=AI-Powered%20Instagram%20DM%20Auto-Responder%20for%20Android%20(Free)">
-    <img src="https://img.shields.io/badge/Share_on_Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white" alt="Share on Reddit"/>
-  </a>
-  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/nandandas2407-web/InstaReplyBot">
-    <img src="https://img.shields.io/badge/Share_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Share on LinkedIn"/>
-  </a>
-  <a href="https://news.ycombinator.com/submitlink?u=https://github.com/nandandas2407-web/InstaReplyBot&t=AI-Powered%20Instagram%20DM%20Auto-Responder%20for%20Android">
-    <img src="https://img.shields.io/badge/Share_on_Hacker_News-FF6600?style=for-the-badge&logo=ycombinator&logoColor=white" alt="Share on Hacker News"/>
-  </a>
-</p>
-
-> **Star this repo** to help others discover InstaReply Bot! Stars help us trend on GitHub.
-
----
-
 ## What is InstaReply Bot?
 
 **InstaReply Bot** is a free, open-source **Instagram DM auto-responder** for Android. It uses **AI models** (Gemini, Groq, OpenRouter, and more) to read your incoming Instagram direct messages and send personalized replies — all without requiring your Instagram password or screen access.
@@ -209,25 +186,3 @@ Automated messaging may violate Instagram's Terms of Service. This project is fo
 ## License
 
 [MIT License](LICENSE) — free to use, modify, and distribute.
-
----
-
-<p align="center">
-  <b>InstaReply Bot</b> — The open-source Instagram DM auto-responder powered by AI.<br/>
-  Built with Kotlin for Android. Free AI models included.
-</p>
-
-<p align="center">
-  <a href="https://github.com/nandandas2407-web/InstaReplyBot/stargazers">
-    <img src="https://img.shields.io/github/stars/nandandas2407-web/InstaReplyBot?style=social" alt="Star InstaReply Bot on GitHub"/>
-  </a>
-  <a href="https://github.com/nandandas2407-web/InstaReplyBot/network/members">
-    <img src="https://img.shields.io/github/forks/nandandas2407-web/InstaReplyBot?style=social" alt="Fork InstaReply Bot on GitHub"/>
-  </a>
-  <a href="https://github.com/nandandas2407-web/InstaReplyBot/issues">
-    <img src="https://img.shields.io/github/issues/nandandas2407-web/InstaReplyBot" alt="GitHub Issues"/>
-  </a>
-  <a href="https://github.com/nandandas2407-web/InstaReplyBot/pulls">
-    <img src="https://img.shields.io/github/issues-pr/nandandas2407-web/InstaReplyBot" alt="GitHub Pull Requests"/>
-  </a>
-</p>

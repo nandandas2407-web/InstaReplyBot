@@ -1,9 +1,11 @@
 <!doctype html>
-<html lang="en" class="anim">
+<html lang="en" class="anim" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b0d10" media="(prefers-color-scheme: dark)">
 <meta name="description" content="InstaReply Bot is an Android app for automating supported Instagram DM replies from notifications, rules and your selected AI provider.">
 <meta name="google-site-verification" content="lMKi568fTrTSxEKHPGO9GdK0XX6VV3fwQ4Yt4tUSp48" />
 <title>InstaReply Bot — AI Auto-Reply for Instagram DMs (Free, No Login)</title>
@@ -11,7 +13,6 @@
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
 <meta name="author" content="Nandan Das">
 <meta name="application-name" content="InstaReply Bot">
-<meta name="theme-color" content="#1769e0">
 <meta name="language" content="English">
 <meta name="revisit-after" content="7 days">
 <meta name="rating" content="general">
@@ -24,6 +25,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="InstaReply Bot">
 <meta name="format-detection" content="telephone=no">
+<link rel="alternate" hreflang="en" href="https://nandandas2407-web.github.io/InstaReplyBot/">
 
 <!-- Viral / long-tail keyword targeting -->
 <meta name="keywords" content="Instagram auto reply, Instagram DM bot, AI Instagram auto responder, auto reply Instagram DM, Instagram automation bot, free Instagram bot, Instagram DM auto reply Android, AI reply bot Instagram, ChatGPT Instagram DM, Groq Instagram, Gemini Instagram, OpenRouter Instagram, no login Instagram bot, Instagram message auto reply app, automated Instagram replies, Instagram chatbot Android, best Instagram auto responder, Instagram DM AI assistant, auto respond to Instagram messages, Instagram marketing automation, Instagram DM scheduler, reply to Instagram comments, open source Instagram bot, Kotlin Instagram bot, Instagram notification reply, background Instagram auto reply, Instagram business auto reply, free AI Instagram tool">
@@ -62,27 +64,46 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Sora:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Sora:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Sora:wght@400;500;600;700;800&display=swap"></noscript>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
 <style>
 :root{
-  --blue:#1769e0;
-  --blue-strong:#0d5bd4;
-  --blue-soft:#eaf2ff;
-  --ink:#16181d;
-  --muted:#5f6672;
-  --surface:#fff;
-  --surface-2:#f7f9fc;
-  --line:#e0e4ea;
-  --line-strong:#c9d0da;
-  --green:#16864a;
-  --max:1180px;
-  --radius-sm:10px;
-  --radius-md:16px;
-  --radius-lg:24px;
+  --blue:#1f6feb;
+  --blue-strong:#0f4fd1;
+  --blue-soft:#eaf1ff;
+  --accent:#ff7a18;
+  --ink:#0d1014;
+  --muted:#5b6573;
+  --surface:#ffffff;
+  --surface-2:#f5f7fb;
+  --line:#e6e9ef;
+  --line-strong:#d3d9e2;
+  --card:#ffffff;
+  --shadow:0 18px 45px rgba(18,28,48,.10);
+  --grid:rgba(13,16,20,.045);
+  --max:1200px;
+  --radius-sm:11px;
+  --radius-md:18px;
+  --radius-lg:28px;
   --ease:cubic-bezier(.16,1,.3,1);
   --soft:cubic-bezier(.25,.8,.28,1);
 }
+[data-theme="dark"]{
+  --blue:#4d8bff;
+  --blue-strong:#6ba0ff;
+  --blue-soft:#13203a;
+  --accent:#ff8a3d;
+  --ink:#f2f5f8;
+  --muted:#9aa6b6;
+  --surface:#0b0d10;
+  --surface-2:#101319;
+  --line:#20262f;
+  --line-strong:#2c343f;
+  --card:#12151b;
+  --shadow:0 22px 55px rgba(0,0,0,.55);
+  --grid:rgba(255,255,255,.04);
+}
 *{box-sizing:border-box}
-h1,h2,h3,h4,.brand,.button,.download-card strong,.footer-brand{
+h1,h2,h3,h4,.brand,.button,.download-card strong,.footer-brand,.stat-value,.feature-card h3{
   font-family:"Bricolage Grotesque","Sora",sans-serif;
 }
 html{scroll-behavior:smooth}
@@ -91,50 +112,62 @@ body{
   color:var(--ink);
   background:var(--surface);
   font-family:"Sora","Trebuchet MS","Segoe UI",Arial,Helvetica,sans-serif;
-  line-height:1.55;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  transition:background .4s ease,color .4s ease;
 }
 body.no-scroll{overflow:hidden}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;height:auto}
-button,a{-webkit-tap-highlight-color:transparent}
-button{font:inherit}
+img{max-width:100%;height:auto;display:block}
+button,a,summary{-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer}
 .container{width:min(var(--max),calc(100% - 48px));margin:0 auto}
-section{scroll-margin-top:82px}
+section{scroll-margin-top:84px}
+
+/* Icons */
+.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.icon--fill{fill:currentColor;stroke:none}
 
 /* Navigation */
 .nav{
-  height:72px;
+  height:74px;
   border-bottom:1px solid var(--line);
-  background:rgba(255,255,255,.96);
-  display:flex;
-  align-items:center;
-  position:sticky;
-  top:0;
-  z-index:30;
-  backdrop-filter:blur(12px);
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  display:flex;align-items:center;
+  position:sticky;top:0;z-index:30;
+  backdrop-filter:blur(14px);
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:800;letter-spacing:-.35px}
-.brand img{width:42px;height:42px;border-radius:11px;display:block;border:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:800;letter-spacing:-.4px}
+.logo-mark{width:34px;height:34px;flex:none}
 .brand .blue{color:var(--blue)}
 .nav-links{display:flex;align-items:center;gap:28px;font-size:14px;color:var(--muted)}
 .nav-links a{transition:color .18s ease}
 .nav-links a:hover{color:var(--blue)}
+.nav-right{display:flex;align-items:center;gap:12px}
 .nav-download{
-  display:inline-flex;align-items:center;justify-content:center;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
   min-height:42px;padding:0 17px;border:1px solid var(--blue);
   border-radius:var(--radius-sm);color:var(--blue);font-size:14px;font-weight:800;
-  transition:background .18s ease,color .18s ease;
+  transition:background .18s ease,color .18s ease,transform .18s ease;
 }
-.nav-download:hover{background:var(--blue);color:#fff}
+.nav-download:hover{background:var(--blue);color:#fff;transform:translateY(-1px)}
+.theme-toggle{
+  width:42px;height:42px;border:1px solid var(--line);background:var(--surface);
+  border-radius:11px;display:none;align-items:center;justify-content:center;color:var(--ink);
+  transition:border-color .18s ease,color .18s ease;
+}
+.theme-toggle:hover{border-color:var(--blue);color:var(--blue)}
+.theme-toggle .icon--moon{display:none}
+[data-theme="dark"] .theme-toggle .icon--sun{display:none}
+[data-theme="dark"] .theme-toggle .icon--moon{display:inline}
 .menu-button{
   display:none;width:42px;height:42px;border:1px solid var(--line);
-  background:#fff;border-radius:10px;align-items:center;justify-content:center;
-  cursor:pointer;
+  background:var(--surface);border-radius:11px;align-items:center;justify-content:center;color:var(--ink);
+  position:relative;
 }
 .menu-button span,.menu-button span:before,.menu-button span:after{
-  display:block;width:18px;height:2px;background:var(--ink);content:"";
+  display:block;width:18px;height:2px;background:currentColor;content:"";
   transition:transform .2s ease,opacity .2s ease;
 }
 .menu-button span:before{transform:translateY(-6px)}
@@ -144,222 +177,246 @@ section{scroll-margin-top:82px}
 .menu-button.open span:after{transform:translateY(-2px) rotate(-45deg)}
 .mobile-scrim{display:none}
 
+/* Buttons */
+.button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:52px;padding:0 22px;border-radius:var(--radius-sm);
+  font-size:15px;font-weight:800;border:1px solid transparent;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease,box-shadow .18s ease;
+}
+.button:hover{transform:translateY(-2px)}
+.button:active{transform:translateY(0)}
+.button .icon{width:18px;height:18px}
+.button-primary{background:var(--blue);color:#fff;box-shadow:0 10px 24px color-mix(in srgb,var(--blue) 32%,transparent)}
+.button-primary:hover{background:var(--blue-strong)}
+.button-secondary{background:var(--surface);color:var(--blue);border-color:var(--line-strong)}
+.button-secondary:hover{background:var(--surface-2);border-color:var(--blue)}
+.button-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.button-ghost:hover{background:var(--surface-2)}
+
 /* Hero */
-.hero{
-  min-height:calc(100svh - 72px);
-  display:flex;align-items:center;
-  padding:64px 0 58px;
-  overflow:hidden;
+.hero{position:relative;overflow:hidden;padding:70px 0 70px}
+.hero:before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:46px 46px;
+  -webkit-mask-image:radial-gradient(120% 90% at 70% 0%,#000 30%,transparent 78%);
+  mask-image:radial-gradient(120% 90% at 70% 0%,#000 30%,transparent 78%);
 }
+.hero .container{position:relative;z-index:1}
 .hero-grid{
-  display:grid;
-  grid-template-columns:minmax(0,.92fr) minmax(440px,1.08fr);
-  gap:68px;
-  align-items:center;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,1.02fr);
+  gap:64px;align-items:center;
 }
-.hero-copy-wrap{max-width:650px}
+.hero-copy-wrap{max-width:660px}
 .app-kicker{
-  display:flex;align-items:center;gap:10px;
-  color:var(--muted);font-size:13px;font-weight:700;
-  margin-bottom:20px;
-  opacity:0;
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--blue-soft);color:var(--blue);
+  font-size:13px;font-weight:800;letter-spacing:.2px;
+  padding:8px 14px;border-radius:999px;margin-bottom:22px;
+  border:1px solid color-mix(in srgb,var(--blue) 22%,transparent);
 }
-.kicker-rule{width:24px;height:2px;background:var(--blue)}
+.app-kicker .icon{width:16px;height:16px}
  .hero h1{
-   margin:0 0 20px;
-   font-size:clamp(48px,6vw,82px);
-   line-height:1.02;
+   margin:0 0 22px;
+   font-size:clamp(46px,6.2vw,84px);
+   line-height:1.0;
    letter-spacing:-3px;
    font-weight:900;
-   max-width:680px;
+   max-width:720px;
  }
- .hero h1 .line{
-   display:block;
-   overflow:hidden;
-   padding-bottom:.06em;
- }
- .hero h1 .line-inner{
-   display:block;
-   transform:translateY(0);
- }
- html.anim .hero h1 .line-inner{
-   transform:translateY(112%);
- }
+ .hero h1 .line{display:block;overflow:hidden;padding-bottom:.06em}
+ .hero h1 .line-inner{display:block;transform:translateY(0)}
+ html.anim .hero h1 .line-inner{transform:translateY(112%)}
  .hero h1 .blue{color:var(--blue)}
- .hero-copy{
-   font-size:18px;color:var(--muted);max-width:620px;margin:0 0 28px;
- }
+ .hero h1 .accent{color:var(--accent)}
+ .hero-copy{font-size:18px;color:var(--muted);max-width:600px;margin:0 0 30px}
  html.anim .hero-copy{opacity:0;transform:translateY(16px)}
- .hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+ .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
  html.anim .hero-actions{opacity:0;transform:translateY(14px)}
-.button{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-height:50px;padding:0 20px;border-radius:var(--radius-sm);
-  font-size:15px;font-weight:800;border:1px solid transparent;
-  transition:transform .18s ease,background .18s ease,border-color .18s ease,color .18s ease;
-}
-.button:hover{transform:translateY(-1px)}
-.button-primary{background:var(--blue);color:#fff}
-.button-primary:hover{background:var(--blue-strong)}
-.button-secondary{background:#fff;color:var(--blue);border-color:var(--line-strong)}
-.button-secondary:hover{background:var(--surface-2);border-color:var(--blue)}
-.hero-note{margin:17px 0 0;font-size:13px;color:var(--muted);opacity:0}
+.hero-note{margin:18px 0 0;font-size:13px;color:var(--muted)}
 .hero-note strong{color:var(--ink)}
-.hero-visual{
-  position:relative;
-  border-left:1px solid var(--line);
-  padding-left:40px;
-  opacity:0;
-  transform:translateX(22px);
-}
-.hero-frame{
-  position:relative;
-  background:#f1f4f8;
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:10px;
-  overflow:hidden;
-}
-.hero-frame:after{
-  content:"";
-  position:absolute;inset:10px;
-  border:1px solid rgba(23,105,224,.13);
-  border-radius:11px;
-  pointer-events:none;
-}
-.hero-frame img{
-  display:block;width:100%;border-radius:10px;
-  transition:transform .5s var(--ease);
-}
-.hero-frame:hover img{transform:scale(1.012)}
-.hero-caption{
-  display:flex;justify-content:space-between;gap:18px;
-  padding:12px 2px 0;font-size:12px;color:var(--muted);
-}
-.app-sign{
-  position:absolute;left:24px;bottom:28px;
-  display:flex;align-items:center;gap:10px;
-  background:#fff;border:1px solid var(--line);
-  padding:9px 12px 9px 9px;border-radius:12px;
-  box-shadow:0 7px 20px rgba(30,45,70,.10);
-}
-.app-sign img{width:34px;height:34px;border-radius:8px}
-.app-sign strong{font-size:13px;display:block}
-.app-sign span{font-size:11px;color:var(--muted);display:block}
 
-/* Summary strip */
-.evidence{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface-2)}
-.evidence-grid{display:grid;grid-template-columns:repeat(4,1fr)}
-.evidence-item{padding:18px 20px;border-right:1px solid var(--line);font-size:13px}
-.evidence-item:last-child{border-right:0}
-.evidence-item strong{display:block;font-size:14px;margin-bottom:2px}
-.evidence-item span{color:var(--muted)}
+/* Hero device */
+.hero-device{position:relative;opacity:0;transform:translateX(26px)}
+html.anim .hero-device{opacity:0}
+.device{
+  position:relative;width:min(330px,82%);margin:0 auto;
+  background:#0c0f14;border-radius:42px;padding:13px;
+  box-shadow:var(--shadow),0 0 0 1px rgba(0,0,0,.04);
+}
+[data-theme="dark"] .device{background:#05070a;box-shadow:var(--shadow)}
+.device-notch{position:absolute;top:13px;left:50%;transform:translateX(-50%);width:120px;height:24px;background:#0c0f14;border-bottom-left-radius:14px;border-bottom-right-radius:14px;z-index:3}
+.device-screen{width:100%;border-radius:30px;display:block;background:#0c0f14}
+.bubble{
+  position:absolute;display:flex;align-items:center;gap:9px;
+  background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:10px 13px;font-size:12.5px;font-weight:700;color:var(--ink);
+  box-shadow:var(--shadow);max-width:200px;
+}
+.bubble .icon{width:18px;height:18px;color:var(--blue)}
+.bubble--in{left:-26px;top:18%;animation:floaty 6s var(--soft) infinite}
+.bubble--out{right:-30px;bottom:16%;animation:floaty 6s var(--soft) 1.5s infinite}
+.bubble .dot{display:inline-flex;gap:3px}
+.bubble .dot i{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:blink 1.2s infinite}
+.bubble .dot i:nth-child(2){animation-delay:.2s}
+.bubble .dot i:nth-child(3){animation-delay:.4s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
 
-/* General sections */
-.section{padding:94px 0}
-.section-header{max-width:720px;margin-bottom:42px}
+/* Stats band */
+.stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface-2)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:34px 24px;border-right:1px solid var(--line);text-align:center}
+.stat:last-child{border-right:0}
+.stat-value{font-size:clamp(34px,4vw,46px);font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--ink)}
+.stat-value .accent{color:var(--accent)}
+.stat-label{font-size:13px;color:var(--muted);margin-top:9px}
+
+/* Sections */
+.section{padding:104px 0}
+.section-header{max-width:760px;margin-bottom:50px}
 .section-label{
   color:var(--blue);font-size:12px;text-transform:uppercase;
-  letter-spacing:1.1px;font-weight:800;margin-bottom:10px;
+  letter-spacing:1.4px;font-weight:800;margin-bottom:12px;
+  display:inline-flex;align-items:center;gap:8px;
 }
-h2{
-  font-size:clamp(32px,4.4vw,52px);line-height:1.04;
-  letter-spacing:-2.2px;margin:0 0 13px;font-weight:900;
-}
-.section-lead{font-size:17px;color:var(--muted);margin:0;max-width:690px}
+.section-label:before{content:"";width:22px;height:2px;background:var(--blue);border-radius:2px}
+h2{font-size:clamp(30px,4.4vw,52px);line-height:1.04;letter-spacing:-2px;margin:0 0 14px;font-weight:900}
+.section-lead{font-size:17px;color:var(--muted);margin:0;max-width:660px}
 
-/* Product-specific feature rows */
-.feature-list{border-top:1px solid var(--line)}
-.feature-row{
-  display:grid;grid-template-columns:70px 250px minmax(0,1fr);
-  gap:26px;align-items:start;padding:25px 0;border-bottom:1px solid var(--line);
+/* Feature cards */
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{
+  background:var(--card);border:1px solid var(--line);
+  border-radius:var(--radius-md);padding:26px 24px;
+  transition:transform .25s var(--ease),border-color .25s ease,box-shadow .25s ease;
 }
-.feature-index{font-variant-numeric:tabular-nums;color:var(--blue);font-size:13px;font-weight:800;padding-top:3px}
-.feature-title{font-size:18px;font-weight:800}
-.feature-text{color:var(--muted);font-size:15px;max-width:680px}
+.feature-card:hover{transform:translateY(-5px);border-color:color-mix(in srgb,var(--blue) 40%,var(--line));box-shadow:var(--shadow)}
+.feature-icon{
+  width:50px;height:50px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--blue-soft);color:var(--blue);margin-bottom:18px;
+}
+.feature-icon .icon{width:24px;height:24px}
+.feature-card h3{font-size:18px;margin:0 0 8px;letter-spacing:-.4px}
+.feature-card p{font-size:14.5px;color:var(--muted);margin:0}
 
-/* Workflow */
+/* Providers marquee */
+.providers{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:54px 0;overflow:hidden}
+.providers .section-header{margin-bottom:30px}
+.marquee{position:relative;width:100%;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+.marquee-track{display:flex;gap:14px;width:max-content;animation:scrollx 26s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+.chip{
+  display:inline-flex;align-items:center;gap:9px;white-space:nowrap;
+  background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:11px 20px;font-weight:800;font-size:15px;color:var(--ink);
+}
+.chip .icon{width:18px;height:18px;color:var(--blue)}
+
+/* How it works */
 .workflow-section{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.workflow-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:48px;align-items:start}
-.workflow-image{background:#fff;border:1px solid var(--line);border-radius:16px;padding:9px}
-.workflow-image img{display:block;width:100%;border-radius:9px}
-.workflow-notes{border-top:1px solid var(--line)}
-.workflow-step{
-  padding:17px 0;border-bottom:1px solid var(--line);
-  display:grid;grid-template-columns:28px 1fr;gap:12px;
+.how-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center}
+.timeline{position:relative;margin:0;padding:0;list-style:none}
+.timeline:before{content:"";position:absolute;left:17px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.step{position:relative;display:grid;grid-template-columns:36px 1fr;gap:18px;padding:14px 0}
+.step-node{
+  width:36px;height:36px;border-radius:50%;background:var(--card);
+  border:2px solid var(--blue);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;
+  z-index:1;
 }
-.step-number{font-size:13px;color:var(--blue);font-weight:800}
-.workflow-step strong{display:block;font-size:14px;margin-bottom:3px}
-.workflow-step span{font-size:13px;color:var(--muted)}
+.step-body strong{display:block;font-size:16px;margin-bottom:4px}
+.step-body span{font-size:14.5px;color:var(--muted)}
+.workflow-image{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px;box-shadow:var(--shadow)}
+.workflow-image img{display:block;width:100%;border-radius:10px}
 
-/* Screenshot section */
-.screenshot-section{background:#fff}
-.screenshot-rail{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(210px,1fr));
-  gap:16px;
-}
+/* Screenshots */
+.screenshot-rail{display:grid;grid-template-columns:repeat(4,minmax(210px,1fr));gap:18px}
 .shot{margin:0}
-.media-frame{
-  background:#f1f4f8;border:1px solid var(--line);
-  border-radius:16px;padding:9px;overflow:hidden;
-}
-.media-frame img{display:block;width:100%;border-radius:9px}
-.shot.portrait .media-frame{height:560px}
+.media-frame{background:var(--surface-2);border:1px solid var(--line);border-radius:18px;padding:10px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s ease}
+.media-frame:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.media-frame img{display:block;width:100%;border-radius:10px}
+.shot.portrait .media-frame{height:580px}
 .shot.portrait .media-frame img{height:100%;object-fit:contain}
-.shot figcaption{font-size:13px;color:var(--muted);margin-top:9px}
+.shot figcaption{font-size:13px;color:var(--muted);margin-top:10px;font-weight:600}
 
-/* Configuration + download */
+/* Config */
 .config-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:50px;align-items:start}
-.config-copy{position:sticky;top:98px}
+.config-copy{position:sticky;top:100px}
 .config-copy p{color:var(--muted);font-size:16px}
 .config-list{margin:28px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
-.config-list li{padding:14px 0;border-bottom:1px solid var(--line);font-size:14px}
+.config-list li{padding:15px 0;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:flex-start;font-size:14px}
+.config-list .icon{color:var(--blue);margin-top:1px}
 .config-list strong{display:block;margin-bottom:2px}
 .config-list span{color:var(--muted)}
 .config-shots{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .config-shots figure{margin:0}
 .config-shots .media-frame img{height:610px;object-fit:contain}
 
-.download-section{
-  background:var(--blue-soft);
-  border-top:1px solid #d4e3fb;
-  border-bottom:1px solid #d4e3fb;
+/* FAQ */
+.faq-wrap{max-width:820px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-item summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;
+  padding:22px 4px;font-size:18px;font-weight:800;font-family:"Bricolage Grotesque","Sora",sans-serif;letter-spacing:-.4px;
 }
-.download-layout{
-  display:grid;grid-template-columns:minmax(0,1fr) 340px;
-  gap:60px;align-items:center;
-}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item .icon{color:var(--blue);transition:transform .25s var(--ease)}
+.faq-item[open] .icon{transform:rotate(45deg)}
+.faq-answer{padding:0 4px 24px;color:var(--muted);font-size:15.5px;max-width:680px}
+
+/* Download */
+.download-section{background:var(--blue-soft);border-top:1px solid color-mix(in srgb,var(--blue) 16%,transparent);border-bottom:1px solid color-mix(in srgb,var(--blue) 16%,transparent)}
+.download-layout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:56px;align-items:center}
 .download-layout h2{max-width:680px}
-.download-layout p{font-size:17px;color:#4d5664;max-width:670px}
+.download-layout p{font-size:17px;color:var(--muted);max-width:640px}
 .download-meta{display:flex;gap:26px;flex-wrap:wrap;margin:24px 0 28px}
 .download-meta div{padding-left:14px;border-left:2px solid var(--blue)}
 .download-meta strong{display:block;font-size:14px}
 .download-meta span{font-size:12px;color:var(--muted)}
 .download-card{
-  background:#fff;border:1px solid #d6e0ef;border-radius:18px;
-  padding:24px;text-align:center;
+  background:var(--card);border:1px solid color-mix(in srgb,var(--blue) 22%,var(--line));
+  border-radius:20px;padding:26px;text-align:center;box-shadow:var(--shadow);
 }
-.download-card img{width:116px;height:116px;border-radius:26px;display:block;margin:0 auto 15px}
-.download-card strong{display:block;font-size:17px}
+.download-card .logo-mark{width:64px;height:64px;margin:0 auto 14px;border-radius:16px}
+.download-card strong{display:block;font-size:18px;font-weight:800}
 .download-card span{font-size:12px;color:var(--muted)}
 .download-card .button{width:100%;margin-top:18px}
 
 /* Trust */
-.trust{padding:76px 0}
+.trust{padding:84px 0}
 .trust-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.trust-item{padding:22px 0;border-top:1px solid var(--line)}
+.trust-item{padding:24px 0;border-top:1px solid var(--line);display:flex;gap:16px}
+.trust-item .feature-icon{margin:0;flex:none}
 .trust-item h3{font-size:16px;margin:0 0 7px}
 .trust-item p{font-size:14px;color:var(--muted);margin:0}
 
 /* Footer */
-footer{border-top:1px solid var(--line);padding:30px 0;background:#fff}
-.footer-row{display:flex;justify-content:space-between;align-items:center;gap:20px}
-.footer-brand{font-size:14px;font-weight:800}
+footer{border-top:1px solid var(--line);padding:38px 0 46px;background:var(--surface)}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;padding-bottom:30px;border-bottom:1px solid var(--line)}
+.footer-brand{font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px}
 .footer-brand .blue{color:var(--blue)}
-.footer-links{display:flex;gap:18px;color:var(--muted);font-size:13px}
-.footer-links a:hover{color:var(--blue)}
-.footer-note{font-size:12px;color:#565d68;margin:18px 0 0}
+.footer-about{font-size:14px;color:var(--muted);max-width:340px;margin:14px 0 0}
+.footer-col h4{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:0 0 14px;font-weight:800}
+.footer-col a{display:block;font-size:14px;padding:6px 0;color:var(--ink);transition:color .18s ease}
+.footer-col a:hover{color:var(--blue)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:24px}
+.footer-social{display:flex;gap:10px}
+.footer-social a{width:40px;height:40px;border:1px solid var(--line);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--ink);transition:border-color .18s ease,color .18s ease,transform .18s ease}
+.footer-social a:hover{border-color:var(--blue);color:var(--blue);transform:translateY(-2px)}
+.footer-note{font-size:12.5px;color:var(--muted);margin:0;max-width:620px}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
 
 /* Entrance choreography */
 html.anim .app-kicker{animation:quiet .62s var(--soft) .10s both}
@@ -369,37 +426,36 @@ html.anim .hero h1 .line:nth-child(2) .line-inner{animation-delay:.34s}
 html.anim .hero-copy{animation:rise .72s var(--soft) .58s both}
 html.anim .hero-actions{animation:rise .72s var(--soft) .70s both}
 html.anim .hero-note{animation:quiet .62s var(--soft) .84s both}
-html.anim .hero-visual{animation:subject 1.08s var(--ease) .64s both}
+html.anim .hero-device{animation:subject 1.08s var(--ease) .64s both}
 @keyframes word{from{transform:translateY(112%)}to{transform:translateY(0)}}
-@keyframes subject{from{opacity:0;transform:translateX(22px) translateY(16px)}to{opacity:1;transform:translateX(0) translateY(0)}}
+@keyframes subject{from{opacity:0;transform:translateX(26px) translateY(16px)}to{opacity:1;transform:translateX(0) translateY(0)}}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes quiet{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 html:not(.anim) .app-kicker,html:not(.anim) .hero-copy,html:not(.anim) .hero-actions,html:not(.anim) .hero-note{opacity:1;transform:none}
-html:not(.anim) .hero-visual{opacity:1;transform:none}
+html:not(.anim) .hero-device{opacity:1;transform:none}
 
 /* Mobile sheet */
 .mobile-sheet{
-  position:fixed;top:72px;right:14px;left:14px;
+  position:fixed;top:74px;right:14px;left:14px;
   background:#fff;border:1px solid var(--line);
   border-radius:14px;padding:10px;z-index:41;
   box-shadow:0 18px 50px rgba(25,40,65,.16);
   transform:translateY(-12px);opacity:0;pointer-events:none;
   transition:opacity .2s ease,transform .2s var(--ease);
 }
+[data-theme="dark"] .mobile-sheet{background:var(--card)}
 .mobile-sheet a{display:block;padding:14px 12px;border-bottom:1px solid var(--line);font-size:15px}
 .mobile-sheet a:last-child{border-bottom:0;color:var(--blue);font-weight:800}
 .mobile-sheet.open{opacity:1;transform:translateY(0);pointer-events:auto}
-.mobile-scrim{
-  position:fixed;inset:72px 0 0;background:rgba(20,28,40,.24);
-  z-index:40;opacity:0;pointer-events:none;transition:opacity .2s ease;
-}
+.mobile-scrim{position:fixed;inset:74px 0 0;background:rgba(20,28,40,.24);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s ease}
 .mobile-scrim.open{opacity:1;pointer-events:auto}
 
 @media(max-width:1000px){
-  .hero-grid{grid-template-columns:1fr;gap:42px}
-  .hero{min-height:auto;padding:66px 0 58px}
+  .hero-grid{grid-template-columns:1fr;gap:46px}
+  .hero{padding:60px 0 58px}
   .hero-copy-wrap{max-width:760px}
-  .hero-visual{border-left:0;border-top:1px solid var(--line);padding:30px 0 0}
+  .bubble--in{left:-10px}.bubble--out{right:-10px}
+  .feature-grid{grid-template-columns:1fr 1fr}
   .screenshot-rail{grid-template-columns:repeat(4,minmax(220px,1fr));overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
   .shot{scroll-snap-align:start}
 }
@@ -407,13 +463,17 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
   .nav-links,.nav-download{display:none}
   .menu-button{display:flex}
   .mobile-scrim{display:block}
-  .hero h1{font-size:clamp(46px,10vw,72px)}
-  .evidence-grid{grid-template-columns:1fr 1fr}
-  .evidence-item:nth-child(2){border-right:0}
-  .evidence-item:nth-child(-n+2){border-bottom:1px solid var(--line)}
-  .feature-row{grid-template-columns:55px 200px minmax(0,1fr)}
+  .theme-toggle{display:flex}
+  .hero h1{font-size:clamp(44px,10vw,72px)}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .feature-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr;gap:34px}
   .config-layout,.download-layout{grid-template-columns:1fr;gap:34px}
   .config-copy{position:static}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .footer-brand-col{grid-column:1 / -1}
 }
 @media(max-width:640px){
   .container{width:min(var(--max),calc(100% - 28px))}
@@ -421,37 +481,38 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
   .mobile-sheet{top:62px}
   .mobile-scrim{inset:62px 0 0}
   .brand{font-size:16px}
-  .brand img{width:36px;height:36px}
-  .hero{padding:50px 0 44px}
-  .hero h1{font-size:48px;letter-spacing:-2.5px}
+  .hero{padding:48px 0 44px}
+  .hero h1{font-size:42px;letter-spacing:-2.5px}
   .hero-copy{font-size:16px}
   .hero-actions{display:grid;grid-template-columns:1fr}
   .button{width:100%}
-  .app-sign{position:static;margin-top:12px;width:max-content;max-width:100%}
-  .evidence-grid{grid-template-columns:1fr}
-  .evidence-item,.evidence-item:nth-child(2){border-right:0;border-bottom:1px solid var(--line)}
-  .evidence-item:last-child{border-bottom:0}
-  .section{padding:62px 0}
+  .bubble{display:none}
+  .device{width:74%}
+  .stats-grid{grid-template-columns:1fr}
+  .stat,.stat:nth-child(2){border-right:0;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:0}
+  .section{padding:64px 0}
   h2{letter-spacing:-1.4px}
-  .feature-row{grid-template-columns:42px 1fr;gap:12px}
-  .feature-text{grid-column:2}
-  .workflow-layout{grid-template-columns:1fr}
   .screenshot-rail{grid-template-columns:repeat(4,76vw)}
-  .shot.portrait .media-frame{height:570px}
+  .shot.portrait .media-frame{height:560px}
   .config-shots{grid-template-columns:1fr}
   .config-shots .media-frame img{height:auto;max-height:none}
   .download-layout{gap:26px}
-  .download-card{order:-1;text-align:left;display:grid;grid-template-columns:84px 1fr;column-gap:16px;align-items:center}
-  .download-card img{width:84px;height:84px;border-radius:18px;margin:0;grid-row:span 2}
+  .download-card{order:-1;text-align:left;display:grid;grid-template-columns:64px 1fr;column-gap:16px;align-items:center}
+  .download-card .logo-mark{margin:0;grid-row:span 2}
   .download-card strong,.download-card span{align-self:end}
   .download-card .button{grid-column:1 / -1}
   .trust-grid{grid-template-columns:1fr}
-  .footer-row{align-items:flex-start;flex-direction:column}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{align-items:flex-start;flex-direction:column}
 }
 @media(prefers-reduced-motion:reduce){
-  html.anim .app-kicker,html.anim .hero h1 .line,html.anim .hero h1 .line-inner,html.anim .hero-copy,html.anim .hero-actions,html.anim .hero-note,html.anim .hero-visual{
+  html.anim .app-kicker,html.anim .hero h1 .line,html.anim .hero h1 .line-inner,html.anim .hero-copy,html.anim .hero-actions,html.anim .hero-note,html.anim .hero-device{
     animation:none!important;opacity:1!important;transform:none!important;
   }
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .marquee-track{animation:none!important}
+  .bubble{animation:none!important}
   html{scroll-behavior:auto}
 }
 </style>
@@ -493,7 +554,8 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
       "url":"https://github.com/nandandas2407-web",
       "sameAs":[
         "https://github.com/nandandas2407-web",
-        "https://dev.to/nandan_das_369"
+        "https://dev.to/nandan_das_369",
+        "https://x.com/NandanDas369"
       ]
     },
     {
@@ -501,36 +563,74 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
       "itemListElement":[
         {"@type":"ListItem","position":1,"name":"Home","item":"https://nandandas2407-web.github.io/InstaReplyBot/"}
       ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Does InstaReply Bot need my Instagram password?","acceptedAnswer":{"@type":"Answer","text":"No. The app works from Android Notification Access on supported Instagram DM notifications and never asks for an Instagram username or password."}},
+        {"@type":"Question","name":"Which AI providers are supported?","acceptedAnswer":{"@type":"Answer","text":"The app is configured with whichever AI provider you choose inside the app, such as Groq, Gemini, OpenRouter and OpenAI-compatible endpoints."}},
+        {"@type":"Question","name":"Is InstaReply Bot free and open source?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Android project is open source on GitHub and the APK is published through GitHub Releases at no cost."}},
+        {"@type":"Question","name":"How does the reply get sent?","acceptedAnswer":{"@type":"Answer","text":"When a rule matches, the app uses the notification reply action where available, with an accessibility-based fallback for sending when needed."}},
+        {"@type":"Question","name":"Can I control when replies are sent?","acceptedAnswer":{"@type":"Answer","text":"Yes. Rules support text matching, specific contacts, group behavior, ignored contacts, delays and daily send limits."}}
+      ]
     }
   ]
 }
 </script>
 </head>
 <body>
+<!-- SVG sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-reply" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8M8 13h5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2.4"/><circle cx="15" cy="12" r="2.4"/><circle cx="8" cy="18" r="2.4"/></symbol>
+  <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.4 8.5-8 11-4.6-2.5-8-6-8-11V5z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 4v4h4"/><path d="M12 8v4l3 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path class="icon--fill" d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.36 1.12 2.93.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path class="icon--fill" d="M18.9 2H22l-7.6 8.7L23 22h-6.8l-5.3-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.8 6.3L18.9 2zm-2.4 18h1.9L7.6 4H5.6l10.9 16z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/></symbol>
+</svg>
+
 <header class="nav">
   <nav class="container nav-inner" aria-label="Primary navigation">
     <a class="brand" href="#top" aria-label="InstaReply Bot home">
-      <img src="assets/app-icon.jpg" alt="InstaReply Bot app icon" width="240" height="240">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--blue)"/><path d="M8 12a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-7l-4 3v-3H10a2 2 0 0 1-2-2z" fill="#fff"/><path d="M11 13h10M11 16h6" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/></svg>
       <span>Insta<span class="blue">Reply</span> Bot</span>
     </a>
     <div class="nav-links">
-      <a href="#features">Overview</a>
+      <a href="#features">Features</a>
       <a href="#how">How it works</a>
-      <a href="#screens">Screenshots</a>
-      <a href="#download">Download</a>
+      <a href="#providers">Providers</a>
+      <a href="#faq">FAQ</a>
       <a href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">GitHub</a>
     </div>
-    <a class="nav-download" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">Download APK</a>
-    <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    <div class="nav-right">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme">
+        <svg class="icon icon--sun"><use href="#i-sun"/></svg>
+        <svg class="icon icon--moon"><use href="#i-moon"/></svg>
+      </button>
+      <a class="nav-download" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">
+        <svg class="icon" style="width:16px;height:16px"><use href="#i-arrow"/></svg> Get APK
+      </a>
+      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+    </div>
   </nav>
 </header>
 
 <div class="mobile-scrim" id="mobile-scrim"></div>
 <div class="mobile-sheet" id="mobile-sheet" aria-hidden="true" inert>
-  <a href="#features">Overview</a>
+  <a href="#features">Features</a>
   <a href="#how">How it works</a>
-  <a href="#screens">Screenshots</a>
-  <a href="#download">Download</a>
+  <a href="#providers">Providers</a>
+  <a href="#faq">FAQ</a>
   <a href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">GitHub</a>
 </div>
 
@@ -538,136 +638,192 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy-wrap">
-        <div class="app-kicker"><span class="kicker-rule"></span>Android app · Open source</div>
+        <div class="app-kicker"><svg class="icon"><use href="#i-check"/></svg> Android app · Open source · No login</div>
         <h1>
           <span class="line"><span class="line-inner">AI replies for</span></span>
           <span class="line"><span class="line-inner">Instagram <span class="blue">DMs.</span></span></span>
         </h1>
         <p class="hero-copy">InstaReply Bot reads supported Instagram DM notifications, checks your rules, asks your selected AI provider for a response, and sends the reply through the available Android reply action.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">Download latest APK</a>
-          <a class="button button-secondary" href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">View source</a>
+          <a class="button button-primary" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">
+            Download latest APK <svg class="icon"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="button button-secondary" href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">
+            <svg class="icon"><use href="#i-github"/></svg> View source
+          </a>
         </div>
         <p class="hero-note"><strong>Setup:</strong> install the APK, grant Notification Access, configure an AI provider, then create a reply rule.</p>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-frame">
-          <img src="assets/showcase.jpg" alt="InstaReply Bot product showcase with Android screens" width="1200" height="800">
-          <div class="app-sign">
-            <img src="assets/app-icon.jpg" alt="" width="240" height="240">
-            <div><strong>InstaReply Bot</strong><span>AI Auto-Reply for Instagram DMs</span></div>
-          </div>
+      <div class="hero-device">
+        <div class="device">
+          <div class="device-notch"></div>
+          <img class="device-screen" src="assets/showcase.jpg" alt="InstaReply Bot product showcase on an Android phone" width="660" height="1400" loading="eager">
         </div>
-        <div class="hero-caption"><span>Actual product visual</span><span>Android</span></div>
+        <div class="bubble bubble--in"><svg class="icon"><use href="#i-bell"/></svg> New DM detected</div>
+        <div class="bubble bubble--out"><span class="dot"><i></i><i></i><i></i></span> AI drafting reply</div>
       </div>
     </div>
   </section>
 
-  <section class="evidence" aria-label="Product summary">
-    <div class="container evidence-grid">
-      <div class="evidence-item"><strong>Notification based</strong><span>Works from supported Instagram DM notifications.</span></div>
-      <div class="evidence-item"><strong>Rule controlled</strong><span>Match text, contacts, groups, delays and limits.</span></div>
-      <div class="evidence-item"><strong>AI provider choice</strong><span>Use the provider configured in the app.</span></div>
-      <div class="evidence-item"><strong>Open source</strong><span>Inspect the Android project on GitHub.</span></div>
+  <section class="stats" aria-label="Product summary">
+    <div class="container stats-grid">
+      <div class="stat reveal"><div class="stat-value">0<span class="accent">.</span>cost</div><div class="stat-label">Free, open-source APK</div></div>
+      <div class="stat reveal" style="--d:.08s"><div class="stat-value">4<span class="accent">+</span></div><div class="stat-label">AI providers supported</div></div>
+      <div class="stat reveal" style="--d:.16s"><div class="stat-value">100<span class="accent">%</span></div><div class="stat-label">No Instagram login</div></div>
+      <div class="stat reveal" style="--d:.24s"><div class="stat-value">24<span class="accent">/</span>7</div><div class="stat-label">Background automation</div></div>
     </div>
   </section>
 
   <section class="section" id="features">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div class="section-label">Overview</div>
         <h2>The automation follows the message, not a complicated dashboard.</h2>
         <p class="section-lead">The product is organized around the real sequence from notification to reply. The controls stay visible in the Android app.</p>
       </div>
-      <div class="feature-list">
-        <div class="feature-row"><div class="feature-index">01</div><div class="feature-title">Read the DM notification</div><div class="feature-text">The Notification Listener receives supported Instagram notifications and extracts the information needed by the reply engine.</div></div>
-        <div class="feature-row"><div class="feature-index">02</div><div class="feature-title">Match your rule</div><div class="feature-text">Rules can use text matching, specific contacts, group-chat behavior, ignored contacts, delays and daily limits.</div></div>
-        <div class="feature-row"><div class="feature-index">03</div><div class="feature-title">Generate the response</div><div class="feature-text">The selected AI provider receives the configured prompt and message context and returns reply text.</div></div>
-        <div class="feature-row"><div class="feature-index">04</div><div class="feature-title">Send the reply</div><div class="feature-text">The app uses the notification reply action where available, with the project's accessibility fallback when needed.</div></div>
-        <div class="feature-row"><div class="feature-index">05</div><div class="feature-title">Keep the history</div><div class="feature-text">Reply activity is stored locally so you can review what happened from the dashboard and history screens.</div></div>
+      <div class="feature-grid">
+        <div class="feature-card reveal" style="--d:.04s">
+          <div class="feature-icon"><svg class="icon"><use href="#i-bell"/></svg></div>
+          <h3>Reads the DM notification</h3>
+          <p>The Notification Listener receives supported Instagram notifications and extracts the information needed by the reply engine.</p>
+        </div>
+        <div class="feature-card reveal" style="--d:.1s">
+          <div class="feature-icon"><svg class="icon"><use href="#i-sliders"/></svg></div>
+          <h3>Matches your rule</h3>
+          <p>Rules can use text matching, specific contacts, group-chat behavior, ignored contacts, delays and daily limits.</p>
+        </div>
+        <div class="feature-card reveal" style="--d:.16s">
+          <div class="feature-icon"><svg class="icon"><use href="#i-cpu"/></svg></div>
+          <h3>Generates the response</h3>
+          <p>The selected AI provider receives the configured prompt and message context and returns reply text.</p>
+        </div>
+        <div class="feature-card reveal" style="--d:.22s">
+          <div class="feature-icon"><svg class="icon"><use href="#i-reply"/></svg></div>
+          <h3>Sends the reply</h3>
+          <p>The app uses the notification reply action where available, with the project's accessibility fallback when needed.</p>
+        </div>
+        <div class="feature-card reveal" style="--d:.28s">
+          <div class="feature-icon"><svg class="icon"><use href="#i-history"/></svg></div>
+          <h3>Keeps the history</h3>
+          <p>Reply activity is stored locally so you can review what happened from the dashboard and history screens.</p>
+        </div>
+        <div class="feature-card reveal" style="--d:.34s">
+          <div class="feature-icon"><svg class="icon"><use href="#i-shield"/></svg></div>
+          <h3>No login required</h3>
+          <p>Operates from Android notification access. It never asks for an Instagram username or password.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="providers" id="providers">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Providers</div>
+        <h2>Bring your own AI. Your key, your model.</h2>
+        <p class="section-lead">InstaReply Bot is provider-agnostic. Configure whichever endpoint you trust inside the app.</p>
+      </div>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="chip"><svg class="icon"><use href="#i-bolt"/></svg> Groq</span>
+        <span class="chip"><svg class="icon"><use href="#i-spark"/></svg> Gemini</span>
+        <span class="chip"><svg class="icon"><use href="#i-globe"/></svg> OpenRouter</span>
+        <span class="chip"><svg class="icon"><use href="#i-cpu"/></svg> OpenAI</span>
+        <span class="chip"><svg class="icon"><use href="#i-github"/></svg> Ollama</span>
+        <span class="chip"><svg class="icon"><use href="#i-reply"/></svg> Custom endpoint</span>
+        <span class="chip"><svg class="icon"><use href="#i-bolt"/></svg> Groq</span>
+        <span class="chip"><svg class="icon"><use href="#i-spark"/></svg> Gemini-style</span>
+        <span class="chip"><svg class="icon"><use href="#i-globe"/></svg> OpenRouter</span>
+        <span class="chip"><svg class="icon"><use href="#i-cpu"/></svg> OpenAI</span>
+        <span class="chip"><svg class="icon"><use href="#i-github"/></svg> Ollama</span>
+        <span class="chip"><svg class="icon"><use href="#i-reply"/></svg> Custom endpoint</span>
       </div>
     </div>
   </section>
 
   <section class="section workflow-section" id="how">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div class="section-label">How it works</div>
         <h2>One clear chain from message to response.</h2>
         <p class="section-lead">The supplied workflow visual shows the product's actual operating sequence.</p>
       </div>
-      <div class="workflow-layout">
-        <div class="workflow-image"><img src="assets/workflow.jpg" alt="InstaReply Bot seven-stage workflow infographic" width="1200" height="800"></div>
-        <div class="workflow-notes">
-          <div class="workflow-step"><div class="step-number">01</div><div><strong>DM arrives</strong><span>Instagram posts a notification on the Android device.</span></div></div>
-          <div class="workflow-step"><div class="step-number">02</div><div><strong>Notification captured</strong><span>InstaReply Bot reads the supported notification.</span></div></div>
-          <div class="workflow-step"><div class="step-number">03</div><div><strong>Rule matched</strong><span>The configured rule decides whether the message qualifies.</span></div></div>
-          <div class="workflow-step"><div class="step-number">04</div><div><strong>AI generates</strong><span>Your selected provider creates the response.</span></div></div>
-          <div class="workflow-step"><div class="step-number">05</div><div><strong>Reply sent</strong><span>The available Android reply mechanism sends the text.</span></div></div>
-          <div class="workflow-step"><div class="step-number">06</div><div><strong>Logged</strong><span>The activity becomes available in the app's history.</span></div></div>
-        </div>
+      <div class="how-grid">
+        <ol class="timeline reveal">
+          <li class="step"><div class="step-node">01</div><div class="step-body"><strong>DM arrives</strong><span>Instagram posts a notification on the Android device.</span></div></li>
+          <li class="step"><div class="step-node">02</div><div class="step-body"><strong>Notification captured</strong><span>InstaReply Bot reads the supported notification.</span></div></li>
+          <li class="step"><div class="step-node">03</div><div class="step-body"><strong>Rule matched</strong><span>The configured rule decides whether the message qualifies.</span></div></li>
+          <li class="step"><div class="step-node">04</div><div class="step-body"><strong>AI generates</strong><span>Your selected provider creates the response.</span></div></li>
+          <li class="step"><div class="step-node">05</div><div class="step-body"><strong>Reply sent</strong><span>The available Android reply mechanism sends the text.</span></div></li>
+          <li class="step"><div class="step-node">06</div><div class="step-body"><strong>Logged</strong><span>The activity becomes available in the app's history.</span></div></li>
+        </ol>
+        <div class="workflow-image reveal" style="--d:.1s"><img src="assets/workflow.jpg" alt="InstaReply Bot seven-stage workflow infographic" width="1200" height="800" loading="lazy"></div>
       </div>
     </div>
   </section>
 
-  <section class="section screenshot-section" id="screens">
+  <section class="section" id="screens">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div class="section-label">Screenshots</div>
         <h2>See the actual app before you install it.</h2>
         <p class="section-lead">A Play Store-style screenshot rail using the supplied product screens. Swipe horizontally on smaller devices.</p>
       </div>
-
-      <div class="screenshot-rail">
-        <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/dashboard.jpg" alt="InstaReply Bot dashboard screen" width="429" height="900"></div>
-          <figcaption>Dashboard and activity</figcaption>
-        </figure>
-        <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/rule-engine.jpg" alt="InstaReply Bot Smart Rule Engine screen" width="416" height="900"></div>
-          <figcaption>Smart Rule Engine</figcaption>
-        </figure>
-        <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/ai-settings.jpg" alt="InstaReply Bot AI settings screen" width="416" height="900"></div>
-          <figcaption>AI settings and providers</figcaption>
-        </figure>
-        <figure class="shot portrait">
-          <div class="media-frame"><img src="assets/poster.jpg" alt="InstaReply Bot promotional poster" width="506" height="900"></div>
-          <figcaption>Product overview</figcaption>
-        </figure>
+      <div class="screenshot-rail reveal" style="--d:.06s">
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/dashboard.jpg" alt="InstaReply Bot dashboard screen" width="429" height="900" loading="lazy"></div><figcaption>Dashboard and activity</figcaption></figure>
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/rule-engine.jpg" alt="InstaReply Bot Smart Rule Engine screen" width="416" height="900" loading="lazy"></div><figcaption>Smart Rule Engine</figcaption></figure>
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/ai-settings.jpg" alt="InstaReply Bot AI settings screen" width="416" height="900" loading="lazy"></div><figcaption>AI settings and providers</figcaption></figure>
+        <figure class="shot portrait"><div class="media-frame"><img src="assets/poster.jpg" alt="InstaReply Bot promotional poster" width="506" height="900" loading="lazy"></div><figcaption>Product overview</figcaption></figure>
       </div>
     </div>
   </section>
 
   <section class="section workflow-section">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div class="section-label">Product controls</div>
         <h2>Configure the behavior directly in the Android UI.</h2>
         <p class="section-lead">Identity, AI provider configuration and rule behavior are exposed instead of hidden behind a black box.</p>
       </div>
       <div class="config-layout">
-        <div class="config-copy">
+        <div class="config-copy reveal">
           <p>These screens are part of the supplied product visuals and show where the important configuration lives.</p>
           <ul class="config-list">
-            <li><strong>Identity</strong><span>Name, location and optional context for generated replies.</span></li>
-            <li><strong>Custom system prompt</strong><span>Define the assistant's behavior for reply generation.</span></li>
-            <li><strong>Provider and model</strong><span>Configure a supported AI provider and model.</span></li>
-            <li><strong>Rules and limits</strong><span>Match messages, select contacts, set delays and daily limits.</span></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><div><strong>Identity</strong><span>Name, location and optional context for generated replies.</span></div></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><div><strong>Custom system prompt</strong><span>Define the assistant's behavior for reply generation.</span></div></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><div><strong>Provider and model</strong><span>Configure a supported AI provider and model.</span></div></li>
+            <li><svg class="icon"><use href="#i-check"/></svg><div><strong>Rules and limits</strong><span>Match messages, select contacts, set delays and daily limits.</span></div></li>
           </ul>
         </div>
-        <div class="config-shots">
-        <figure><div class="media-frame"><img src="assets/ai-settings.jpg" alt="Actual InstaReply Bot AI settings screen" width="416" height="900"></div></figure>
-        <figure><div class="media-frame"><img src="assets/rule-engine.jpg" alt="Actual InstaReply Bot rule editor screen" width="416" height="900"></div></figure>
+        <div class="config-shots reveal" style="--d:.1s">
+          <figure><div class="media-frame"><img src="assets/ai-settings.jpg" alt="Actual InstaReply Bot AI settings screen" width="416" height="900" loading="lazy"></div></figure>
+          <figure><div class="media-frame"><img src="assets/rule-engine.jpg" alt="Actual InstaReply Bot rule editor screen" width="416" height="900" loading="lazy"></div></figure>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+        <div class="section-label" style="justify-content:center">FAQ</div>
+        <h2>Questions, answered plainly.</h2>
+      </div>
+      <div class="faq-wrap reveal">
+        <details class="faq-item"><summary>Does InstaReply Bot need my Instagram password?<svg class="icon"><use href="#i-chevron"/></svg></summary><div class="faq-answer">No. The app works from Android Notification Access on supported Instagram DM notifications and never asks for an Instagram username or password.</div></details>
+        <details class="faq-item"><summary>Which AI providers are supported?<svg class="icon"><use href="#i-chevron"/></svg></summary><div class="faq-answer">The app is configured with whichever AI provider you choose inside the app, such as Groq, Gemini, OpenRouter and OpenAI-compatible endpoints.</div></details>
+        <details class="faq-item"><summary>Is InstaReply Bot free and open source?<svg class="icon"><use href="#i-chevron"/></svg></summary><div class="faq-answer">Yes. The Android project is open source on GitHub and the APK is published through GitHub Releases at no cost.</div></details>
+        <details class="faq-item"><summary>How does the reply get sent?<svg class="icon"><use href="#i-chevron"/></svg></summary><div class="faq-answer">When a rule matches, the app uses the notification reply action where available, with an accessibility-based fallback for sending when needed.</div></details>
+        <details class="faq-item"><summary>Can I control when replies are sent?<svg class="icon"><use href="#i-chevron"/></svg></summary><div class="faq-answer">Yes. Rules support text matching, specific contacts, group behavior, ignored contacts, delays and daily send limits.</div></details>
       </div>
     </div>
   </section>
 
   <section class="section download-section" id="download">
     <div class="container download-layout">
-      <div>
+      <div class="reveal">
         <div class="section-label">Download</div>
         <h2>Install InstaReply Bot and create your first reply rule.</h2>
         <p>The Android build is published through GitHub Releases. The source code is public, and the AI provider is configured inside the app.</p>
@@ -677,12 +833,12 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
           <div><strong>AI choice</strong><span>Configured in app</span></div>
         </div>
         <div class="hero-actions" style="opacity:1;transform:none">
-          <a class="button button-primary" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">Download latest APK</a>
-          <a class="button button-secondary" href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">Open GitHub</a>
+          <a class="button button-primary" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">Download latest APK <svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a class="button button-secondary" href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener"><svg class="icon"><use href="#i-github"/></svg> Open GitHub</a>
         </div>
       </div>
-      <div class="download-card">
-        <img src="assets/app-icon.jpg" alt="InstaReply Bot app icon" width="240" height="240">
+      <div class="download-card reveal" style="--d:.1s">
+        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--blue)"/><path d="M8 12a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-7l-4 3v-3H10a2 2 0 0 1-2-2z" fill="#fff"/><path d="M11 13h10M11 16h6" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/></svg>
         <div><strong>InstaReply Bot</strong><span>AI Auto-Reply for Instagram DMs</span></div>
         <a class="button button-primary" href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">Get the APK</a>
       </div>
@@ -691,16 +847,16 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
 
   <section class="trust">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header reveal">
         <div class="section-label">Trust and limits</div>
         <h2>Know what the app needs.</h2>
         <p class="section-lead">The page describes the mechanism rather than making broad security claims.</p>
       </div>
       <div class="trust-grid">
-        <div class="trust-item"><h3>No Instagram password field</h3><p>The workflow does not ask you to enter an Instagram username or password. It operates from Android notification access.</p></div>
-        <div class="trust-item"><h3>Notification Access is required</h3><p>The automation depends on Android's Notification Listener permission for supported Instagram notifications.</p></div>
-        <div class="trust-item"><h3>Accessibility is a fallback</h3><p>The project includes an accessibility-based fallback for sending when the notification reply action is not available.</p></div>
-        <div class="trust-item"><h3>AI providers are separate services</h3><p>Generated replies are sent to whichever AI provider you configure. Review that provider's terms and data handling before use.</p></div>
+        <div class="trust-item reveal"><div class="feature-icon"><svg class="icon"><use href="#i-shield"/></svg></div><div><h3>No Instagram password field</h3><p>The workflow does not ask you to enter an Instagram username or password. It operates from Android notification access.</p></div></div>
+        <div class="trust-item reveal" style="--d:.08s"><div class="feature-icon"><svg class="icon"><use href="#i-bell"/></svg></div><div><h3>Notification Access is required</h3><p>The automation depends on Android's Notification Listener permission for supported Instagram notifications.</p></div></div>
+        <div class="trust-item reveal" style="--d:.16s"><div class="feature-icon"><svg class="icon"><use href="#i-reply"/></svg></div><div><h3>Accessibility is a fallback</h3><p>The project includes an accessibility-based fallback for sending when the notification reply action is not available.</p></div></div>
+        <div class="trust-item reveal" style="--d:.24s"><div class="feature-icon"><svg class="icon"><use href="#i-globe"/></svg></div><div><h3>AI providers are separate services</h3><p>Generated replies are sent to whichever AI provider you configure. Review that provider's terms and data handling before use.</p></div></div>
       </div>
     </div>
   </section>
@@ -708,14 +864,32 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
 
 <footer>
   <div class="container">
-    <div class="footer-row">
-      <div class="footer-brand">Insta<span class="blue">Reply</span> Bot</div>
-      <div class="footer-links">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <div class="footer-brand"><svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true" style="width:28px;height:28px"><rect width="32" height="32" rx="9" fill="var(--blue)"/><path d="M8 12a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-7l-4 3v-3H10a2 2 0 0 1-2-2z" fill="#fff"/><path d="M11 13h10M11 16h6" stroke="var(--blue)" stroke-width="1.6" stroke-linecap="round"/></svg> Insta<span class="blue">Reply</span> Bot</div>
+        <p class="footer-about">An open-source Android project that auto-replies to Instagram DMs with AI. Free, no login, provider-agnostic.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#providers">Providers</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Project</h4>
         <a href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">GitHub</a>
         <a href="https://github.com/nandandas2407-web/InstaReplyBot/releases/latest" target="_blank" rel="noopener">Releases</a>
+        <a href="https://dev.to/nandan_das_369" target="_blank" rel="noopener">Blog</a>
       </div>
     </div>
-    <p class="footer-note">Android open-source project. Instagram is a trademark of Meta Platforms, Inc. This project is independent and is not affiliated with or endorsed by Instagram.</p>
+    <div class="footer-bottom">
+      <p class="footer-note">Android open-source project. Instagram is a trademark of Meta Platforms, Inc. This project is independent and is not affiliated with or endorsed by Instagram.</p>
+      <div class="footer-social">
+        <a href="https://github.com/nandandas2407-web" target="_blank" rel="noopener" aria-label="GitHub"><svg class="icon icon--fill"><use href="#i-github"/></svg></a>
+        <a href="https://x.com/NandanDas369" target="_blank" rel="noopener" aria-label="X"><svg class="icon icon--fill"><use href="#i-x"/></svg></a>
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -742,25 +916,40 @@ html:not(.anim) .hero-visual{opacity:1;transform:none}
     sheet.removeAttribute('inert');
     document.body.classList.add('no-scroll');
   }
-  button.addEventListener('click', () => {
-    if(sheet.classList.contains('open')) closeMenu(); else openMenu();
-  });
+  button.addEventListener('click', () => { sheet.classList.contains('open') ? closeMenu() : openMenu(); });
   scrim.addEventListener('click', closeMenu);
   sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-  window.addEventListener('keydown', e => {
-    if(e.key === 'Escape') closeMenu();
+  window.addEventListener('keydown', e => { if(e.key === 'Escape') closeMenu(); });
+  window.addEventListener('resize', () => { if(window.innerWidth > 900) closeMenu(); });
+
+  // Theme
+  const themeBtn = document.querySelector('.theme-toggle');
+  const stored = (() => { try { return localStorage.getItem('irb-theme'); } catch(e){ return null; } })();
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if(stored){ root.setAttribute('data-theme', stored); }
+  else if(prefersDark){ root.setAttribute('data-theme','dark'); }
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('irb-theme', next); } catch(e){}
   });
-  window.addEventListener('resize', () => {
-    if(window.innerWidth > 900) closeMenu();
-  });
+
+  // Reveal on scroll
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    revealEls.forEach(el => el.classList.add('in'));
+  }else{
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold:0.14, rootMargin:'0px 0px -8% 0px' });
+    revealEls.forEach(el => io.observe(el));
+  }
 
   // Entrance runs once. Reduced-motion users receive the finished state immediately.
   const finish = () => root.classList.remove('anim');
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    finish();
-  }else{
-    window.setTimeout(finish, 1800);
-  }
+  if(reduce){ finish(); }
+  else { window.setTimeout(finish, 1800); }
 })();
 </script>
 </body>

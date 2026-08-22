@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InstaReply Bot — Automated Instagram DM replies, no login required</title>
+<meta name="description" content="InstaReply Bot watches your Instagram notifications and replies with AI. Runs on Android, needs no Instagram login, and works with free AI models.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f3ec;
+    --surface:#ffffff;
+    --ink:#1c1b19;
+    --muted:#6b655c;
+    --accent:#e8482b;
+    --accent-dark:#c9381f;
+    --border:#e4ddd0;
+    --line:#efe9dc;
+    --radius:10px;
+    --radius-sm:6px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"IBM Plex Sans",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:-0.01em}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .muted{color:var(--muted)}
+
+  /* top bar */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(246,243,236,.86);
+    backdrop-filter:saturate(160%) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;font-family:"Fraunces",serif;font-size:18px}
+  .brand img{width:30px;height:30px;border-radius:7px}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:14px;color:var(--muted);transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:"IBM Plex Sans",sans-serif;font-weight:600;font-size:14px;
+    padding:11px 18px;border-radius:var(--radius-sm);border:1px solid transparent;
+    cursor:pointer;transition:background .15s,border-color .15s,transform .1s;
+  }
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-dark)}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-ghost{background:transparent;border-color:var(--border);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+
+  /* hero */
+  .hero{padding:72px 0 56px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
+  .eyebrow{
+    display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:18px;
+  }
+  .hero h1{font-size:clamp(38px,5.4vw,62px);margin-bottom:20px}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:46ch;margin-bottom:32px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-fact{margin-top:28px;display:flex;gap:30px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .hero-fact b{display:block;font-family:"Fraunces",serif;font-size:20px;color:var(--ink)}
+  .hero-visual{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .hero-visual img{width:100%}
+
+  /* section frame */
+  section.block{padding:72px 0;border-top:1px solid var(--line)}
+  .sec-head{max-width:620px;margin-bottom:44px}
+  .sec-head .eyebrow{margin-bottom:12px}
+  .sec-head h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:14px}
+  .sec-head p{font-size:17px;color:var(--muted)}
+
+  /* how it works */
+  .flow{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+  .flow-img{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .steps{list-style:none;display:flex;flex-direction:column;gap:22px}
+  .steps li{display:grid;grid-template-columns:34px 1fr;gap:16px;align-items:start}
+  .steps .n{
+    width:34px;height:34px;border-radius:50%;background:var(--ink);color:#fff;
+    display:grid;place-items:center;font-family:"Fraunces",serif;font-size:15px;font-weight:600;
+  }
+  .steps h4{font-family:"IBM Plex Sans",sans-serif;font-size:16px;font-weight:600;margin-bottom:2px}
+  .steps p{font-size:14px;color:var(--muted)}
+
+  /* feature split */
+  .feature{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:64px}
+  .feature:last-child{margin-bottom:0}
+  .feature.rev .feature-text{order:2}
+  .feature-text h3{font-size:26px;margin-bottom:12px}
+  .feature-text p{color:var(--muted);font-size:16px;margin-bottom:18px}
+  .feature-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .feature-list li{display:flex;gap:10px;font-size:15px;align-items:flex-start}
+  .feature-list .dot{margin-top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none}
+  .shot{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+  .shot img{width:100%}
+
+  /* download */
+  .download{background:var(--ink);color:#f6f3ec;border-top:none}
+  .download .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding-top:72px;padding-bottom:72px}
+  .download h2{font-size:clamp(28px,3.4vw,40px);color:#fff;margin-bottom:14px}
+  .download p{color:#c9c3b8;font-size:17px;max-width:42ch}
+  .dl-card{background:#26241f;border:1px solid #3a372f;border-radius:var(--radius);padding:28px}
+  .dl-card .row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #3a372f}
+  .dl-card .row:last-child{border-bottom:none}
+  .dl-card .k{font-size:14px;color:#c9c3b8}
+  .dl-card .v{font-size:14px;color:#fff;font-weight:500}
+  .dl-steps{margin-top:24px;display:flex;flex-direction:column;gap:14px;list-style:none}
+  .dl-steps li{display:flex;gap:12px;font-size:14px;color:#e7e2d7;align-items:flex-start}
+  .dl-steps .n{width:22px;height:22px;border-radius:5px;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600;flex:none;margin-top:1px}
+
+  /* footer */
+  footer{border-top:1px solid var(--border);padding:40px 0}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;font-size:14px;color:var(--muted)}
+  .foot a:hover{color:var(--ink)}
+
+  @media(max-width:860px){
+    .hero-grid,.flow,.feature,.download .wrap{grid-template-columns:1fr;gap:32px}
+    .feature.rev .feature-text{order:0}
+    .nav-links{display:none}
+    .hero{padding:48px 0 40px}
+    section.block{padding:56px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <img src="images/IMG-20260812-WA0006.jpg" alt="InstaReply Bot app icon">
+      InstaReply Bot
+    </a>
+    <nav class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+    <a class="btn btn-primary" href="#download">Get the APK</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Android · AI · No login</span>
+        <h1>Replies to your Instagram DMs, written while you sleep.</h1>
+        <p class="lead">InstaReply Bot reads your incoming Instagram notifications and answers them with an AI model you choose. It runs entirely on your phone and never asks for your Instagram password.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#download">Download APK</a>
+          <a class="btn btn-ghost" href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">View source</a>
+        </div>
+        <div class="hero-fact">
+          <div><b>0</b> passwords required</div>
+          <div><b>Free</b> AI tiers work</div>
+          <div><b>Android 8+</b> supported</div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="images/IMG-20260812-WA0000.jpg" alt="InstaReply Bot product banner showing the app answering Instagram messages automatically">
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">How it works</span>
+        <h2>Four steps, no screen required</h2>
+        <p>The app uses Android's notification system, the same mechanism you already use when you reply from the lock screen.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-img">
+          <img src="images/IMG-20260812-WA0003.jpg" alt="Diagram showing how InstaReply Bot detects a message, matches a rule, generates a reply, and sends it">
+        </div>
+        <ol class="steps">
+          <li><span class="n">1</span><div><h4>Detect</h4><p>A notification listener picks up the incoming Instagram DM on your device.</p></div></li>
+          <li><span class="n">2</span><div><h4>Match</h4><p>Your rules decide who gets answered, using keyword, regex, or contact filters.</p></div></li>
+          <li><span class="n">3</span><div><h4>Generate</h4><p>The chosen AI provider writes a reply in the tone you configured.</p></div></li>
+          <li><span class="n">4</span><div><h4>Send</h4><p>The reply is delivered through Instagram's own notification Reply action.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Inside the app</span>
+        <h2>What you control</h2>
+        <p>Every part of the reply flow is configurable from the dashboard. These are real screens from the app.</p>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3>Your inbox, at a glance</h3>
+          <p>The dashboard shows reply activity, active rules, and live status so you always know the bot is working.</p>
+          <ul class="feature-list">
+            <li><span class="dot"></span>Daily reply counts and recent activity</li>
+            <li><span class="dot"></span>Toggles for notification and accessibility access</li>
+            <li><span class="dot"></span>Last-attempt status for quick debugging</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <img src="images/IMG-20260812-WA0001.jpg" alt="InstaReply Bot dashboard showing reply statistics and controls">
+        </div>
+      </div>
+
+      <div class="feature rev">
+        <div class="feature-text">
+          <h3>Rules that fit your inbox</h3>
+          <p>Decide who gets an answer and how. Match on exact text, a pattern, or a sender list, and cap replies per day.</p>
+          <ul class="feature-list">
+            <li><span class="dot"></span>Trigger types: contains, exact, starts/ends with, regex, any</li>
+            <li><span class="dot"></span>Per-rule AI provider and optional fixed template</li>
+            <li><span class="dot"></span>Human-like delay and daily reply limits</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <img src="images/IMG-20260812-WA0005.jpg" alt="InstaReply Bot rule editor with trigger patterns and provider selection">
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-text">
+          <h3>Pick the AI you trust</h3>
+          <p>Connect a free provider or a paid one. Keys are stored locally on the device and sent only to the provider you choose.</p>
+          <ul class="feature-list">
+            <li><span class="dot"></span>Free: Groq, OpenCode Zen, Gemini (no card)</li>
+            <li><span class="dot"></span>Paid: OpenRouter, NVIDIA NIM, OpenAI, custom</li>
+            <li><span class="dot"></span>Built-in model lists and key validation</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <img src="images/IMG-20260812-WA0004.jpg" alt="InstaReply Bot AI provider settings with Groq, Gemini, and other providers">
+        </div>
+      </div>
+
+      <div class="feature rev">
+        <div class="feature-text">
+          <h3>One reply, every time</h3>
+          <p>Duplicate notifications can't produce duplicate replies. The engine deduplicates by sender and message, and remembers what it already sent.</p>
+          <ul class="feature-list">
+            <li><span class="dot"></span>60-second in-memory dedupe</li>
+            <li><span class="dot"></span>Persisted reply log that survives restarts</li>
+            <li><span class="dot"></span>Single send per message, by design</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <img src="images/IMG-20260812-WA0002.jpg" alt="InstaReply Bot feature overview showing multiple screens and supported AI providers">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block download" id="download">
+    <div class="wrap">
+      <div>
+        <h2>Install InstaReply Bot</h2>
+        <p>Download the APK, grant two permissions, connect a free AI key, and your first automated reply is seconds away.</p>
+        <a class="btn btn-primary" href="apk/InstaReplyBot.apk" style="margin-top:24px" download>Download APK</a>
+      </div>
+      <div class="dl-card">
+        <div class="row"><span class="k">Platform</span><span class="v">Android 8.0 and above</span></div>
+        <div class="row"><span class="k">Size</span><span class="v">~12 MB</span></div>
+        <div class="row"><span class="k">License</span><span class="v">MIT</span></div>
+        <div class="row"><span class="k">Source</span><span class="v">Public on GitHub</span></div>
+        <ol class="dl-steps">
+          <li><span class="n">1</span><div>Install the APK and allow unknown sources when prompted.</div></li>
+          <li><span class="n">2</span><div>Grant Notification Access and (optionally) the Accessibility service.</div></li>
+          <li><span class="n">3</span><div>Add a free provider key in Settings and create your first rule.</div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>InstaReply Bot — built with Kotlin for Android.</span>
+    <span><a href="https://github.com/nandandas2407-web/InstaReplyBot" target="_blank" rel="noopener">GitHub</a> · <a href="https://github.com/nandandas2407-web/InstaReplyBot/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
